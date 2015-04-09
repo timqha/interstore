@@ -1,0 +1,16 @@
+{
+  "name": "interstore",
+  "version": "1.0.0",
+  "authors": [
+    "Pro_solvo <timqha@gmail.com>"
+  ],
+  "description": "test",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
