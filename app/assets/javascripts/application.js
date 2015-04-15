@@ -12,12 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-// //= require bootstrap
+//= require bootstrap
 //= require angular
 
 
 
-
+//= require ../angular/app
 //= require_tree ../angular
+
+//= require ngcart/dist/ngCart
+//= require angular-route
+//= require angular-rails-templates
+//= require angular-strap
+
 
 //= require_tree ../templates
