@@ -574,7 +574,7 @@ angular.module('mgcrea.ngStrap.button', [])
 
         // model -> view
         controller.$render = function () {
-          // console.warn('$render', element.attr('ng-model'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
+          // console.warn('$render', element.attr('ng-model'), 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue, 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue);
           var isActive = angular.equals(controller.$modelValue, trueValue);
           $$rAF(function() {
             if(isInput) element[0].checked = isActive;
@@ -585,7 +585,7 @@ angular.module('mgcrea.ngStrap.button', [])
         // view -> model
         element.bind(options.toggleEvent, function() {
           scope.$apply(function () {
-            // console.warn('!click', element.attr('ng-model'), 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue, 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue);
+            // console.warn('!click', element.attr('ng-model'), 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue, 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue);
             if(!isInput) {
               controller.$setViewValue(!activeElement.hasClass('active'));
             }
@@ -644,7 +644,7 @@ angular.module('mgcrea.ngStrap.button', [])
 
         // model -> view
         controller.$render = function () {
-          // console.warn('$render', element.attr('value'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
+          // console.warn('$render', element.attr('value'), 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue, 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue);
           var isActive = angular.equals(controller.$modelValue, value);
           $$rAF(function() {
             if(isInput) element[0].checked = isActive;
@@ -655,7 +655,7 @@ angular.module('mgcrea.ngStrap.button', [])
         // view -> model
         element.bind(options.toggleEvent, function() {
           scope.$apply(function () {
-            // console.warn('!click', element.attr('value'), 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue, 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue);
+            // console.warn('!click', element.attr('value'), 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue, 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue);
             controller.$setViewValue(value);
             controller.$render();
           });
@@ -862,10 +862,10 @@ angular.module('mgcrea.ngStrap.collapse', [])
         // Add base attr
         element.attr('data-toggle', 'collapse');
 
-        // Push pane to parent bsCollapse controller
+        // Push pane to parent bsCollapse controllers
         bsCollapseCtrl.$registerToggle(element);
 
-        // remove toggle from collapse controller when toggle is destroyed
+        // remove toggle from collapse controllers when toggle is destroyed
         scope.$on('$destroy', function() {
           bsCollapseCtrl.$unregisterToggle(element);
         });
@@ -899,10 +899,10 @@ angular.module('mgcrea.ngStrap.collapse', [])
           element.addClass(bsCollapseCtrl.$options.animation);
         }
 
-        // Push pane to parent bsCollapse controller
+        // Push pane to parent bsCollapse controllers
         bsCollapseCtrl.$registerTarget(element);
 
-        // remove pane target from collapse controller when target is destroyed
+        // remove pane target from collapse controllers when target is destroyed
         scope.$on('$destroy', function() {
           bsCollapseCtrl.$unregisterTarget(element);
         });
@@ -1336,7 +1336,7 @@ angular.module('mgcrea.ngStrap.datepicker', [
 
         // viewValue -> element
         controller.$render = function() {
-          // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
+          // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controllers.$viewValue);
           element.val(getDateFormattedString());
         };
 
@@ -2157,7 +2157,7 @@ angular.module('mgcrea.ngStrap.helpers.dimensions', [])
         left: boxRect.left + (window.pageXOffset || docElement.documentElement.scrollLeft) - (docElement.documentElement.clientLeft || 0)
       };
     };
-  
+
     /**
      * Provides set equivalent of jQuery's offset function:
      * @required-by bootstrap-tooltip
@@ -2177,18 +2177,18 @@ angular.module('mgcrea.ngStrap.helpers.dimensions', [])
           position = fn.css(element, 'position'),
           curElem = angular.element(element),
           props = {};
-      
+
       // Set position first, in-case top/left are set even on static elem
       if (position === 'static') {
         element.style.position = 'relative';
       }
-      
+
       curOffset = fn.offset(element);
       curCSSTop = fn.css(element, 'top');
       curCSSLeft = fn.css(element, 'left');
-      calculatePosition = (position === 'absolute' || position === 'fixed') && 
+      calculatePosition = (position === 'absolute' || position === 'fixed') &&
                           (curCSSTop + curCSSLeft).indexOf('auto') > -1;
-      
+
       // Need to be able to calculate position if either
       // top or left is auto and position is either absolute or fixed
       if (calculatePosition) {
@@ -2199,11 +2199,11 @@ angular.module('mgcrea.ngStrap.helpers.dimensions', [])
         curTop = parseFloat(curCSSTop) || 0;
         curLeft = parseFloat(curCSSLeft) || 0;
       }
-      
+
       if (angular.isFunction(options)) {
         options = options.call(element, i, curOffset);
       }
-      
+
       if (options.top !== null ) {
         props.top = (options.top - curOffset.top) + curTop;
       }
@@ -2944,7 +2944,7 @@ angular.module('mgcrea.ngStrap.popover', ['mgcrea.ngStrap.tooltip'])
           if(angular.isString(newValue)) newValue = !!newValue.match(/true|,?(popover),?/i);
           newValue === true ? popover.show() : popover.hide();
         });
-        
+
         // Viewport support
         attr.viewport && scope.$watch(attr.viewport, function (newValue) {
           if(!popover || !angular.isDefined(newValue)) return;
@@ -3447,7 +3447,7 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
         $select.hide = function() {
           if(!options.multiple && !controller.$modelValue) {
             scope.$activeIndex = -1;
-          } 
+          }
           $select.$element.off(isTouch ? 'touchstart' : 'mousedown', $select.$onMouseDown);
           if(options.keyboard) {
             element.off('keydown', $select.$onKeyDown);
@@ -3515,7 +3515,7 @@ angular.module('mgcrea.ngStrap.select', ['mgcrea.ngStrap.tooltip', 'mgcrea.ngStr
 
         // Model rendering in view
         controller.$render = function () {
-          // console.warn('$render', element.attr('ng-model'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
+          // console.warn('$render', element.attr('ng-model'), 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue, 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue);
           var selected, index;
           if(options.multiple && angular.isArray(controller.$modelValue)) {
             selected = controller.$modelValue.map(function(value) {
@@ -3580,7 +3580,7 @@ angular.module('mgcrea.ngStrap.tab', [])
       self.$panes = $scope.$panes = [];
 
       // DEPRECATED: $viewChangeListeners, please use $activePaneChangeListeners
-      // Because we deprecated ngModel usage, we rename viewChangeListeners to 
+      // Because we deprecated ngModel usage, we rename viewChangeListeners to
       // activePaneChangeListeners to make more sense.
       self.$activePaneChangeListeners = self.$viewChangeListeners = [];
 
@@ -3596,7 +3596,7 @@ angular.module('mgcrea.ngStrap.tab', [])
         self.$panes.splice(index, 1);
 
         if (index < activeIndex) {
-          // we removed a pane before the active pane, so we need to 
+          // we removed a pane before the active pane, so we need to
           // decrement the active pane index
           activeIndex--;
         }
@@ -3711,10 +3711,10 @@ angular.module('mgcrea.ngStrap.tab', [])
           scope.disabled = scope.$eval(newValue);
         });
 
-        // Push pane to parent bsTabs controller
+        // Push pane to parent bsTabs controllers
         bsTabsCtrl.$push(scope);
 
-        // remove pane from tab controller when pane is destroyed
+        // remove pane from tab controllers when pane is destroyed
         scope.$on('$destroy', function() {
           bsTabsCtrl.$remove(scope);
         });
@@ -4134,7 +4134,7 @@ angular.module('mgcrea.ngStrap.timepicker', [
 
         // Watch model for changes
         scope.$watch(attr.ngModel, function(newValue, oldValue) {
-          // console.warn('scope.$watch(%s)', attr.ngModel, newValue, oldValue, controller.$dateValue);
+          // console.warn('scope.$watch(%s)', attr.ngModel, newValue, oldValue, controllers.$dateValue);
           timepicker.update(controller.$dateValue);
         }, true);
 
@@ -4214,7 +4214,7 @@ angular.module('mgcrea.ngStrap.timepicker', [
 
         // viewValue -> element
         controller.$render = function() {
-          // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
+          // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controllers.$viewValue);
           element.val(getTimeFormattedString());
         };
 
@@ -4301,11 +4301,11 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
           if(scope.$activeIndex >= matches.length) {
             scope.$activeIndex = options.autoSelect ? 0: -1;
           }
-          
+
           // When the placement is not one of the bottom placements, re-calc the positioning
           // so the results render correctly.
           if (/^(bottom|bottom-left|bottom-right)$/.test(options.placement)) return;
-          
+
           // wrap in a $timeout so the results are updated
           // before repositioning
           $timeout($typeahead.$applyPlacement);
@@ -4427,7 +4427,7 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
 
         // Disable browser autocompletion
         element.attr('autocomplete' ,'off');
-        
+
         // Build proper bsOptions
         var filter = options.filter || defaults.filter;
         var limit = options.limit || defaults.limit;
@@ -4487,7 +4487,7 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
 
         // Model rendering in view
         controller.$render = function () {
-          // console.warn('$render', element.attr('ng-model'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
+          // console.warn('$render', element.attr('ng-model'), 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue, 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue);
           if(controller.$isEmpty(controller.$viewValue)) return element.val('');
           var index = typeahead.$getIndex(controller.$modelValue);
           var selected = angular.isDefined(index) ? typeahead.$scope.$matches[index].label : controller.$viewValue;

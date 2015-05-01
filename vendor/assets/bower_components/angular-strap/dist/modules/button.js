@@ -87,7 +87,7 @@ angular.module('mgcrea.ngStrap.button', [])
 
         // model -> view
         controller.$render = function () {
-          // console.warn('$render', element.attr('ng-model'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
+          // console.warn('$render', element.attr('ng-model'), 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue, 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue);
           var isActive = angular.equals(controller.$modelValue, trueValue);
           $$rAF(function() {
             if(isInput) element[0].checked = isActive;
@@ -98,7 +98,7 @@ angular.module('mgcrea.ngStrap.button', [])
         // view -> model
         element.bind(options.toggleEvent, function() {
           scope.$apply(function () {
-            // console.warn('!click', element.attr('ng-model'), 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue, 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue);
+            // console.warn('!click', element.attr('ng-model'), 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue, 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue);
             if(!isInput) {
               controller.$setViewValue(!activeElement.hasClass('active'));
             }
@@ -157,7 +157,7 @@ angular.module('mgcrea.ngStrap.button', [])
 
         // model -> view
         controller.$render = function () {
-          // console.warn('$render', element.attr('value'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
+          // console.warn('$render', element.attr('value'), 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue, 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue);
           var isActive = angular.equals(controller.$modelValue, value);
           $$rAF(function() {
             if(isInput) element[0].checked = isActive;
@@ -168,7 +168,7 @@ angular.module('mgcrea.ngStrap.button', [])
         // view -> model
         element.bind(options.toggleEvent, function() {
           scope.$apply(function () {
-            // console.warn('!click', element.attr('value'), 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue, 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue);
+            // console.warn('!click', element.attr('value'), 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue, 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue);
             controller.$setViewValue(value);
             controller.$render();
           });

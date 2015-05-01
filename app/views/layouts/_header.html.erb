@@ -6,8 +6,11 @@
         <ul class="nav pull-right">
 
           <li><%= link_to "Cart", "/cart" %></li>
+		  <li><%= link_to "SignIn", "/login" %></li>
+		  <%= link_to "Sign_in", new_user_session_path, :class => 'navbar-link' %>
           <li><a ui-sref="users.index">Users</a></li>
           <li><a ui-sref="signout">Sign in</a></li>
+
         </ul>
       </nav>
     </div>

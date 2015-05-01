@@ -73,11 +73,11 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
           if(scope.$activeIndex >= matches.length) {
             scope.$activeIndex = options.autoSelect ? 0: -1;
           }
-          
+
           // When the placement is not one of the bottom placements, re-calc the positioning
           // so the results render correctly.
           if (/^(bottom|bottom-left|bottom-right)$/.test(options.placement)) return;
-          
+
           // wrap in a $timeout so the results are updated
           // before repositioning
           $timeout($typeahead.$applyPlacement);
@@ -199,7 +199,7 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
 
         // Disable browser autocompletion
         element.attr('autocomplete' ,'off');
-        
+
         // Build proper bsOptions
         var filter = options.filter || defaults.filter;
         var limit = options.limit || defaults.limit;
@@ -259,7 +259,7 @@ angular.module('mgcrea.ngStrap.typeahead', ['mgcrea.ngStrap.tooltip', 'mgcrea.ng
 
         // Model rendering in view
         controller.$render = function () {
-          // console.warn('$render', element.attr('ng-model'), 'controller.$modelValue', typeof controller.$modelValue, controller.$modelValue, 'controller.$viewValue', typeof controller.$viewValue, controller.$viewValue);
+          // console.warn('$render', element.attr('ng-model'), 'controllers.$modelValue', typeof controllers.$modelValue, controllers.$modelValue, 'controllers.$viewValue', typeof controllers.$viewValue, controllers.$viewValue);
           if(controller.$isEmpty(controller.$viewValue)) return element.val('');
           var index = typeahead.$getIndex(controller.$modelValue);
           var selected = angular.isDefined(index) ? typeahead.$scope.$matches[index].label : controller.$viewValue;

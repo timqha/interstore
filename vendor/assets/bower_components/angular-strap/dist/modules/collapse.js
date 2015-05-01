@@ -201,10 +201,10 @@ angular.module('mgcrea.ngStrap.collapse', [])
         // Add base attr
         element.attr('data-toggle', 'collapse');
 
-        // Push pane to parent bsCollapse controller
+        // Push pane to parent bsCollapse controllers
         bsCollapseCtrl.$registerToggle(element);
 
-        // remove toggle from collapse controller when toggle is destroyed
+        // remove toggle from collapse controllers when toggle is destroyed
         scope.$on('$destroy', function() {
           bsCollapseCtrl.$unregisterToggle(element);
         });
@@ -238,10 +238,10 @@ angular.module('mgcrea.ngStrap.collapse', [])
           element.addClass(bsCollapseCtrl.$options.animation);
         }
 
-        // Push pane to parent bsCollapse controller
+        // Push pane to parent bsCollapse controllers
         bsCollapseCtrl.$registerTarget(element);
 
-        // remove pane target from collapse controller when target is destroyed
+        // remove pane target from collapse controllers when target is destroyed
         scope.$on('$destroy', function() {
           bsCollapseCtrl.$unregisterTarget(element);
         });

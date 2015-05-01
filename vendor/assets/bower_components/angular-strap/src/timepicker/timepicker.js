@@ -398,7 +398,7 @@ angular.module('mgcrea.ngStrap.timepicker', [
 
         // Watch model for changes
         scope.$watch(attr.ngModel, function(newValue, oldValue) {
-          // console.warn('scope.$watch(%s)', attr.ngModel, newValue, oldValue, controller.$dateValue);
+          // console.warn('scope.$watch(%s)', attr.ngModel, newValue, oldValue, controllers.$dateValue);
           timepicker.update(controller.$dateValue);
         }, true);
 
@@ -478,7 +478,7 @@ angular.module('mgcrea.ngStrap.timepicker', [
 
         // viewValue -> element
         controller.$render = function() {
-          // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controller.$viewValue);
+          // console.warn('$render("%s"): viewValue=%o', element.attr('ng-model'), controllers.$viewValue);
           element.val(getTimeFormattedString());
         };
 

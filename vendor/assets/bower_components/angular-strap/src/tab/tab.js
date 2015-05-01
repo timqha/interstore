@@ -27,7 +27,7 @@ angular.module('mgcrea.ngStrap.tab', [])
       self.$panes = $scope.$panes = [];
 
       // DEPRECATED: $viewChangeListeners, please use $activePaneChangeListeners
-      // Because we deprecated ngModel usage, we rename viewChangeListeners to 
+      // Because we deprecated ngModel usage, we rename viewChangeListeners to
       // activePaneChangeListeners to make more sense.
       self.$activePaneChangeListeners = self.$viewChangeListeners = [];
 
@@ -43,7 +43,7 @@ angular.module('mgcrea.ngStrap.tab', [])
         self.$panes.splice(index, 1);
 
         if (index < activeIndex) {
-          // we removed a pane before the active pane, so we need to 
+          // we removed a pane before the active pane, so we need to
           // decrement the active pane index
           activeIndex--;
         }
@@ -158,10 +158,10 @@ angular.module('mgcrea.ngStrap.tab', [])
           scope.disabled = scope.$eval(newValue);
         });
 
-        // Push pane to parent bsTabs controller
+        // Push pane to parent bsTabs controllers
         bsTabsCtrl.$push(scope);
 
-        // remove pane from tab controller when pane is destroyed
+        // remove pane from tab controllers when pane is destroyed
         scope.$on('$destroy', function() {
           bsTabsCtrl.$remove(scope);
         });

@@ -3,6 +3,7 @@ angular.module('app', [
     'ngCart',
     'ngRoute',
     'templates'
+   // 'ui.route'
    // 'mgcrea.ngStrap' // for modal window
 ]).config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -11,10 +12,14 @@ angular.module('app', [
             controller: 'MyController'
         })
         .when('/cart', {
-            templateUrl: 'cart.html',
+            templateUrl: 'devise/cart.html',
             controller: 'StepOneController'
-        }).
-        otherwise({
+        })
+        .when('/login',{
+            templateUrl: 'login.html',
+            controller: 'LoginCtrl'
+        })
+        .otherwise({
             redirectTo: '/'
         });
     $locationProvider.html5Mode(true);
@@ -35,3 +40,5 @@ angular.module('app', [
     }
 
 });*/
+
+

@@ -13,6 +13,12 @@ module Interstore
     # -- all .rb files in that directory are automatically loaded.
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    #for devise, if you are deploying on Heroku
+    config.assets.initialize_on_precompile = false
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
