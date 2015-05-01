@@ -1,0 +1,14 @@
+class Products < ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string :name
+      t.string :price
+      t.string :data
+
+      t.integer :category_id
+      t.integer :products_id
+      t.timestamps
+    end
+    add_index :products, [:products_id]
+  end
+end
