@@ -13,17 +13,24 @@
 
 ActiveRecord::Schema.define(version: 20150430154654) do
 
-  create_table "category", force: true do |t|
-    t.string  "category"
-    t.integer "category_id"
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
-  add_index "category", ["category_id"], name: "index_category_on_category_id"
+  add_index "categories", ["category_id"], name: "index_categories_on_category_id"
 
   create_table "products", force: true do |t|
     t.string   "name"
     t.string   "price"
     t.string   "data"
+    t.string   "params"
+    t.string   "string"
+    t.string   "visible",     default: "t"
+    t.string   "boolean",     default: "t"
     t.integer  "category_id"
     t.integer  "products_id"
     t.datetime "created_at"

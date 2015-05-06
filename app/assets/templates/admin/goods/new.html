@@ -1,0 +1,23 @@
+<h1>New Product</h1>
+
+<div>
+    <form>
+        <div>
+            <labal>Product name: </labal>
+            <input ng-model="product.name" required />
+        </div>
+        <div>
+            <labal>Product price: </labal>
+            <input ng-model="product.price" required />
+        </div>
+        <div>
+            <labal>Product colors: </labal>
+            <input ng-model="product.params" required />
+        </div>
+
+        <div>
+            <select ng-init="product.category_id = options[0]" ng-model="product.category_id" ng-selected="0" ng-options="category.id as category.name for category in categories" required></select>
+        </div>
+        <button ng-click="addProduct()" class="btn btn-primary">Save Product</button>
+    </form>
+</div>

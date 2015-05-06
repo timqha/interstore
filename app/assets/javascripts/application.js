@@ -24,6 +24,7 @@
 //= require angular-route
 //= require angular-rails-templates
 //= require angular-strap
+//= require angular-cookies
 
 
 //= require_tree ../templates

@@ -1,29 +1,37 @@
-//angular.module('AnCart', []);
+
+'use strict';
+
+angular.module("admin", [
+    "ngRoute",
+    "templates"
+]);
 angular.module('app', [
     'ngCart',
     'ngRoute',
-    'templates'
+    'templates',
+    'ngCookies',
+    'admin'
    // 'ui.route'
    // 'mgcrea.ngStrap' // for modal window
-]).config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-        .when('/', {
-            templateUrl: 'home.html',
-            controller: 'MyController'
-        })
-        .when('/cart', {
-            templateUrl: 'devise/cart.html',
-            controller: 'StepOneController'
-        })
-        .when('/login',{
-            templateUrl: 'login.html',
-            controller: 'LoginCtrl'
-        })
-        .otherwise({
-            redirectTo: '/'
-        });
-    $locationProvider.html5Mode(true);
+])
+    .run(function ($rootScope, $location, $cookieStore, $http) {
+    // keep user logged in after page refresh
+    $rootScope.globals = $cookieStore.get('globals') || {};
+    if ($rootScope.globals.currentUser) {
+        $http.defaults.headers.common['app'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+    }
 
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        // redirect to login page if not logged in
+       //   if ($location.path() !== '/' && !$rootScope.globals.currentUser) {
+       //  $location.path('/login');
+      //   }
+
+        var nextRoute = $location.path();
+        if (nextRoute.secure && !$rootScope.globals.currentUser) {
+            $location.path('/login');
+        }
+    });
 });
     /*
 .run(function ($rootScope, anCart, ngCartItem, store) {

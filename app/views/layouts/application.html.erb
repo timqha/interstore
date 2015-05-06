@@ -10,16 +10,11 @@
 <body ng-app="app">
 
 
-<div class="col-md-5 leftmenu">
-	<%= render "layouts/navbar" %>
-</div>
 
-<div class="col-md-2 rightcontent">
-	<div class="container">
-		<div ng-view></div>
-	</div>
-</div>
+<div ng-view></div>
+
 <%= render "layouts/header" %>
 <%= render "layouts/footer" %>
 </body>
 </html>
+

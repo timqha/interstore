@@ -1,0 +1,53 @@
+
+<div class="col-md-6 leftmenu">
+    <div class="navbar-inner">
+        <h1>Категории</h1>
+        <div class="navbar-collapse">
+            <ul class="nav">
+                <li><a href="/">back</a>
+                <li>{{category.name}}</li>
+            </ul>
+        </div>
+
+
+
+
+    <ul class="nav">
+        <div>Цвета:</div>
+        <li><input type="checkbox" data-ng-model='colors.white'  /> White</li>
+        <li><input type="checkbox" data-ng-model='colors.black'  /> Black</li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+
+
+<div class="col-md-2 rightcontent">
+    <div class="container">
+
+        <div ng-repeat="product in products | filterColor:colors | filter:{visible:t}">
+            <div class="cartbox">
+                <p>{{product.name}}</p>
+                <div class="redblok"></div>
+                <p>цена: {{product.price | currency: "$"}}</p>
+                <p>цвет: {{product.params}}</p>
+                <ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
+            </div>
+        </div>
+
+<!--
+          <div ng-controller="MyController">{{name}}
+        <a href="/cart">cart</a>
+
+            <div ng-repeat="category in categories">
+              <a href="category/{{category.id}}">{{category.name}}</a>
+                <a href="category/{{category.id}}/delete" ng-click="deleteCategory(category.id)" >&lt;!&ndash;data-confirm="You sure?"&ndash;&gt; x</a>
+                {{category.desc}}
+            </div>
+          </div>-->
+
+    </div>
+</div>

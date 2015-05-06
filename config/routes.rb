@@ -1,8 +1,15 @@
 Interstore::Application.routes.draw do
 
+  scope "api", defaults: {format: :json} do
+    resources :categories
+    resources :products
+  end
+
   devise_for :users
   root 'application#home'
- # get '*path' => 'application#home'
+  get  "*path", to: redirect('/')
+
+  # get '*path' => 'application#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

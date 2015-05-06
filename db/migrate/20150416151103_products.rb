@@ -4,7 +4,8 @@ class Products < ActiveRecord::Migration
       t.string :name
       t.string :price
       t.string :data
-
+      t.string :params
+      t.boolean :visible, default: true
       t.integer :category_id
       t.integer :products_id
       t.timestamps

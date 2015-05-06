@@ -80,7 +80,7 @@ footer {
 .leftmenu{
   margin-left:5%;
   margin-right: 2%;
-  width: 20%;
+  width: 25%;
   float:left;
 }
 .rightcontent {
@@ -132,4 +132,9 @@ footer {
 }
 .ngCart.cart .glyphicon.disabled {
   color:#aaa;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
 }

@@ -1,15 +1,17 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
-    <div class="container">
+    <div class="container" ng-controller="RegisterCtrl">
       <%= link_to "Logo", "/", id: "logo" %>
 	  <nav>
         <ul class="nav pull-right">
 
           <li><%= link_to "Cart", "/cart" %></li>
-		  <li><%= link_to "SignIn", "/login" %></li>
-		  <%= link_to "Sign_in", new_user_session_path, :class => 'navbar-link' %>
-          <li><a ui-sref="users.index">Users</a></li>
-          <li><a ui-sref="signout">Sign in</a></li>
+		  <li ng-show="!globals.currentUser"><%= link_to  "SignIn", "/login" %></li>
+          <li ng-show="globals.currentUser"><a href="/" ng-click="logout()">Logout</a></li>
+
+          <li ng-show="globals.currentUser"><%= link_to "Admin", "/admin" %></li>
+
+          <li ng-show="!globals.currentUser"><%= link_to "Reg", "/register" %></li>
 
         </ul>
       </nav>
