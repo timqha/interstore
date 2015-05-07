@@ -13,6 +13,13 @@
 
 
     <ul class="nav">
+        <div>Цена</div>
+       <div> Min:<input type="text" id="minCost" ng-model="priceFilter.min" /></div>
+
+        <div>Max:<input type="text" id="maxCost" ng-model="priceFilter.max"/></div>
+
+        <div  class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"></div>
+
         <div>Цвета:</div>
         <li><input type="checkbox" data-ng-model='colors.white'  /> White</li>
         <li><input type="checkbox" data-ng-model='colors.black'  /> Black</li>
@@ -28,7 +35,7 @@
 <div class="col-md-2 rightcontent">
     <div class="container">
 
-        <div ng-repeat="product in products | filterColor:colors | filter:{visible:t}">
+        <div ng-repeat="product in products | filterColor:colors | filter:{visible:t} | filterPrice:priceFilter">
             <div class="cartbox">
                 <p>{{product.name}}</p>
                 <div class="redblok"></div>

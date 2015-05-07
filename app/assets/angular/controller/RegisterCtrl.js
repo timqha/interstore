@@ -55,7 +55,7 @@ angular.module('app')
         };
 
         $scope.register = function() {
-            console.log('register');
+          //  console.log('register');
             $scope.submit({method: 'POST',
                 url: '../users.json',
                 data: {user: {email: $scope.register_user.email,
@@ -86,9 +86,9 @@ angular.module('app')
                         parameters.error_entity.message = parameters.success_message;
                         $scope.reset_users();
                         if(status == 201){
-                            console.log(parameters.data.user);
+
                             AuthCookie.SetCredentials(parameters.data.user.email, parameters.data.user.password);
-                            console.log(parameters.data.user);
+
                         }
                         if(status == 204){
                             AuthCookie.ClearCredentials();

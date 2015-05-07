@@ -20,11 +20,13 @@
 //= require ../angular/app
 //= require_tree ../angular
 
+//= require angular-slider/slider
 //= require ngcart/dist/ngCart
 //= require angular-route
 //= require angular-rails-templates
 //= require angular-strap
 //= require angular-cookies
+
 
 
 //= require_tree ../templates

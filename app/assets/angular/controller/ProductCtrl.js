@@ -33,7 +33,7 @@ angular.module('admin')
               then(function(data){
                   $scope.products = data.products;
                   $scope.productslast = data.productslast;
-                  console.log(data);
+            //      console.log(data);
               });
 
         //********************************************************
@@ -47,7 +47,7 @@ angular.module('admin')
         $scope.deleteProduc = function(id){
             ProductsService.deleteProduct(id)
                 .then(function(data,status){
-                    console.log(status);
+                //    console.log(status);
                 });
         };
     })
@@ -67,7 +67,7 @@ angular.module('admin')
         $scope.product = ProductsService.editProduct($routeParams.productId)
             .then(function(data, status){
                 $scope.product = data;
-                console.log(data);
+           //     console.log(data);
             });
 
         $scope.categories = CategoryService.getCategoryAll().

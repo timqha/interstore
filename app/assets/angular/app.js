@@ -10,6 +10,7 @@ angular.module('app', [
     'ngRoute',
     'templates',
     'ngCookies',
+    'ui.slider',
     'admin'
    // 'ui.route'
    // 'mgcrea.ngStrap' // for modal window

@@ -9,6 +9,7 @@ angular.module('app')
             $scope.colors = JSON.parse(data.category.desc);
             $scope.products = data.products;
         });
+        $scope.priceFilter = {min:0, max:100000};
     });
 angular.module("admin")
     .controller("Category", function($scope, CategoryService){
@@ -22,7 +23,7 @@ angular.module("admin")
         $scope.deleteCategory = function(id){
             CategoryService.deleteCategory(id)
                 .then(function(data,status){
-                    console.log(status);
+            //        console.log(status);
                     if(status == 204) {
                         console.log('category delete');
                     }
@@ -33,7 +34,7 @@ angular.module("admin")
         $scope.category = CategoryService.editCategory($routeParams.categoryId)
             .then(function(data){
                 $scope.category = data;
-                console.log(data);
+            //    console.log(data);
             });
 
         $scope.updateCategory = function(){
@@ -44,7 +45,7 @@ angular.module("admin")
     .controller("CategoryShow", function($scope, $routeParams,$http, CategoryService){
         $scope.category = CategoryService.showCategory($routeParams.categoryId)
             .then(function(data){
-                console.log(data);
+              //  console.log(data);
                 $scope.category = data.category;
             });
     })
@@ -53,7 +54,7 @@ angular.module("admin")
         $scope.addNewCategory = function(){
             CategoryService.addNewCategory($scope.new_category.name,$scope.new_category.desc)
                 .then(function(data){
-                    console.log(data);
+                  //  console.log(data);
                 });
 
             return $scope.product = {name: null, price: null, category_id: null};

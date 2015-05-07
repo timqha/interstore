@@ -2,9 +2,9 @@ angular.module("app")
 .filter('filterColor', function() {
     return function( items, colors) {
         var filtered = [];
-        console.log(items);
+     //   console.log(items);
         angular.forEach(items, function(item) {
-            console.log(item.params);
+          //  console.log(item.params);
             if(colors.black == false && colors.white == false) {
                 filtered.push(item);
             }
