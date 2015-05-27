@@ -3,7 +3,7 @@ angular.module("app")
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html',
-                controller: 'MyController'
+                controller: 'Category'
             })
             .when('/cart', {
                 templateUrl: 'cart.html',

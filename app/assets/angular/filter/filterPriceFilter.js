@@ -11,7 +11,7 @@ angular.module('app')
 
             var filtered = [];
             angular.forEach(input, function(item) {
-                if(parseFloat(item.price)>params.min && parseFloat(item.price)<params.max) {
+                if(parseFloat(item.price)>params.min && parseFloat(item.price)<=params.max) {
                     filtered.push(item);
                 }
             });

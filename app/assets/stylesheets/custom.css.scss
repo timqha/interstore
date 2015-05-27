@@ -68,10 +68,20 @@ p {
 }
 
 /* footer */
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+
+.wrapper {
+  display: flex;
+  min-height: 90vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding-bottom: 20px;
+}
+.footer {
+  height: 5vh;
+  border-top:  1px solid #eaeaea;
   color: lightgray;
 }
 
@@ -88,6 +98,7 @@ footer {
   margin-right:0;
   clear:right;
 }
+
 .current-active {
   border: 10px solid #666;
 }

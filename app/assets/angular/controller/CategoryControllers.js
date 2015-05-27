@@ -19,7 +19,7 @@ angular.module("admin")
                 $scope.categories = data;
                 //  console.log(status);
             });
-
+        $scope.priceFilter = {min:0, max:100000};
         $scope.deleteCategory = function(id){
             CategoryService.deleteCategory(id)
                 .then(function(data,status){
@@ -50,13 +50,14 @@ angular.module("admin")
             });
     })
     .controller('NewCategoryController', function ($http, $scope, CategoryService) {
-        $scope.new_category = {name: null, desc: null};
+        $scope.new_category = {name: null, desc: '{"white":false,"black":false}'};
         $scope.addNewCategory = function(){
             CategoryService.addNewCategory($scope.new_category.name,$scope.new_category.desc)
                 .then(function(data){
                   //  console.log(data);
+
                 });
 
-            return $scope.product = {name: null, price: null, category_id: null};
+            return $scope.new_category = {name: null, desc: '{"white":false,"black":false}'};
         };
     });

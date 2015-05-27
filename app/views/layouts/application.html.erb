@@ -10,11 +10,14 @@
 <body ng-app="app">
 
 
+<div class="wrapper">
+  <%= render "layouts/header" %>
+  <div  class="content">
+    <div ng-view></div>
+  </div>
+  <%= render "layouts/footer" %>
+</div>
 
-<div ng-view></div>
-
-<%= render "layouts/header" %>
-<%= render "layouts/footer" %>
 </body>
 </html>
 

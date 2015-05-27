@@ -15,7 +15,7 @@
     <ul class="nav">
         <div>Цена</div>
        <div> Min:<input type="text" id="minCost" ng-model="priceFilter.min" /></div>
-
+        <input type="range" ng-model="priceFilter.min" max="{{priceFilter.max}}" step="1" value="0" >
         <div>Max:<input type="text" id="maxCost" ng-model="priceFilter.max"/></div>
 
         <div  class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"></div>
