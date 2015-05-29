@@ -1,5 +1,5 @@
 
-<div class="col-md-6 leftmenu">
+<div class="col-md-6 leftmenu ">
     <div class="navbar-inner">
         <h1>Категории</h1>
         <div class="navbar-collapse">
@@ -20,9 +20,21 @@
 
         <div  class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"></div>
 
-        <div>Цвета:</div>
-        <li><input type="checkbox" data-ng-model='colors.white'  /> White</li>
-        <li><input type="checkbox" data-ng-model='colors.black'  /> Black</li>
+
+        <div ng-repeat="ncolor in ncolors">
+
+            <div  class="checkbox pull-left">
+                <label>
+                    <input  type="checkbox"
+                           ng-change="checking(ncolor); broadcast()"
+                           ng-model="ncolor.check"/>
+                    <span></span>
+                </label>
+            </div>
+            <div>{{ncolor.params}}</div>
+
+
+        </div>
     </ul>
 
 
@@ -32,10 +44,10 @@
 
 
 
-<div class="col-md-2 rightcontent">
+<div class="col-md-2 ">
     <div class="container">
 
-        <div ng-repeat="product in products | filterColor:colors | filter:{visible:t} | filterPrice:priceFilter">
+        <div ng-repeat="product in products | filterColor:filtred | filter:{visible:t} | filterPrice:priceFilter">
             <div class="cartbox">
                 <p>{{product.name}}</p>
                 <div class="redblok"></div>
@@ -45,16 +57,6 @@
             </div>
         </div>
 
-<!--
-          <div ng-controller="MyController">{{name}}
-        <a href="/cart">cart</a>
-
-            <div ng-repeat="category in categories">
-              <a href="category/{{category.id}}">{{category.name}}</a>
-                <a href="category/{{category.id}}/delete" ng-click="deleteCategory(category.id)" >&lt;!&ndash;data-confirm="You sure?"&ndash;&gt; x</a>
-                {{category.desc}}
-            </div>
-          </div>-->
 
     </div>
 </div>

@@ -13,9 +13,11 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @products = @category.products.all
+    @colors = @category.products.select(:params).distinct
     respond_to do |format|
       format.json  { render :json => { :category => @category,
-                                       :products => @products }}
+                                       :products => @products,
+                                        :colors => @colors}}
     end
   end
 

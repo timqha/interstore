@@ -1,24 +1,23 @@
 angular.module("app")
 .filter('filterColor', function() {
-    return function( items, colors) {
+    return function(items, ncolors) {
+        var colors = {white:false, black:true};
+
         var filtered = [];
-     //   console.log(items);
         angular.forEach(items, function(item) {
-          //  console.log(item.params);
-            if(colors.black == false && colors.white == false) {
+            if(ncolors.length<1){
                 filtered.push(item);
             }
-            else if(colors.black == true && colors.white == false && item.params == 'black'){
-                filtered.push(item);
-            }
-            else if(colors.white == true && colors.black == false && item.params == 'white'){
-                filtered.push(item);
-            }
-            else if(colors.white == true && colors.black == true){
-                filtered.push(item);
+            else {
+                for (var i = 0; i < ncolors.length; i++) {
+                    if (ncolors[i].params == item.params) {
+
+                        filtered.push(item);
+                        break;
+                    }
+                }
             }
         });
-        //console.log("foil",filtered);
         return filtered;
     };
 });

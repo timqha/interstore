@@ -4,11 +4,51 @@ angular.module('app')
         $scope.category = [];
         $scope.products = [];
         $scope.colors = {};
+
         CategoryService.showCategory($routeParams.categoryId).then(function(data){
             $scope.category = data.category;
             $scope.colors = JSON.parse(data.category.desc);
             $scope.products = data.products;
+
+            $scope.ncolors = data.colors;
+                for(var i=0; i<$scope.ncolors.length;i++){
+                    $scope.ncolors[i].check = true;
+                }
+            console.log($scope.ncolors);
+          /*  $scope.ncolors = [
+                {params:'red',          check:true},
+                {params:'white',        check:true},
+                {params:'black',        check:true},
+                {params:'green',        check:true},
+                {params:'gray',         check:true},
+                {params:'lightgray',    check:true},
+                {params:'borow',        check:true},
+                {params:'yellow',       check:true},
+                {params:'blue',         check:true}];
+*/
+            $scope.filtred = angular.copy($scope.ncolors);
+
+            $scope.checking = function(color){
+                var Filtred = $scope.filtred;
+                var flag = 10;
+                if(color.check==true)
+                {
+                    Filtred.push(color);
+                }
+                else if(color.check==false){
+                    for (var i = 0; i < Filtred.length; i++) {
+                        if(Filtred[i].params == color.params) {
+                            flag = 10;
+                            Filtred.splice(i,1)
+                        }
+
+                    }
+                }
+                console.log("return",Filtred, flag);
+            };
+
         });
+
         $scope.priceFilter = {min:0, max:100000};
     });
 angular.module("admin")
