@@ -1,8 +1,11 @@
 Interstore::Application.routes.draw do
 
+
+
   scope "api", defaults: {format: :json} do
     resources :categories
     resources :products
+    resources :orders
   end
 
   devise_for :users
