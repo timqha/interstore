@@ -1,10 +1,12 @@
 <div>
-  <h1>New Category</h1>
+    <h1>New Category</h1>
+</div>
+
+<div ng-show="error.message" class="alert alert-success">
+    <p>{{error.message}}</p>
 </div>
 
 <div>
-  <div>Category name: <input ng-model="new_category.name" /></div>
-  <!--<div>Parameters: <input ng-model="new_category.desc"  /></div>-->
-  <button ng-click="addNewCategory()" class="btn btn-primary" >Add New Category</button>
-
+    <div>Category name: <input ng-model="new_category.name"/></div>
+    <button ng-click="addNewCategory()" class="btn btn-primary">Add New Category</button>
 </div>

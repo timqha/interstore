@@ -1,7 +1,7 @@
 angular.module("app")
 .filter('filterColor', function() {
     return function(items, ncolors) {
-        var colors = {white:false, black:true};
+
 
         var filtered = [];
         angular.forEach(items, function(item) {
@@ -11,7 +11,6 @@ angular.module("app")
             else {
                 for (var i = 0; i < ncolors.length; i++) {
                     if (ncolors[i].params == item.params) {
-
                         filtered.push(item);
                         break;
                     }

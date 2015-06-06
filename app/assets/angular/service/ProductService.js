@@ -20,8 +20,7 @@ angular.module('app')
                     headers: {
                         'Content-Type': 'application/json; charset=UTF-8'
                     },
-                    timeout: 3000, // Задержка на работу запроса
-                    cashe: false // TODO надо посмотреть зачем
+                    cashe: false
                 });
                 return ( request.then(handleSuccess, handleError) );
         }
@@ -44,7 +43,7 @@ angular.module('app')
                     'Content-Type': 'application/json; charset=UTF-8'
                 },
                 timeout: 3000, // Задержка на работу запроса
-                cashe: false // TODO надо посмотреть зачем
+                cashe: false
             });
             return ( request.then(handleSuccess, handleError) );
         }
@@ -63,7 +62,7 @@ angular.module('app')
             return ( $q.reject(response.data.message) );
         }
         function handleSuccess(response) {
-            return ( response.data );
+            return ( response.data);
         }
 
     });

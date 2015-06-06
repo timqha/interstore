@@ -1,6 +1,9 @@
 admin edit
 
 <div>
+    <div ng-show="error.message" class="alert alert-success">
+        <p>{{error.message}}</p>
+    </div>
     <form>
         <div>
             <labal>Product name: </labal>

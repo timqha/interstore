@@ -1,5 +1,6 @@
 <div ng-repeat="category in categories">
-    <div><a href="/admin/category/{{category.id}}/show">{{category.name}}</a><a href="/admin/category/{{category.id}}/edit"> edit</a>
+    <div><a href="/admin/category/{{category.id}}/show">{{category.name}}</a><a
+            href="/admin/category/{{category.id}}/edit"> edit</a>
         <a href="/admin/category/{{category.id}}/delete" ng-click="deleteCategory(category.id)">x</a></div>
     <hr/>
 </div>

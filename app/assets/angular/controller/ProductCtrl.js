@@ -8,98 +8,97 @@
  * @requires $scope
  * */
 angular.module('admin')
-    .controller('Product', function($scope, CategoryService, ProductsService, ngCart){
+    .controller('Product', function ($scope, ProductsService, ngCart) {
 
         //set price for tax and shipping
         ngCart.setTaxRate(0);
         ngCart.setShipping(0);
 
-        // goods NEW forms
-        $scope.product = {name: null, price: null, category_id: null};
-        $scope.addProduct = function(){
-            ProductsService.addNewProduct($scope.product.name,$scope.product.price,$scope.product.category_id, $scope.product.params);
-            return $scope.product = {name: null, price: null, category_id: null};
-        };
-        // GetCategory for SELECTED
-        $scope.categories = CategoryService.getCategoryAll().
-            then(function(data,status) {
-                $scope.categories = data;
-              //  console.log(status);
+        // Goods index
+        $scope.products = ProductsService.getProductsAll().
+            then(function (data) {
+                $scope.products = data.products;
+                $scope.productslast = data.productslast;
             });
 
-
-        // Goods index
-          $scope.products = ProductsService.getProductsAll().
-              then(function(data){
-                  $scope.products = data.products;
-                  $scope.productslast = data.productslast;
-            //      console.log(data);
-              });
-
-        //********************************************************
-        // Goods edit
-        //********************************************************
-
-
-
-
         // Goods delete
-        $scope.deleteProduc = function(id){
+        $scope.deleteProduc = function (id) {
+            $scope.error = {message: null};
             ProductsService.deleteProduct(id)
-                .then(function(data,status){
-                //    console.log(status);
+                .then(function () {
+                    $scope.error.message = "Удалено";
                 });
         };
 
-        $scope.message = null;
-        angular.forEach(ngCart.getCart().items, function(item) {
+        // check update basket
+        $scope.errors = {text: null, g: 0};
+        angular.forEach(ngCart.getCart().items, function (item) {
+            $scope.errors.g++;
             ProductsService.showProduct(item._id)
                 .then(function (data) {
                     if (data.price != item._price) {
-                        console.log("Цены изменилиись будьте внимательны");
-
-                    }
-                    else {
-                        console.log("Всё стабильно");
-
-                        if (item._price < data.price) {
-                            $scope.message = "Цены на товар стали выше!";
+                        if( $scope.errors.g ==1)
+                        {
+                            if (item._price <= data.price) {
+                                $scope.errors.text = "Цены на товар стали выше!";
+                            }
+                            else {
+                                $scope.errors.text = "Вам повезло, цены стали меньше!";
+                            }
                         }
-                        else {
-                            $scope.message = "Вам повезло, цены стали меньше!";
+                        else{
+                            $scope.errors.text = "Внимание! Цены изменились.";
+                            console.log($scope.errors.g);
                         }
                         item._price = data.price;
                     }
                 });
         });
-
     })
-    .controller('ProductShow', function($scope,ProductsService, $routeParams){
+    .controller('ProductNew', function ($scope, ProductsService, CategoryService) {
+        $scope.error = {message: null};
+
+        // GetCategory for SELECTED
+        $scope.categories = CategoryService.getCategoryAll().
+            then(function (data, status) {
+                $scope.categories = data;
+            });
+
+        // goods NEW forms
+        $scope.product = {name: null, price: null, category_id: null};
+        $scope.addProduct = function () {
+            ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params)
+                .then(function () {
+                    $scope.error.message = "Сохранено";
+                });
+            return $scope.product = {name: null, price: null, category_id: null};
+        };
+    })
+    .controller('ProductShow', function ($scope, ProductsService, $routeParams) {
 
         // Goods show
         $scope.product = ProductsService.showProduct($routeParams.productId)
-            .then(function(data, status){
+            .then(function (data, status) {
                 $scope.product = data;
             });
-
-
     })
-    .controller('ProductEdit', function($scope,ProductsService,CategoryService, $routeParams){
+    .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $routeParams) {
+        $scope.error = {message: null};
 
         // Goods show
         $scope.product = ProductsService.editProduct($routeParams.productId)
-            .then(function(data, status){
+            .then(function (data, status) {
                 $scope.product = data;
-           //     console.log(data);
             });
 
         $scope.categories = CategoryService.getCategoryAll().
-            then(function(data,status) {
+            then(function (data) {
                 $scope.categories = data;
-                //  console.log(status);
             });
-
-        $scope.updateProduct = function(){
-            ProductsService.updateProduct($scope.product.id,$scope.product.name,$scope.product.price,$scope.product.category_id, $scope.product.params);
+        $scope.updateProduct = function () {
+            ProductsService.updateProduct($scope.product.id, $scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params)
+                .then(function () {
+                    $scope.error.message = "Сохранено";
+                });
         }
     });

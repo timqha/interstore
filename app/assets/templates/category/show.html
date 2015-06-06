@@ -1,7 +1,7 @@
-
 <div class="col-md-6 leftmenu ">
     <div class="navbar-inner">
         <h1>Категории</h1>
+
         <div class="navbar-collapse">
             <ul class="nav">
                 <li><a href="/">back</a>
@@ -9,38 +9,26 @@
             </ul>
         </div>
 
+        <ul class="nav">
+            <div>Цена</div>
+            <div> Min:<input type="text" id="minCost" ng-model="priceFilter.min"/></div>
+            <div>Max:<input type="text" id="maxCost" ng-model="priceFilter.max"/></div>
+            <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"></div>
 
+            <div ng-repeat="ncolor in ncolors">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-change="checking(ncolor); broadcast()"
+                               ng-model="ncolor.check"/>
+                        <span>{{ncolor.params}}</span>
+                    </label>
+                </div>
 
-
-    <ul class="nav">
-        <div>Цена</div>
-       <div> Min:<input type="text" id="minCost" ng-model="priceFilter.min" /></div>
-        <input type="range" ng-model="priceFilter.min" max="{{priceFilter.max}}" step="1" value="0" >
-        <div>Max:<input type="text" id="maxCost" ng-model="priceFilter.max"/></div>
-
-        <div  class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"></div>
-
-
-        <div ng-repeat="ncolor in ncolors">
-
-            <div  class="checkbox pull-left">
-                <label>
-                    <input  type="checkbox"
-                           ng-change="checking(ncolor); broadcast()"
-                           ng-model="ncolor.check"/>
-                    <span></span>
-                </label>
             </div>
-            <div>{{ncolor.params}}</div>
-        </div>
-    </ul>
-
-
+        </ul>
     </div>
-
 </div>
-
-
 
 <div class="col-md-2 ">
     <div class="container">
@@ -48,10 +36,14 @@
         <div ng-repeat="product in products | filterColor:filtred | filter:{visible:t} | filterPrice:priceFilter">
             <div class="cartbox">
                 <p>{{product.name}}</p>
+
                 <div class="redblok"></div>
                 <p>цена: {{product.price | currency: "$"}}</p>
+
                 <p>цвет: {{product.params}}</p>
-                <ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
+                <ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1"
+                                  quantity-max="5">Add to Cart
+                </ngcart-addtocart>
             </div>
         </div>
 

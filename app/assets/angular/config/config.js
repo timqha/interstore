@@ -68,7 +68,7 @@ angular.module("admin")
             })
             .when('/admin/product/new', {
                 templateUrl: 'admin/goods/new.html',
-                controller: 'Product'
+                controller: 'ProductNew'
             })
             .when('/admin/products/index', {
                 templateUrl: 'admin/goods/index.html',
@@ -97,7 +97,7 @@ angular.module("admin")
             })
             .when('/admin/category/:categoryId/show', {
                 templateUrl: 'admin/category/show.html',
-                controller: 'CategoryShow'
+                controller: 'CategoryShowCtrl'
             })
             .when('/admin/category/:categoryId/edit', {
                 templateUrl: 'admin/category/edit.html',

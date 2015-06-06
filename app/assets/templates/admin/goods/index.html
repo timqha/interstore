@@ -1,5 +1,9 @@
+<div ng-show="error.message" class="alert alert-success">
+    <p>{{error.message}}</p>
+</div>
 <div ng-repeat="product in products">
-    <div><a href="/admin/product/{{product.id}}/show">{{product.name}}</a><a href="/admin/product/{{product.id}}/edit"> edit</a>
-    <a href="/admin/product/{{product.id}}/delete" ng-click="deleteProduc(product.id)">x</a></div>
+    <div><a href="/admin/product/{{product.id}}/show">{{product.name}}</a><span> colors: {{product.params}} </span><a
+            href="/admin/product/{{product.id}}/edit"> edit</a>
+        <a href="/admin/product/{{product.id}}/delete" ng-click="deleteProduc(product.id)">x</a></div>
     <hr/>
 </div>
