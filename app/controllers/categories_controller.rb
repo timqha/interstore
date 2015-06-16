@@ -15,9 +15,9 @@ class CategoriesController < ApplicationController
     @products = @category.products.all
     @colors = @category.products.select(:params).distinct
     respond_to do |format|
-      format.json  { render :json => { :category => @category,
-                                       :products => @products,
-                                        :colors => @colors}}
+      format.json { render :json => {:category => @category,
+                                     :products => @products,
+                                     :colors => @colors} }
     end
   end
 
@@ -39,7 +39,6 @@ class CategoriesController < ApplicationController
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: @category }
-       # format.json {render status: :created }
       else
         format.html { render action: 'new' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -72,13 +71,13 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name, :desc)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name, :desc)
+  end
 end

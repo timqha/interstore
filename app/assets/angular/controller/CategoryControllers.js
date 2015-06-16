@@ -1,6 +1,6 @@
 'use strict';
 angular.module('app')
-    .controller("CategoryShowCtrl", function ($scope, CategoryService, $routeParams) {
+    .controller("CategoryShowCtrl", function ($scope, CategoryService, $routeParams, $rootScope) {
         $scope.category = [];
         $scope.products = [];
         $scope.colors = {};
@@ -8,25 +8,24 @@ angular.module('app')
         CategoryService.showCategory($routeParams.categoryId)
             .then(function (data) {
                 $scope.category = data.category;
-                //  $scope.colors = JSON.parse(data.category.desc);
                 $scope.products = data.products;
 
                 $scope.ncolors = data.colors;
                 for (var i = 0; i < $scope.ncolors.length; i++) {
-                    $scope.ncolors[i].check = true;
+                    $scope.ncolors[i].check = false;
                 }
-                $scope.filtred = angular.copy($scope.ncolors);
 
+                $scope.filtred = angular.copy($scope.ncolors);
+                $scope.Filtr = [];
                 $scope.checking = function (color) {
-                    var Filtred = $scope.filtred;
                     if (color.check == true) {
-                        Filtred.push(color);
+                        $scope.Filtr.push(color);
                     }
                     else if (color.check == false) {
-                        for (var i = 0; i < Filtred.length; i++)
-                            if (Filtred[i].params == color.params) Filtred.splice(i, 1);
+                        for (var i = 0; i < $scope.Filtr.length; i++)
+                            if ($scope.Filtr[i].params == color.params) $scope.Filtr.splice(i, 1);
                     }
-                    console.log("return", Filtred);
+
                 };
             });
         $scope.priceFilter = {min: 0, max: 100000};
@@ -63,7 +62,7 @@ angular.module("admin")
         }
     })
     .controller('NewCategoryController', function ($http, $scope, CategoryService) {
-        $scope.new_category = {name: null, desc: 'Полее оставленно на будущее, {"white":false,"black":false}'};
+        $scope.new_category = {name: null, desc: 'Поле оставленно на будущее, {"white":false,"black":false}'};
         $scope.error = {message: null};
 
         $scope.addNewCategory = function () {
@@ -74,7 +73,7 @@ angular.module("admin")
 
             return $scope.new_category = {
                 name: null,
-                desc: '{"Полее оставленно на будущее, {white":false,"black":false}'
+                desc: '{"Поле оставленно на будущее, {white":false,"black":false}'
             };
         };
     });

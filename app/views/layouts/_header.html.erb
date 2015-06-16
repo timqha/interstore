@@ -2,11 +2,11 @@
   <div class="navbar-inner">
     <div class="container" ng-controller="RegisterCtrl">
       <%= link_to "Logo", "/", id: "logo" %>
-	  <nav>
+      <nav>
         <ul class="nav pull-right">
 
           <li><%= link_to "Cart", "/cart" %></li>
-		  <li ng-show="!globals.currentUser"><%= link_to  "SignIn", "/login" %></li>
+          <li ng-show="!globals.currentUser"><%= link_to "SignIn", "/login" %></li>
           <li ng-show="globals.currentUser"><a href="/" ng-click="logout()">Logout</a></li>
 
           <li ng-show="globals.currentUser"><%= link_to "Admin", "/admin" %></li>

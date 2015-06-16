@@ -31,14 +31,14 @@ angular.module('admin')
         };
 
         // check update basket
+        //Наверное это нужно вынести в сервайс или что-то подобное.
         $scope.errors = {text: null, g: 0};
         angular.forEach(ngCart.getCart().items, function (item) {
             $scope.errors.g++;
             ProductsService.showProduct(item._id)
                 .then(function (data) {
                     if (data.price != item._price) {
-                        if( $scope.errors.g ==1)
-                        {
+                        if ($scope.errors.g == 1) {
                             if (item._price <= data.price) {
                                 $scope.errors.text = "Цены на товар стали выше!";
                             }
@@ -46,9 +46,8 @@ angular.module('admin')
                                 $scope.errors.text = "Вам повезло, цены стали меньше!";
                             }
                         }
-                        else{
+                        else {
                             $scope.errors.text = "Внимание! Цены изменились.";
-                            console.log($scope.errors.g);
                         }
                         item._price = data.price;
                     }
@@ -59,6 +58,7 @@ angular.module('admin')
         $scope.error = {message: null};
 
         // GetCategory for SELECTED
+        // Можно в HTML использовать другой контроллер не ProductNew, a Category
         $scope.categories = CategoryService.getCategoryAll().
             then(function (data, status) {
                 $scope.categories = data;

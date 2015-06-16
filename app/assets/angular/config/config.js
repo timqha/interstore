@@ -1,5 +1,5 @@
 angular.module("app")
-.config(function ($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html',
@@ -9,7 +9,7 @@ angular.module("app")
                 templateUrl: 'cart.html',
                 controller: 'Product'
             })
-            .when('/login',{
+            .when('/login', {
                 templateUrl: 'devise/login.html',
                 controller: 'RegisterCtrl'
             })
@@ -24,40 +24,12 @@ angular.module("app")
             .when('/checkout', {
                 templateUrl: 'checkout.html',
                 controller: 'CheckoutCtrl'
-               /* resolve: {
-                    whenCartUpdated: whenCartUpdated
-                }*/
             })
 
             .otherwise({
                 redirectTo: '/'
             });
         $locationProvider.html5Mode(true);
-
-       /* function whenCartUpdated(ngCart, ProductsService) {
-            angular.forEach(ngCart.getCart().items, function(item){
-                ProductsService.showProduct(item._id)
-                    .then(function(data){
-                        if(data.price != item._price){
-                            console.log("Цены изменилиись будьте внимательны");
-
-                        }
-                        else{
-                            console.log("Всё стабильно");
-                            if(item._price < data.price){
-                                $scope.message = "Цены на товар стали выше!";
-                            }
-                            else{
-                                $scope.message = "Вам повезло, цены стали меньше!";
-                            }
-                            item._price = data.price;
-
-                        }
-                    });
-            });
-
-        }*/
-
     });
 angular.module("admin")
     .config(function ($routeProvider, $locationProvider, $httpProvider) {

@@ -20,7 +20,6 @@ angular.module('app')
                 } else {
                     $scope.error.message = "Заказ отменён!";
                 }
-
             } else {
                 addOrder();
             }
@@ -40,6 +39,8 @@ angular.module('app')
             }
         }
 
+        ////Наверное это нужно вынести в сервайс или что-то подобное.
+        // И убрать повторение с ProductCtrl
         function whenCartUpdated() {
             $scope.errors = {text: null, g: 0};
             angular.forEach(ngCart.getCart().items, function (item) {
@@ -57,7 +58,6 @@ angular.module('app')
                             }
                             else {
                                 $scope.errors.text = "Внимание! Цены изменились.";
-                                console.log($scope.errors.g);
                             }
                             item._price = data.price;
                         }

@@ -12,8 +12,6 @@ angular.module('app', [
     'ngCookies',
     'ui.slider',
     'admin'
-   // 'ui.route'
-   // 'mgcrea.ngStrap' // for modal window
 ])
     .run(function ($rootScope, $location, $cookieStore, $http) {
     // keep user logged in after page refresh
@@ -23,11 +21,6 @@ angular.module('app', [
     }
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        // redirect to login page if not logged in
-       //   if ($location.path() !== '/' && !$rootScope.globals.currentUser) {
-       //  $location.path('/login');
-      //   }
-
         var nextRoute = $location.path();
         if (nextRoute.secure && !$rootScope.globals.currentUser) {
             $location.path('/login');

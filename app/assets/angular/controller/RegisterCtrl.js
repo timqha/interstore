@@ -65,7 +65,6 @@ angular.module('app')
         };
 
         $scope.register = function () {
-            //  console.log('register');
             $scope.submit({
                 method: 'POST',
                 url: '../users.json',
