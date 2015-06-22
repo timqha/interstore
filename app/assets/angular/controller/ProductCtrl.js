@@ -79,7 +79,7 @@ angular.module('admin')
         // Goods show
         $scope.product = ProductsService.showProduct($stateParams.productId)
             .then(function (data, status) {
-                $scope.product = data;
+                $scope.product = data.product;
             });
     })
     .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $stateParams) {
@@ -88,7 +88,7 @@ angular.module('admin')
         // Goods show
         $scope.product = ProductsService.editProduct($stateParams.productId)
             .then(function (data, status) {
-                $scope.product = data;
+                $scope.product = data.product;
             });
 
         $scope.categories = CategoryService.getCategoryAll().

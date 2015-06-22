@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => [:create, :update, :destroy]
-
+  respond_to :html, :json
   # GET /products.json
   def index
     @products = Product.all
@@ -15,17 +15,26 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.json  { render :json => { :product => @product}}
+    end
   end
 
   # GET /products/new
   def new
     @product = Product.new
     @categories = Category.all.map { |c| [c.name, c.id] }
+    render json: @product, status: :ok
   end
 
   # GET /products/1/edit
   def edit
     @categories = Category.all.map { |c| [c.name, c.id] }
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.json  { render :json => { :product => @product}}
+    end
   end
 
   # POST /products
@@ -34,7 +43,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.json { render action: 'show', status: :created, location: @product }
+        format.json { render json: @product, status: :created, location: @product }
       else
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
