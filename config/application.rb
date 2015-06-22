@@ -15,7 +15,7 @@ module Interstore
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 
     #for devise, if you are deploying on Heroku
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
     config.to_prepare do
       DeviseController.respond_to :html, :json
     end

@@ -1,52 +1,68 @@
-<div class="col-md-6 leftmenu ">
-    <div class="navbar-inner">
-        <h1>Категории</h1>
+<div class="container">
+    <div class="no-gutter row">
+        <!-- left side column -->
+        <div class="col-md-3">
+            <div class="panel panel-default" id="sidebar">
+                <div class="panel-heading" style="background-color:#888;color:#fff;">Sidebar</div>
+                <div class="panel-body">
+                    <ul class="nav">
+                        <li><a ui-sref="home">back</a>
+                        <li>{{category.name}}</li>
+                    </ul>
+                    <ul class="nav">
+                        <div>Цена</div>
+                        <div> Min:<input type="text" id="minCost" ng-model="priceFilter.min"/></div>
+                        <div>Max:<input type="text" id="maxCost" ng-model="priceFilter.max"/></div>
 
-        <div class="navbar-collapse">
-            <ul class="nav">
-                <li><a href="/">back</a>
-                <li>{{category.name}}</li>
-            </ul>
-        </div>
+                        <div ng-repeat="ncolor in ncolors">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           ng-change="checking(ncolor); broadcast()"
+                                           ng-model="ncolor.check"/>
+                                    <span>{{ncolor.params}}</span>
+                                </label>
+                            </div>
 
-        <ul class="nav">
-            <div>Цена</div>
-            <div> Min:<input type="text" id="minCost" ng-model="priceFilter.min"/></div>
-            <div>Max:<input type="text" id="maxCost" ng-model="priceFilter.max"/></div>
-            <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"></div>
-
-            <div ng-repeat="ncolor in ncolors">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"
-                               ng-change="checking(ncolor); broadcast()"
-                               ng-model="ncolor.check"/>
-                        <span>{{ncolor.params}}</span>
-                    </label>
+                        </div>
+                    </ul>
+                    <hr>
                 </div>
-
+                <!--/panel body-->
             </div>
-        </ul>
-    </div>
-</div>
-
-<div class="col-md-2 ">
-    <div class="container">
-
-        <div ng-repeat="product in products | filterColor:Filtr | filter:{visible:t} | filterPrice:priceFilter">
-            <div class="cartbox">
-                <p>{{product.name}}</p>
-
-                <div class="redblok"></div>
-                <p>цена: {{product.price | currency: "$"}}</p>
-
-                <p>цвет: {{product.params}}</p>
-                <ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1"
-                                  quantity-max="5">Add to Cart
-                </ngcart-addtocart>
-            </div>
+            <!--/panel-->
         </div>
+        <!--/end left column-->
 
+        <!-- right content column-->
+        <div class="col-md-9" id="content">
+            <div class="panel">
+                <div class="panel-heading" style="background-color:#111;color:#fff;">Top Stories</div>
+                <div class="panel-body">
+                    <div class="row">
+                        Products
+                        <div class="alert alert-error" ng-show="errors.text">{{errors.text}}</div>
+                        <ngcart-summary></ngcart-summary>
+                    </div>
+                        <div ng-repeat="product in products | filterColor:Filtr | filter:{visible:t} | filterPrice:priceFilter">
+                            <div class="cartbox">
+                                <p>{{product.name}}</p>
 
+                                <div class="redblok"></div>
+                                <p>цена: {{product.price | currency: "$"}}</p>
+
+                                <p>цвет: {{product.params}}</p>
+                                <ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1"
+                                                  quantity-max="5">Add to Cart
+                                </ngcart-addtocart>
+                            </div>
+                        </div>
+                </div>
+                <!--/panel-body-->
+            </div>
+            <!--/panel-->
+            <!--/end right column-->
+        </div>
     </div>
 </div>
+

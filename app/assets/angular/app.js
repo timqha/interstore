@@ -3,14 +3,17 @@
 
 angular.module("admin", [
     "ngRoute",
-    "templates"
+    "templates",
+    'ui.router'
+
 ]);
 angular.module('app', [
     'ngCart',
-    'ngRoute',
+    'ui.router',
+    'ui.router.stateHelper',
     'templates',
     'ngCookies',
-    'ui.slider',
+
     'admin'
 ])
     .run(function ($rootScope, $location, $cookieStore, $http) {

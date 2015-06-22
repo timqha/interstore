@@ -1,11 +1,10 @@
 'use strict';
 angular.module('app')
-    .controller("CategoryShowCtrl", function ($scope, CategoryService, $routeParams, $rootScope) {
+    .controller("CategoryShowCtrl", function ($scope, CategoryService, $stateParams, $rootScope) {
         $scope.category = [];
         $scope.products = [];
         $scope.colors = {};
-
-        CategoryService.showCategory($routeParams.categoryId)
+        CategoryService.showCategory($stateParams.categoryId)
             .then(function (data) {
                 $scope.category = data.category;
                 $scope.products = data.products;
@@ -46,8 +45,8 @@ angular.module("admin")
                 });
         }
     })
-    .controller("CategoryEdit", function ($scope, CategoryService, $routeParams) {
-        $scope.category = CategoryService.editCategory($routeParams.categoryId)
+    .controller("CategoryEdit", function ($scope, CategoryService, $stateParams) {
+        $scope.category = CategoryService.editCategory($stateParams.categoryId)
             .then(function (data) {
                 $scope.category = data;
             });

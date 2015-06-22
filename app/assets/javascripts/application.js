@@ -24,9 +24,13 @@
 //= require ngcart/dist/ngCart
 //= require angular-route
 //= require angular-rails-templates
+//= require angular-ui-router
+//= require angular-ui-router-stateHelper/statehelper
+
 //= require angular-strap
 //= require angular-cookies
 
+//= require mystyle.js
 
 
 //= require_tree ../templates

@@ -1,87 +1,188 @@
 angular.module("app")
-    .config(function ($routeProvider, $locationProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: 'home.html',
+    .config(function (stateHelperProvider, $urlRouterProvider, $httpProvider) {
+        $urlRouterProvider.otherwise("/home");
+
+        stateHelperProvider
+        .state({
+            name: 'admin',
+            url: '/admin',
+            templateUrl: "admin/admin.html"})
+        .state({
+                name: 'products',
+                url: '/admin/products',
+                templateUrl: '_layouts.html',
+                children: [
+                    {
+                        name: 'new',
+                        url: '/new',
+                        templateUrl: 'admin/goods/new.html',
+                        controller: 'ProductNew'
+                    },
+                    {
+                        name: 'index',
+                        url: '/index',
+                        templateUrl: 'admin/goods/index.html',
+                        controller: 'Product'
+                    },
+                    {
+                        name: 'show',
+                        url: '/:productId/show',
+                        templateUrl: 'admin/goods/show.html',
+                        controller: 'ProductShow'
+                    },
+                    {
+                        name: 'edit',
+                        url: '/:productId/edit',
+                        templateUrl: 'admin/goods/edit.html',
+                        controller: 'ProductEdit'
+                    },
+                    {
+                        name: 'delete',
+                        url: '/:productId/delete',
+                        templateUrl: 'admin/goods/index.html',
+                        controller: 'Product'
+                    }
+                ]
+        })
+        .state({
+            name: 'category',
+            url: '/admin/categories',
+            templateUrl: '_layouts.html',
+            children: [
+                {
+                    name: 'new',
+                    url: '/new',
+                    templateUrl: 'admin/category/new.html',
+                    controller: 'NewCategoryController'
+                },
+                {
+                    name: 'index',
+                    url: '/index',
+                    templateUrl: 'admin/category/index.html',
+                    controller: 'Category'
+                },
+                {
+                    name: 'show',
+                    url: '/:categoryId/show',
+                    templateUrl: 'admin/category/show.html',
+                    controller: 'CategoryShowCtrl'
+                },
+                {
+                    name: 'edit',
+                    url: '/:categoryId/edit',
+                    templateUrl: 'admin/category/edit.html',
+                    controller: 'CategoryEdit'
+                },
+                {
+                    name: 'delete',
+                    url: '/:categoryId/delete',
+                    templateUrl: 'admin/category/index.html',
+                    controller: 'Category'
+                }
+            ]
+        })
+            /*start Users rout*/
+        .state({
+            name:'home',
+            url: "/home",
+            templateUrl: "category/home.html",
+            controller: 'Category'
+        })
+        .state({
+            name: 'categories',
+            url: '/categories',
+            templateUrl: '_layouts.html',
+            children:[
+                {
+                name: 'show',
+                url: "/:id/show",
+                templateUrl: 'category/show.html',
+                controller: 'CategoryShowCtrl'
+            }]
+        })
+        .state({
+            name:'cart',
+            url: "/cart",
+            templateUrl: 'cart.html',
+            controller: 'Product'
+        })
+        .state({
+            name: 'login',
+            url: "/login",
+            templateUrl: 'devise/login.html',
+            controller: 'RegisterCtrl'
+        })
+        .state({
+            name:'register',
+            url: "/register",
+            templateUrl: 'devise/register.html',
+            controller: 'RegisterCtrl'
+        })
+        .state({
+            name:'checkout',
+            url: "/checkout",
+            templateUrl: 'checkout.html',
+            controller: 'CheckoutCtrl'
+        });
+            /*End users route*/
+
+       /* $stateProvider
+            .state('home', {
+                url: "/home",
+                templateUrl: "category/home.html",
                 controller: 'Category'
             })
-            .when('/cart', {
-                templateUrl: 'cart.html',
-                controller: 'Product'
+            .state('categories',{
+                url:'/categories',
+                abstract:true,
+                templateUrl:'_layouts.html'
             })
-            .when('/login', {
-                templateUrl: 'devise/login.html',
-                controller: 'RegisterCtrl'
-            })
-            .when('/register', {
-                templateUrl: 'devise/register.html',
-                controller: 'RegisterCtrl'
-            })
-            .when('/category/:categoryId', {
+            .state('categories.show', {
+                url: "/:id/show",
+                parent: 'categories',
+               // template: "Welcome",
                 templateUrl: 'category/show.html',
                 controller: 'CategoryShowCtrl'
             })
-            .when('/checkout', {
-                templateUrl: 'checkout.html',
-                controller: 'CheckoutCtrl'
-            })
 
-            .otherwise({
-                redirectTo: '/'
-            });
-        $locationProvider.html5Mode(true);
-    });
-angular.module("admin")
-    .config(function ($routeProvider, $locationProvider, $httpProvider) {
-        $routeProvider
-            .when('/admin', {
+           /* .state('admin',{
+                abstract: true,
+                templateUrl: "_layouts.html",
+                secure: false
+            })
+            .state('admin.index',{
+                url: "/admin",
+                abstract: true,
                 templateUrl: "admin/admin.html",
                 secure: false
             })
-            .when('/admin/product/new', {
+            .state('.product.new',{
+                url: '/product/new',
+                parent: 'admin',
                 templateUrl: 'admin/goods/new.html',
                 controller: 'ProductNew'
             })
-            .when('/admin/products/index', {
+
+            .state('.products.index',{
+                url: '/products/index',
                 templateUrl: 'admin/goods/index.html',
                 controller: 'Product'
             })
-            .when('/admin/product/:productId/show', {
+            .state('.product.show',{
+                url: '/:productId/show',
                 templateUrl: 'admin/goods/show.html',
                 controller: 'ProductShow'
             })
-            .when('/admin/product/:productId/edit', {
+            .state('.product.edit',{
+                url: '/:productId/edit',
                 templateUrl: 'admin/goods/edit.html',
                 controller: 'ProductEdit'
             })
-            .when('/admin/product/:productId/delete', {
+            .state('.product.delete',{
+                url: '/:productId/delete',
                 templateUrl: 'admin/goods/index.html',
                 controller: 'Product'
-            })
+            })*///;
 
-            .when('/admin/categories/index', {
-                templateUrl: 'admin/category/index.html',
-                controller: 'Category'
-            })
-            .when('/admin/category/new', {
-                templateUrl: 'admin/category/new.html',
-                controller: 'NewCategoryController'
-            })
-            .when('/admin/category/:categoryId/show', {
-                templateUrl: 'admin/category/show.html',
-                controller: 'CategoryShowCtrl'
-            })
-            .when('/admin/category/:categoryId/edit', {
-                templateUrl: 'admin/category/edit.html',
-                controller: 'CategoryEdit'
-            })
-            .when('/admin/category/:categoryId/delete', {
-                templateUrl: 'admin/category/index.html',
-                controller: 'Category'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
-        $locationProvider.html5Mode(true);
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
     });

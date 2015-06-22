@@ -74,19 +74,19 @@ angular.module('admin')
             return $scope.product = {name: null, price: null, category_id: null};
         };
     })
-    .controller('ProductShow', function ($scope, ProductsService, $routeParams) {
+    .controller('ProductShow', function ($scope, ProductsService, $stateParams) {
 
         // Goods show
-        $scope.product = ProductsService.showProduct($routeParams.productId)
+        $scope.product = ProductsService.showProduct($stateParams.productId)
             .then(function (data, status) {
                 $scope.product = data;
             });
     })
-    .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $routeParams) {
+    .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $stateParams) {
         $scope.error = {message: null};
 
         // Goods show
-        $scope.product = ProductsService.editProduct($routeParams.productId)
+        $scope.product = ProductsService.editProduct($stateParams.productId)
             .then(function (data, status) {
                 $scope.product = data;
             });
