@@ -326,7 +326,6 @@ angular.module('ngCart', ['ngCart.directives', 'templates'])
     }])
 
     .value('version', '0.0.3-rc.1');
-;'use strict';
 
 
 angular.module('ngCart.directives', ['ngCart.fulfilment'])

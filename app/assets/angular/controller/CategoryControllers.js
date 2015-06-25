@@ -6,6 +6,7 @@ angular.module('app')
         $scope.colors = {};
         CategoryService.showCategory($stateParams.categoryId)
             .then(function (data) {
+                console.log(data);
                 $scope.category = data.category;
                 $scope.products = data.products;
 
@@ -48,7 +49,7 @@ angular.module("admin")
     .controller("CategoryEdit", function ($scope, CategoryService, $stateParams) {
         $scope.category = CategoryService.editCategory($stateParams.categoryId)
             .then(function (data) {
-                $scope.category = data;
+                $scope.category = data.category;
             });
 
         $scope.error = {message: null};

@@ -1,0 +1,8 @@
+
+<div class="row">
+    <div class="col-md-6">{{ ngCart.getTotalItems() }}
+        <ng-pluralize count="ngCart.getTotalItems()" when="{1: 'item', 'other':'items'}"></ng-pluralize>
+        <br />{{myCart.getTotalSumm(2) | currency: "$"}}
+
+    </div>
+</div>

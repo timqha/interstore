@@ -1,17 +1,18 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
-
+  respond_to :json, :html
   # GET /categories
   # GET /categories.json
   def index
     @categories = Category.all
+    render json: @categories, status: :ok
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @category = Category.find(params[:id])
+    #@category = Category.find(params[:id])
     @products = @category.products.all
     @colors = @category.products.select(:params).distinct
     respond_to do |format|
@@ -24,10 +25,16 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    render json: @category, status: :ok
   end
 
   # GET /categories/1/edit
   def edit
+  #  @category = Category.find(params[:id])
+
+    respond_to do |format|
+      format.json { render :json => {:category => @category} }
+    end
   end
 
   # POST /categories
@@ -38,7 +45,7 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @category }
+        format.json { render json: @category, status: :created, location: @category }
       else
         format.html { render action: 'new' }
         format.json { render json: @category.errors, status: :unprocessable_entity }

@@ -42,19 +42,23 @@
                     <div class="row">
                         Products
                         <div class="alert alert-error" ng-show="errors.text">{{errors.text}}</div>
-                        <ngcart-summary></ngcart-summary>
+                        {{myCart.getTotalSumm(2) | currency: "$"}}
+                        <!--<ngcart-summary></ngcart-summary>-->
                     </div>
                         <div ng-repeat="product in products | filterColor:Filtr | filter:{visible:t} | filterPrice:priceFilter">
-                            <div class="cartbox">
+                            <div class="col-md-4 cartbox">
                                 <p>{{product.name}}</p>
 
                                 <div class="redblok"></div>
                                 <p>цена: {{product.price | currency: "$"}}</p>
 
                                 <p>цвет: {{product.params}}</p>
-                                <ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1"
-                                                  quantity-max="5">Add to Cart
-                                </ngcart-addtocart>
+
+                                <a class="btn btn-sm btn-primary"
+                                   ng-click="addCart(product.id, product.name, product.price, 1, product.data)"
+                                        >arrr</a>
+                                <!--<ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
+                                </ngcart-addtocart>-->
                             </div>
                         </div>
                 </div>

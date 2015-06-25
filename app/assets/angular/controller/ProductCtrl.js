@@ -8,17 +8,23 @@
  * @requires $scope
  * */
 angular.module('admin')
-    .controller('Product', function ($scope, ProductsService, ngCart) {
+    .controller('Product', function ($scope, ProductsService, ngCart, myCart) {
+
+        $scope.myCart = myCart;
+        $scope.addCart = function (id, name, price, quantity, data) {
+            myCart.addToCart(id, name, price, quantity, data);
+            console.log(id, name, price, quantity, data);
+        };
 
         //set price for tax and shipping
         ngCart.setTaxRate(0);
         ngCart.setShipping(0);
 
         // Goods index
-        $scope.products = ProductsService.getProductsAll().
+         ProductsService.getProductsAll().
             then(function (data) {
                 $scope.products = data.products;
-                $scope.productslast = data.productslast;
+               // $scope.productslast = data.productslast;
             });
 
         // Goods delete
@@ -59,7 +65,7 @@ angular.module('admin')
 
         // GetCategory for SELECTED
         // Можно в HTML использовать другой контроллер не ProductNew, a Category
-        $scope.categories = CategoryService.getCategoryAll().
+        CategoryService.getCategoryAll().
             then(function (data, status) {
                 $scope.categories = data;
             });
@@ -77,7 +83,7 @@ angular.module('admin')
     .controller('ProductShow', function ($scope, ProductsService, $stateParams) {
 
         // Goods show
-        $scope.product = ProductsService.showProduct($stateParams.productId)
+        ProductsService.showProduct($stateParams.productId)
             .then(function (data, status) {
                 $scope.product = data.product;
             });
@@ -86,12 +92,12 @@ angular.module('admin')
         $scope.error = {message: null};
 
         // Goods show
-        $scope.product = ProductsService.editProduct($stateParams.productId)
+        ProductsService.editProduct($stateParams.productId)
             .then(function (data, status) {
                 $scope.product = data.product;
             });
 
-        $scope.categories = CategoryService.getCategoryAll().
+        CategoryService.getCategoryAll().
             then(function (data) {
                 $scope.categories = data;
             });

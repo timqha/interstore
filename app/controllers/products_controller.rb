@@ -5,9 +5,9 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
-    @productslast = Product.last(10)
+    #@productslast = Product.last(10)
     respond_to do |format|
-      format.json { render :json => {:productslast => @productslast,
+      format.json { render :json => {#:productslast => @productslast,
                                      :products => @products} }
     end
   end
@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
+
     respond_to do |format|
       format.json  { render :json => { :product => @product}}
     end
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @categories = Category.all.map { |c| [c.name, c.id] }
-    @product = Product.find(params[:id])
+
     respond_to do |format|
       format.json  { render :json => { :product => @product}}
     end

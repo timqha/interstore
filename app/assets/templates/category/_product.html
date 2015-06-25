@@ -1,0 +1,13 @@
+<div ng-repeat="product in products | filter:{visible:t} | filterPrice:priceFilter">
+    <div class="col-md-4 cartbox">
+        <p>{{product.name}}</p>
+
+        <div class="redblok"></div>
+        <p>цена: {{product.price | currency: "$"}}</p>
+
+        <p>цвет: {{product.params}}</p>
+
+        <mycart-addtocart id="{{product.id}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
+        </mycart-addtocart>
+    </div>
+</div>

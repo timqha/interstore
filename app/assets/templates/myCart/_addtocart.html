@@ -1,0 +1,20 @@
+<div ng-hide="attrs.id">
+    <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
+
+</div>
+<div ng-show="attrs.id">
+    <div>
+		<span ng-show="quantityMax">
+			<select name="quantity" id="quantity" ng-model="q"
+                    ng-options=" v for v in qtyOpt"></select>
+		</span>
+        <br>
+        <a class="btn btn-sm btn-primary"
+           ng-click="myCart.addToCart(id, price, q, data)"
+           ng-transclude></a>
+        <a ng-show="carthav()" class="btn btn-sm btn-success"
+           ng-click="myCart.removeItemById(id)"
+                >X</a>
+    </div>
+
+</div>

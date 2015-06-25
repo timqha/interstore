@@ -1,5 +1,8 @@
 
 'use strict';
+angular.module("myCart",[
+
+]);
 
 angular.module("admin", [
     "ngRoute",
@@ -13,10 +16,10 @@ angular.module('app', [
     'ui.router.stateHelper',
     'templates',
     'ngCookies',
-
+    'myCart',
     'admin'
 ])
-    .run(function ($rootScope, $location, $cookieStore, $http) {
+.run(function ($rootScope, $location, $cookieStore, $http) {
     // keep user logged in after page refresh
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {

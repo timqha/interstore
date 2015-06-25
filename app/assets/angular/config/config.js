@@ -95,7 +95,7 @@ angular.module("app")
             children:[
                 {
                 name: 'show',
-                url: "/:id/show",
+                url: "/:categoryId/show",
                 templateUrl: 'category/show.html',
                 controller: 'CategoryShowCtrl'
             }]
@@ -124,65 +124,6 @@ angular.module("app")
             templateUrl: 'checkout.html',
             controller: 'CheckoutCtrl'
         });
-            /*End users route*/
-
-       /* $stateProvider
-            .state('home', {
-                url: "/home",
-                templateUrl: "category/home.html",
-                controller: 'Category'
-            })
-            .state('categories',{
-                url:'/categories',
-                abstract:true,
-                templateUrl:'_layouts.html'
-            })
-            .state('categories.show', {
-                url: "/:id/show",
-                parent: 'categories',
-               // template: "Welcome",
-                templateUrl: 'category/show.html',
-                controller: 'CategoryShowCtrl'
-            })
-
-           /* .state('admin',{
-                abstract: true,
-                templateUrl: "_layouts.html",
-                secure: false
-            })
-            .state('admin.index',{
-                url: "/admin",
-                abstract: true,
-                templateUrl: "admin/admin.html",
-                secure: false
-            })
-            .state('.product.new',{
-                url: '/product/new',
-                parent: 'admin',
-                templateUrl: 'admin/goods/new.html',
-                controller: 'ProductNew'
-            })
-
-            .state('.products.index',{
-                url: '/products/index',
-                templateUrl: 'admin/goods/index.html',
-                controller: 'Product'
-            })
-            .state('.product.show',{
-                url: '/:productId/show',
-                templateUrl: 'admin/goods/show.html',
-                controller: 'ProductShow'
-            })
-            .state('.product.edit',{
-                url: '/:productId/edit',
-                templateUrl: 'admin/goods/edit.html',
-                controller: 'ProductEdit'
-            })
-            .state('.product.delete',{
-                url: '/:productId/delete',
-                templateUrl: 'admin/goods/index.html',
-                controller: 'Product'
-            })*///;
 
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
     });
