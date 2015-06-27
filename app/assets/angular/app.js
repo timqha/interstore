@@ -11,7 +11,6 @@ angular.module("admin", [
 
 ]);
 angular.module('app', [
-    'ngCart',
     'ui.router',
     'ui.router.stateHelper',
     'templates',

@@ -16,135 +16,138 @@ angular.module('myCart')
         };
     })
 
-    .run(['$rootScope', 'localstorage', 'myCart', function ($rootScope, localstorage, myCart) {
+    .run(['$rootScope', 'localstorage', 'myCart', 'myCartItem', function ($rootScope, localstorage, myCart, myCartItem) {
 
         $rootScope.$on('myCart:change', function () {
-            console.log('сохраним');
             myCart.$save();
         });
 
-        if (localstorage.get('mcart')) {
-            // Здесь должно бы быть обновления.
-            //  myCart.$restore(localstorage.get('mcart'));
-
-            console.log(localstorage.get('mcart'));
-            myCart.cleerCart();
-            console.log("cleen",localstorage.get('mcart'));
+        if (angular.isObject(localstorage.get('mcart'))) {
+            myCart.$restore(localstorage.get('mcart'));
         } else {
-            //Если корзинки нет, тогда мы забабахаем свою корзинку)
             myCart.init();
-            console.log(localstorage.get('mcart'));
         }
 
     }])
-    .service('myCart', function ($rootScope, localstorage, ngCartItem) {
+    .service('myCart',['$rootScope', 'localstorage', 'myCartItem' ,function ($rootScope, localstorage, myCartItem) {
 
         this.init = function () {
             this.$cart = {
                 items: []
             }
         };
-        this.cleerCart = function () {
-            $rootScope.$broadcast('ngCart:change', {});
-            this.init();
-            localstorage.removeItem('mcart');
-        };
-
-        this.getCart = function () {
-            return this.$cart;
-        };
-        this.setCart = function(cart){
-             this.$cart=cart;
-            return this.getCart();
-        };
 
         this.addToCart = function (id, price, quantity, data) {
 
-            var newItem = new ngCartItem(id, price, quantity, data);
+
             // Находим есть ли в корзине товар с таким же id. Если есть заменяем количество, если нет добавляем.
             var carthav = this.getItemById(id);
 
-           // console.log(carthav);
             if (typeof carthav === "object") {
                 carthav.setQuantity(quantity, false);
                 console.log('Я вижу что есть объект');
             } else {
+                var newItem = new myCartItem(id, price, quantity, data);
                 this.$cart.items.push(newItem);
                 $rootScope.$broadcast('myCart:itemAdd', newItem);
             }
             $rootScope.$broadcast('myCart:change', {});
         };
-        this.removeItem = function(index){
-            // Сделать удаление кода)
+        this.removeItem = function (index) {
             this.$cart.items.splice(index, 1);
             $rootScope.$broadcast('myCart:itemRemoved', {});
             $rootScope.$broadcast('myCart:change', {});
         };
 
-        this.removeItemById = function(id){
+        this.removeItemById = function (id) {
             var cart = this.getCart();
             angular.forEach(cart.items, function (item, index) {
-                if  (item.getId() === id) {
+                if (item.getId() === id) {
                     cart.items.splice(index, 1);
                 }
             });
             this.setCart(cart);
-            $rootScope.$broadcast('ngCart:itemRemoved', {});
-            $rootScope.$broadcast('ngCart:change', {});
+            $rootScope.$broadcast('myCart:itemRemoved', {});
+            $rootScope.$broadcast('myCart:change', {});
+        };
+        this.getCart = function () {
+            return this.$cart;
+        };
+        this.setCart = function (cart) {
+            this.$cart = cart;
+            return this.getCart();
         };
 
         this.getItemById = function (id) {
             var items = this.getCart().items;
             var temp = false;
             angular.forEach(items, function (item) {
-                if (item.getId() == id) {
+                if (item.getId() === id) {
                     temp = item;
                 }
             });
             return temp;
         };
-        this.getTotalSumm = function(characters){
-            if (characters === undefined) {
-                characters = 2;
-            }
+        this.getTotalSumm = function () {
+            var totalPrice = 0;
             var items = this.getCart().items;
-            totalPrice = 0;
-            angular.forEach(items, function(item){
+            angular.forEach(items, function (item) {
+                console.log(item);
                 totalPrice += item.getTotal();
             });
-            return +parseFloat(totalPrice.toFixed(characters));
+            return +parseFloat(totalPrice).toFixed(2);
         };
+
+        this.getTotalItems = function () {
+            var count = 0;
+            var items = this.getCart().items;
+            angular.forEach(items, function (item) {
+                count += item.getQuantity();
+            });
+            return count;
+        };
+
+        this.$restore = function (storedCart) {
+            var _self = this;
+            _self.init();
+
+            angular.forEach(storedCart.items, function (item) {
+                _self.$cart.items.push(new myCartItem(item._id, item._price, item._quantity, item._data));
+            });
+            this.$save();
+        };
+
         this.$save = function () {
             return localstorage.set('mcart', JSON.stringify(this.getCart()));
         }
 
-    })
+    }])
     .service('localstorage', function ($window) {
         return {
             get: function (key) {
-                console.log('Корзинка отправлена');
                 if ($window.localStorage[key]) {
-                    return JSON.parse(angular.toJson($window.localStorage[key]));
+                    /*var cart = angular.fromJson($window.localStorage [key]);
+                    return JSON.parse(cart);*/
+                    return JSON.parse(angular.fromJson($window.localStorage[key]));
                 }
                 return false;
             },
             set: function (key, val) {
                 if (val === undefined) {
                     console.log('Нужно удалить это!');
+                    $window.localStorage .removeItem(key);
                 } else {
                     console.log('Корзинка добавлена');
                     $window.localStorage[key] = angular.toJson(val);
                 }
-            },
-            removeItem: function (key) {
-                $window.localStorage.removeItem(key);
+                return $window.localStorage [key];
             }
         }
     })
 
-    .factory('ngCartItem', ['$rootScope', '$log', function ($rootScope, $log) {
+    .factory('myCartItem', ['$rootScope', '$log', function ($rootScope, $log) {
 
-        var item = function (id,price, quantity, data) {
+        var item = function (id, price, quantity, data) {
             this.setId(id);
             this.setPrice(price);
             this.setQuantity(quantity);
@@ -160,11 +163,9 @@ angular.module('myCart')
         };
 
         item.prototype.getId = function () {
+            console.log(item);
             return this._id;
         };
-
-
-
 
 
         item.prototype.setPrice = function (price) {
@@ -180,7 +181,9 @@ angular.module('myCart')
             }
         };
         item.prototype.getPrice = function () {
-            return this._price;
+            console.log(item);
+            console.log('getPrice',this._price);
+                return this._price;
         };
 
 
@@ -236,49 +239,62 @@ angular.module('myCart')
 
     }])
 
-    .controller('CartController', ['$scope', 'myCart', function ($scope, myCart) {
-        $scope.myCart = myCart;
+    .controller('CartController', ['$scope', 'myCart', function ($scope, $myCart) {
+        $scope.myCart = $myCart;
 
     }])
-    .directive('mycartTotal', function(){
+    .directive('mycartTotal', function () {
         return {
             restrict: 'E',
             controller: 'CartController',
             scope: {},
             transclude: true,
-            templateUrl:'myCart/_total.html'
+            templateUrl: 'myCart/_total.html'
 
         };
     })
-    .directive('mycartAddtocart', ['myCart', function(myCart){
+    .directive('mycartAddtocart', ['myCart', function (myCart) {
         return {
-            restrict : 'E',
-            controller : 'CartController',
+            restrict: 'E',
+            controller: 'CartController',
             scope: {
-                id:'@',
-                quantity:'@',
-                quantityMax:'@',
-                price:'@',
-                data:'='
+                id: '@',
+                quantity: '@',
+                quantityMax: '@',
+                price: '@',
+                data: '='
             },
             transclude: true,
             templateUrl: 'myCart/_addtocart.html',
-            link:function(scope, element, attrs){
+            link: function (scope, element, attrs) {
                 scope.attrs = attrs;
-                scope.carthav = function(){
-                    return  myCart.getItemById(attrs.id);
+                scope.carthav = function () {
+                    return myCart.getItemById(attrs.id);
                 };
 
-                if (scope.carthav()){
-                    scope.q = ngCart.getItemById(attrs.id).getQuantity();
+                if (scope.carthav()) {
+                    scope.q = myCart.getItemById(attrs.id).getQuantity();
                 } else {
                     scope.q = parseInt(scope.quantity);
                 }
 
-                scope.qtyOpt =  [];
+                scope.qtyOpt = [];
                 for (var i = 1; i <= scope.quantityMax; i++) {
                     scope.qtyOpt.push(i);
                 }
+
+            }
+
+        };
+    }])
+    .directive('mycartContr', [function () {
+        return {
+            restict: 'E',
+            controller: 'CartController',
+            scope: {},
+            transclude: true,
+            templateUrl: 'myCart/_cart.html',
+            link: function (scope, element, attrs) {
 
             }
 

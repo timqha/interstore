@@ -4,11 +4,6 @@
 </div>
 <div ng-show="attrs.id">
     <div>
-		<span ng-show="quantityMax">
-			<select name="quantity" id="quantity" ng-model="q"
-                    ng-options=" v for v in qtyOpt"></select>
-		</span>
-        <br>
         <a class="btn btn-sm btn-primary"
            ng-click="myCart.addToCart(id, price, q, data)"
            ng-transclude></a>

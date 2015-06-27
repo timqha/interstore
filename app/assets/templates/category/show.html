@@ -54,11 +54,8 @@
 
                                 <p>цвет: {{product.params}}</p>
 
-                                <a class="btn btn-sm btn-primary"
-                                   ng-click="addCart(product.id, product.name, product.price, 1, product.data)"
-                                        >arrr</a>
-                                <!--<ngcart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
-                                </ngcart-addtocart>-->
+                                <mycart-addtocart id="{{product.id}}" name="{{product.name}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
+                                </mycart-addtocart>
                             </div>
                         </div>
                 </div>

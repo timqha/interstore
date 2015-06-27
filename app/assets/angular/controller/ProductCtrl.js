@@ -8,17 +8,8 @@
  * @requires $scope
  * */
 angular.module('admin')
-    .controller('Product', function ($scope, ProductsService, ngCart, myCart) {
+    .controller('Product', function ($scope, ProductsService, myCart) {
 
-        $scope.myCart = myCart;
-        $scope.addCart = function (id, name, price, quantity, data) {
-            myCart.addToCart(id, name, price, quantity, data);
-            console.log(id, name, price, quantity, data);
-        };
-
-        //set price for tax and shipping
-        ngCart.setTaxRate(0);
-        ngCart.setShipping(0);
 
         // Goods index
          ProductsService.getProductsAll().
@@ -39,7 +30,7 @@ angular.module('admin')
         // check update basket
         //Наверное это нужно вынести в сервайс или что-то подобное.
         $scope.errors = {text: null, g: 0};
-        angular.forEach(ngCart.getCart().items, function (item) {
+        angular.forEach(myCart.getCart().items, function (item) {
             $scope.errors.g++;
             ProductsService.showProduct(item._id)
                 .then(function (data) {
