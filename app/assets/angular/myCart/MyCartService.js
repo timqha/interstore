@@ -16,7 +16,8 @@ angular.module('myCart')
         };
     })
 
-    .run(['$rootScope', 'localstorage', 'myCart', 'myCartItem', function ($rootScope, localstorage, myCart, myCartItem) {
+    .run(['$rootScope', 'localstorage', 'myCart', 'myCartItem','$window', function ($rootScope, localstorage, myCart, myCartItem, $window) {
+
 
         $rootScope.$on('myCart:change', function () {
             myCart.$save();
@@ -24,7 +25,9 @@ angular.module('myCart')
 
         if (angular.isObject(localstorage.get('mcart'))) {
             myCart.$restore(localstorage.get('mcart'));
+
         } else {
+            console.log('init');
             myCart.init();
         }
 
@@ -77,6 +80,9 @@ angular.module('myCart')
             this.$cart = cart;
             return this.getCart();
         };
+        this.getItems = function(){
+            return this.$cart.items;
+        };
 
         this.getItemById = function (id) {
             var items = this.getCart().items;
@@ -92,7 +98,6 @@ angular.module('myCart')
             var totalPrice = 0;
             var items = this.getCart().items;
             angular.forEach(items, function (item) {
-                console.log(item);
                 totalPrice += item.getTotal();
             });
             return +parseFloat(totalPrice).toFixed(2);
@@ -126,21 +131,23 @@ angular.module('myCart')
         return {
             get: function (key) {
                 if ($window.localStorage[key]) {
-                    /*var cart = angular.fromJson($window.localStorage [key]);
-                    return JSON.parse(cart);*/
-                    return JSON.parse(angular.fromJson($window.localStorage[key]));
+                    var cart = angular.fromJson($window.localStorage [key]);
+                    return JSON.parse(cart);
+
                 }
                 return false;
             },
             set: function (key, val) {
+                console.log('save');
                 if (val === undefined) {
                     console.log('Нужно удалить это!');
-                    $window.localStorage .removeItem(key);
+                    $window.localStorage.removeItem(key);
                 } else {
                     console.log('Корзинка добавлена');
                     $window.localStorage[key] = angular.toJson(val);
                 }
-                return $window.localStorage [key];
+                console.log('add cart');
+                return $window.localStorage[key];
             }
         }
     })
@@ -163,7 +170,6 @@ angular.module('myCart')
         };
 
         item.prototype.getId = function () {
-            console.log(item);
             return this._id;
         };
 
@@ -181,8 +187,8 @@ angular.module('myCart')
             }
         };
         item.prototype.getPrice = function () {
-            console.log(item);
-            console.log('getPrice',this._price);
+           console.log('getPrice',this._price);
+
                 return this._price;
         };
 
@@ -203,7 +209,7 @@ angular.module('myCart')
                 this._quantity = 1;
                 $log.info('Quantity must be an integer and was defaulted to 1');
             }
-            $rootScope.$broadcast('myCart:change', {});
+          //  $rootScope.$broadcast('myCart:change', {});
 
         };
 
@@ -223,16 +229,6 @@ angular.module('myCart')
 
         item.prototype.getTotal = function () {
             return +parseFloat(this.getQuantity() * this.getPrice()).toFixed(2);
-        };
-
-        item.prototype.toObject = function () {
-            return {
-                id: this.getId(),
-                price: this.getPrice(),
-                quantity: this.getQuantity(),
-                data: this.getData(),
-                total: this.getTotal()
-            }
         };
 
         return item;
@@ -295,7 +291,7 @@ angular.module('myCart')
             transclude: true,
             templateUrl: 'myCart/_cart.html',
             link: function (scope, element, attrs) {
-
+                console.log(scope);
             }
 
         };

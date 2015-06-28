@@ -8,7 +8,7 @@
  * @requires $scope
  * */
 angular.module('app')
-    .controller('CheckoutCtrl', function ($scope, OrdersService, ngCart, ProductsService) {
+    .controller('CheckoutCtrl', function ($scope, OrdersService, ProductsService) {
         $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
         $scope.error = {message: null};
 

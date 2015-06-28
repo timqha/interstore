@@ -32,11 +32,12 @@ angular.module('admin')
         $scope.errors = {text: null, g: 0};
         angular.forEach(myCart.getCart().items, function (item) {
             $scope.errors.g++;
-            ProductsService.showProduct(item._id)
+            ProductsService.showProduct(item.getId())
                 .then(function (data) {
-                    if (data.price != item._price) {
+                    console.log('data', data, data.product.price, "cart", item.getPrice());
+                    if (data.product.price != item.getPrice()) {
                         if ($scope.errors.g == 1) {
-                            if (item._price <= data.price) {
+                            if (item.getPrice() <= data.product.price) {
                                 $scope.errors.text = "Цены на товар стали выше!";
                             }
                             else {
@@ -46,7 +47,7 @@ angular.module('admin')
                         else {
                             $scope.errors.text = "Внимание! Цены изменились.";
                         }
-                        item._price = data.price;
+                        item.setPrice(data.product.price);
                     }
                 });
         });

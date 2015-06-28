@@ -54,6 +54,7 @@ angular.module('ngCart', ['ngCart.directives', 'templates'])
             $rootScope.$broadcast('ngCart:change', {});
         };
 
+
         this.getItemById = function (itemId) {
             var items = this.getCart().items;
             var build = false;
@@ -311,11 +312,13 @@ angular.module('ngCart', ['ngCart.directives', 'templates'])
             set: function (key, val) {
 
                 if (val === undefined) {
-                    $window.localStorage .removeItem(key);
+                    $window.localStorage.removeItem(key);
                 } else {
-                    $window.localStorage [key] = angular.toJson(val);
+                    $window.localStorage[key] = angular.toJson(val);
                 }
-                return $window.localStorage [key];
+
+                return $window.localStorage[key];
+
             }
         }
     }])
