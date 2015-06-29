@@ -23,9 +23,7 @@ angular.module('app')
                 data: {"category": {"name": name, "desc": desc}},
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
-                },
-                timeout: 30000, // timeout abort AJAX
-                cache: false
+                }
             });
             return ( request.then(handleSuccess, handleError));
 
@@ -48,9 +46,7 @@ angular.module('app')
                 data: {"category": {"name": name, "desc": desc}},
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
-                },
-                timeout: 3000, // Задержка на работу запроса
-                cashe: false
+                }
             });
             return ( request.then(handleSuccess, handleError) );
 
