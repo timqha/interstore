@@ -8,7 +8,7 @@
  * @requires $scope
  * */
 angular.module('admin')
-    .controller('Product', function ($scope, ProductsService, myCart) {
+    .controller('Product', function ($rootScope, $scope, ProductsService, myCart) {
 
 
         // Goods index
@@ -48,6 +48,7 @@ angular.module('admin')
                             $scope.errors.text = "Внимание! Цены изменились.";
                         }
                         item.setPrice(data.product.price);
+                        $rootScope.$broadcast('myCart:change', {});
                     }
                 });
         });

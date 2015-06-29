@@ -122,13 +122,28 @@ a,a:hover {
     border-radius:0;
 }
 
-
-footer {
-    height:50px;
-    background-color:#dfdfdf;
-    color:#888;
-    margin-top:20px;
+html,
+body {
+  height: 100%;
 }
+.wrapper {
+  position: relative;
+  min-height: 100%;
+}
+.content {
+  padding-bottom: 50px;
+}
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color:#dfdfdf;
+  color:#888;
+}
+
+
 
 /* Что б небыло зазоров, между колонками */
 @media (min-width: 960px) {
@@ -181,3 +196,4 @@ footer {
 }
 
 /* end custom theme */
+
