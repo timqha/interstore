@@ -11,9 +11,10 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+#.idea/workspace.xml
 .idea/
 # User-specific stuff:
-# .idea/workspace.xml
+#.idea/workspace.xml
 # .idea/tasks.xml
 # .idea/dictionaries
 

@@ -28,7 +28,8 @@
         <tr ng-repeat="item in myCart.getCart().items track by $index">
             <td><label><span ng-click="myCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></label></td>
 
-            <td>{{ item.getName() }}</td>
+
+
             <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
                       ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
                 {{ item.getQuantity() | number }}&nbsp;&nbsp;

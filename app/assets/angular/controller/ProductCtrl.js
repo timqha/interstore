@@ -34,7 +34,7 @@ angular.module('admin')
             $scope.errors.g++;
             ProductsService.showProduct(item.getId())
                 .then(function (data) {
-                    console.log('data', data, data.product.price, "cart", item.getPrice());
+                //    console.log('data', data, data.product.price, "cart", item.getPrice());
                     if (data.product.price != item.getPrice()) {
                         if ($scope.errors.g == 1) {
                             if (item.getPrice() <= data.product.price) {

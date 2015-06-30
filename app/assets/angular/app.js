@@ -1,7 +1,7 @@
 
 'use strict';
 angular.module("myCart",[
-
+    'app'
 ]);
 
 angular.module("admin", [

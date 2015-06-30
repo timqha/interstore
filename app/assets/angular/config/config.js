@@ -104,7 +104,8 @@ angular.module("app")
             name:'cart',
             url: "/cart",
             templateUrl: 'cart.html',
-            controller: 'Product'
+            controller: 'CartCtrl'
+          //  controller: 'Product'
         })
         .state({
             name: 'login',

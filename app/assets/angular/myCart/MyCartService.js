@@ -187,7 +187,7 @@ angular.module('myCart')
             }
         };
         item.prototype.getPrice = function () {
-           console.log('getPrice',this._price);
+          // console.log('getPrice',this._price);
 
                 return this._price;
         };
@@ -283,15 +283,15 @@ angular.module('myCart')
 
         };
     }])
-    .directive('mycartContr', [function () {
+    .directive('mycartContr', ['$compile', function ($compile) {
         return {
-            restict: 'E',
+            restict: 'EC',
             controller: 'CartController',
             scope: {},
             transclude: true,
             templateUrl: 'myCart/_cart.html',
             link: function (scope, element, attrs) {
-                console.log(scope);
+
             }
 
         };
