@@ -121,7 +121,11 @@ a,a:hover {
 .well {
     border-radius:0;
 }
-
+.wall {
+  border-radius: 10px;
+  background-color: #e3e1da;
+}
+/*
 html,
 body {
   height: 100%;
@@ -141,8 +145,27 @@ body {
   height: 40px;
   background-color:#dfdfdf;
   color:#888;
+}*/
+
+
+
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
+.content {
+  flex: 1;
+  padding-bottom: 20px;
+}
+
+.footer {
+  height: 5vh;
+  border-top: 1px solid #eaeaea;
+  color: lightgray;
+  background-color:#dfdfdf;
+}
 
 
 /* Что б небыло зазоров, между колонками */

@@ -1,9 +1,30 @@
-<div ng-show="error.message" class="alert alert-success">
-    <p>{{error.message}}</p>
-</div>
-<div ng-repeat="product in products">
-    <div><a ui-sref="products.show({productId: product.id})">{{product.name}}</a><span> colors: {{product.params}} </span><a
-            ui-sref="products.edit({productId: product.id})" > edit</a>
-        <a ui-sref="products.delete({productId: product.id})" ng-click="deleteProduc(product.id)">x</a></div>
-    <hr/>
+<div class="col col-md-offset-1 col-md-6">
+    <div ng-show="error.message" class="alert alert-success">
+        <p>{{error.message}}</p>
+    </div>
+    <div class="row">
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th class="coll" ng-repeat="head in tablehead"> {{head.title}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in products">
+                <td><a ui-sref="products.show({productId: product.id})">{{product.name}}</a></td>
+                <td></td>
+                <td>colors: {{product.params}}</td>
+                <td>{{product.visible}}</td>
+                <td><a ui-sref="products.edit({productId: product.id})" > edit</a></td>
+                <td><a ui-sref="products.delete({productId: product.id})" ng-click="deleteProduc(product.id)">x</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>
 </div>

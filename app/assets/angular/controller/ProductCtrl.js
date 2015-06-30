@@ -52,6 +52,19 @@ angular.module('admin')
                     }
                 });
         });
+
+        /* for admin sort*/
+        $scope.tablehead = [
+            {name:'title',    title:"Заголовок"},
+            {name:'category', title:"Категория"},
+            {name:'color',    title:"Цвет"},
+            {name:'shown',    title:"Опубликован"},
+            {name:'edit',     title:"Редактировать"},
+            {name:'delete',   title:"Удалить"}
+        ];
+        /*end admin sort*/
+
+
     })
     .controller('ProductNew', function ($scope, ProductsService, CategoryService) {
         $scope.error = {message: null};
