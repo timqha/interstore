@@ -4,6 +4,6 @@ $(document).ready(function(){$('#sidebar').affix({
         top: 260,
         bottom: 0
     }
-});
+    });
 
 });

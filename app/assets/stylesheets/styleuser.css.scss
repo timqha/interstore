@@ -36,6 +36,7 @@ header {
     position:static;
 }
 
+
 body {
     font-family: Arial,Helvetica,Sans-Serif;
     font-weight:300;
@@ -125,29 +126,6 @@ a,a:hover {
   border-radius: 10px;
   background-color: #e3e1da;
 }
-/*
-html,
-body {
-  height: 100%;
-}
-.wrapper {
-  position: relative;
-  min-height: 100%;
-}
-.content {
-  padding-bottom: 50px;
-}
-.footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  background-color:#dfdfdf;
-  color:#888;
-}*/
-
-
 
 .wrapper {
   display: flex;

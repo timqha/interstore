@@ -4,16 +4,35 @@
     </div>
     <div class="row">
         <table class="table table-condensed table-hover">
+            [ <a href="" ng-click="predicate=''">unsorted</a> ]
             <thead>
                 <tr>
-                    <th class="coll" ng-repeat="head in tablehead"> {{head.title}}</th>
+                    <th>
+                        <a href="" ng-click="order('name')">Заголовок</a>
+                        <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
+                    </th>
+                    <th>
+                        Категория
+                    </th>
+                    <th>
+                        Цвет
+                    </th>
+                    <th>
+                        <a href="" ng-click="order('price')">Цена</a>
+                        <span class="sortorder" ng-show="predicate === 'price'" ng-class="{reverse:reverse}"></span>
+                    </th>
+                    <th>Отображать</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
+
                 </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="product in products">
+            <tr ng-repeat="product in products | orderBy:predicate:reverse">
                 <td><a ui-sref="products.show({productId: product.id})">{{product.name}}</a></td>
-                <td></td>
-                <td>colors: {{product.params}}</td>
+                <td>{{product.category_id}}</td>
+                <td>{{product.params}}</td>
+                <td>{{product.price}}</td>
                 <td>{{product.visible}}</td>
                 <td><a ui-sref="products.edit({productId: product.id})" > edit</a></td>
                 <td><a ui-sref="products.delete({productId: product.id})" ng-click="deleteProduc(product.id)">x</a></td>

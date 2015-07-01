@@ -8,7 +8,7 @@
  * @requires $scope
  * */
 angular.module('admin')
-    .controller('Product', function ($rootScope, $scope, ProductsService, myCart) {
+    .controller('Product', function ($rootScope, $scope, ProductsService, myCart, CategoryService) {
 
 
         // Goods index
@@ -53,15 +53,27 @@ angular.module('admin')
                 });
         });
 
+
+        CategoryService.getCategoryAll().
+            then(function (data, status) {
+                $scope.categories = data;
+            });
         /* for admin sort*/
-        $scope.tablehead = [
-            {name:'title',    title:"Заголовок"},
-            {name:'category', title:"Категория"},
+       /* $scope.tablehead = [
+            {name:'title',    title:"Заголовок", sort:-2},
+            {name:'category', title:"Категория", list:$scope.categories,  sort:1},
             {name:'color',    title:"Цвет"},
             {name:'shown',    title:"Опубликован"},
             {name:'edit',     title:"Редактировать"},
             {name:'delete',   title:"Удалить"}
-        ];
+        ];*/
+
+        $scope.predicate = 'color';
+        $scope.reverse = true;
+        $scope.order = function(predicate) {
+            $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+            $scope.predicate = predicate;
+        };
         /*end admin sort*/
 
 
