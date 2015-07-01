@@ -35,7 +35,7 @@
                 <td>{{product.price}}</td>
                 <td>{{product.visible}}</td>
                 <td><a ui-sref="products.edit({productId: product.id})" > edit</a></td>
-                <td><a ui-sref="products.delete({productId: product.id})" ng-click="deleteProduc(product.id)">x</a></td>
+                <td><a ui-sref="products.delete({productId: product.id})" ng-click="deleteProduc(product.id)" class="glyphicon glyphicon-remove"></a></td>
             </tr>
 
             </tbody>

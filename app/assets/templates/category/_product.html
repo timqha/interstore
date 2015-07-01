@@ -1,13 +1,29 @@
 <div ng-repeat="product in products | filter:{visible:t} | filterPrice:priceFilter">
-    <div class="col-md-4 cartbox">
-        <p>{{product.name}}</p>
+<div class="col-md-4">
+    <div class="panel panel-info" >
+        <div class="panel-heading">
+            <div class="panel-title">{{product.name}}</div>
+        </div>
+        <div class="col-md-offset-1">
+            <br>
+            <div class="row">
+               цвет: {{product.params}}
+            </div>
 
-        <div class="redblok"></div>
-        <p>цена: {{product.price | currency: "$"}}</p>
+            <div class="row"><img src="//placehold.it/245x100/E7E7E7"></div>
+            <div class="row">
+                цена: {{product.price | currency: "$"}}
+            </div>
 
-        <p>цвет: {{product.params}}</p>
 
-        <mycart-addtocart id="{{product.id}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
-        </mycart-addtocart>
+
+
+            <mycart-addtocart id="{{product.id}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
+            </mycart-addtocart>
+            <br>
+        </div>
     </div>
+    <br>
+</div>
+
 </div>

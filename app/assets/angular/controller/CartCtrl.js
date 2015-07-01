@@ -8,47 +8,38 @@
  * @requires $scope
  * */
 angular.module('app')
-    .controller('CartCtrl', ['$scope','myCart','ProductsService',function($scope, myCart, ProductsService){
+    .controller('CartCtrl', ['$scope', 'myCart','myproducts', function ($scope, myCart, myproducts) {
         $scope.myCart = myCart;
-        $scope.products = [];
-        if (myCart.getTotalItems() === 0)
-        {
+        /*  Проверяем не пустая ли корзина, если она пуста, не какихдействий не производим.
+        *   Если она не пустая, Получаем все записи в корзине.
+        *   Функции: удаления записи.
+        *
+        * */
+        if (myCart.getTotalItems() === 0) {
             console.log('Cart empty');
 
         } else {
-            console.log('rock dock',myCart.getItems());
+            $scope.Carts = myCart.getItems();
+
+            $scope.removeItems = function (id) {
+                if (id) {
+                    myCart.removeItemById(id);
+                }
+            };
+
+            // DELETE то что не верно. 100% а как хз. Еще и вывод цены б сделать.
+            $scope.getName = function (id) {
+                angular.forEach(myproducts, function (product) {
+                    if (product.id+"" == id) {
+                        console.log(product.name);
+                        return product.name;
+
+                    }
+                })
+            };
+
         }
 
-        $scope.Carts = myCart.getItems();
-        angular.forEach($scope.Carts, function(cart){
-           // $scope.items.push(JSON.stringify(getProduct(cart.getId())));
-         //  console.log(getProduct(cart.getId()));
-            console.log(cart.getId());
-
-        });
-
-        $scope.removeItems = function(id){
-            if(id){
-                myCart.removeItemById(id);
-            }
-        };
-
-        $scope.products = [];
-        ProductsService.getProductsAll().
-            then(function (data) {
-                $scope.products = data.products;
-                console.log( $scope.products);
-                // $scope.productslast = data.productslast;
-            });
-
-        $scope.getName = function(id){
-            angular.forEach($scope.products, function(product){
-                if(product.id === id){
-                    return product.name;
-                }
-            })
-        };
 
 
-
-}]);
+    }]);

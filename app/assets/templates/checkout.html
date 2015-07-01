@@ -1,99 +1,63 @@
-<h1>Оформление заказа</h1>
-
-<h1> Ваш заказ!</h1>
-
-<hr/>
-<h3>Cart</h3>
-
-<ngcart-cart></ngcart-cart>
-<hr/>
-
-<script type="text/ng-template" id="template/ngCart/cart.html">
-    <div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
-        Your cart is empty
-    </div>
-
-    <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
-
-        <table class="table table-striped ngCart cart">
-
-            <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th>Quantity</th>
-                <th>Amount</th>
-                <th>Total</th>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr ng-show="ngCart.getTax()">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
-                <td>{{ ngCart.getTax() | currency }}</td>
-            </tr>
-            <tr ng-show="ngCart.getShipping()">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Shipping:</td>
-                <td>{{ ngCart.getShipping() | currency }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total:</td>
-                <td>{{ ngCart.totalCost() | currency }}</td>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr ng-repeat="item in ngCart.getCart().items track by $index">
-                <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
-
-                <td>{{ item.getName() }}</td>
-                <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
-                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
-                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
-                <td>{{ item.getPrice() | currency}}</td>
-                <td>{{ item.getTotal() | currency }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-</script>
-
-
-
-
-
-
-
 <div>
     <div class="alert alert-error" ng-show="errors.text">{{errors.text}}</div>
     <div class="alert alert-error" ng-show="error.message">{{error.message}}</div>
+<br><br>
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-primary" >
+                <div class="panel-heading">
+                    <div class="panel-title">Оформление заказа!</div>
+                </div>
+                <form>
+                    <div class="col-md-offset-1">
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <labal>Имя и фамилия:</labal>
+                            </div>
+                            <div class="col-md-6">
+                                <input ng-model="order.name" required/>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <labal>Город:</labal>
+                            </div>
+                            <div class="col-md-6">
+                                <input ng-model="order.city" required/>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <labal>Мобильный телефон:</labal>
+                            </div>
+                            <div class="col-md-6">
+                                <input ng-model="order.telephone" required/>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <labal>Эл. почта:</labal>
+                            </div>
+                            <div class="col-md-6">
+                                <input ng-model="order.email" required/>
+                            </div>
+                        </div>
+                        <br>
+                        <button ng-click="Checkout()" class="btn btn-primary">Далее</button>
+                        <br>
+                        <br>
+                    </div>
+                </form>
 
-    <form>
-        <div>
-            <labal>Имя и фамилия: </labal>
-            <input ng-model="order.name" required />
+
+
+
+            </div>
         </div>
-        <div>
-            <labal>Город: </labal>
-            <input ng-model="order.city" required />
-        </div>
-        <div>
-            <labal>Мобильный телефон: </labal>
-            <input ng-model="order.telephone" required />
-        </div>
-        <div>
-            <labal>Эл. почта: </labal>
-            <input ng-model="order.email" required />
-        </div>
-        <button ng-click="Checkout()" class="btn btn-primary">Далее</button>
-    </form>
+    </div>
+
 </div>

@@ -20,8 +20,7 @@ angular.module('app')
                 data: {"product": {"name": name, "price": price, "category_id": category_id, "params": params}},
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
-                },
-                cashe: false
+                }
             });
             return ( request.then(handleSuccess, handleError) );
         }
@@ -43,9 +42,7 @@ angular.module('app')
                 data: {"product": {"name": name, "price": price, "category_id": category_id, "params": params}},
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
-                },
-                timeout: 3000, // Задержка на работу запроса
-                cashe: false
+                }
             });
             return ( request.then(handleSuccess, handleError) );
         }

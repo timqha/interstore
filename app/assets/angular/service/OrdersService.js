@@ -14,16 +14,14 @@ angular.module('app')
         }
 
 
-        function addNewOrder(name, city, telephone, email, cart) {
+        function addNewOrder(name, city, telephone, email, cart, sent) {
             var request = $http({
                 method: 'POST',
                 url: '/api/orders.json',
-                data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "cart": cart}},
+                data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "cart": cart, "sent": sent}},
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
-                },
-                timeout: 3000, // Задержка на работу запроса
-                cashe: false
+                }
             });
             return ( request.then(handleSuccess, handleError) );
         }
@@ -39,16 +37,14 @@ angular.module('app')
             return (request.then(handleSuccess, handleError));
         }
 
-        function updateOrder(id, name, city, telephone, email, cart) {
+        function updateOrder(id, name, city, telephone, email, cart, sent) {
             var request = $http({
                 method: 'PUT',
-                url: '/api/products/' + id,
-                data: {"product": {"name": name, "city": city, "telephone": telephone, "email": email, "cart": cart}},
+                url: '/api/orders/' + id,
+                data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "cart": cart, "sent": sent}},
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
-                },
-                timeout: 3000, // Задержка на работу запроса
-                cashe: false
+                }
             });
             return ( request.then(handleSuccess, handleError) );
         }

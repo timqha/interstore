@@ -104,7 +104,16 @@ angular.module("app")
             name:'cart',
             url: "/cart",
             templateUrl: 'cart.html',
-            controller: 'CartCtrl'
+            controller: 'CartCtrl',
+            resolve: {
+                //this gets passed as 'thing' to edit controller
+                //we can now use full promise interface and as the model
+                myproducts: function (ProductsService) {
+                    return ProductsService.getProductsAll().then(function (response) {
+                        return response.products;
+                    });
+                }
+            }
           //  controller: 'Product'
         })
         .state({

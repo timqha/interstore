@@ -1,66 +1,56 @@
-<h1> This is Cart !</h1>
+<div class="col-md-10 col-md-offset-1 ">
+    <h1> This is Cart !</h1>
 
-<hr/>
-<h3>Cart</h3>
-<div class="alert alert-error" ng-show="errors.text">{{errors.text}}</div>
-<!--<mycart-contr></mycart-contr>-->
-<div class="alert alert-warning" role="alert" ng-show="myCart.getTotalItems() === 0">
-    Your cart is empty
+    <hr/>
+
+    <div class="alert alert-error" ng-show="errors.text">{{errors.text}}</div>
+    <!--<mycart-contr></mycart-contr>-->
+    <div class="alert alert-warning" role="alert" ng-show="myCart.getTotalItems() === 0">
+        Your cart is empty
+    </div>
+
+    <div class="table-responsive" ng-show="myCart.getTotalItems() > 0">
+
+        <table class="table table-striped ngCart cart">
+
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total:</td>
+                <td>{{ myCart.getTotalSumm() | currency }}</td>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr ng-repeat="item in Carts">
+                <td><label><span ng-click="removeItems(item.getId())" class="glyphicon glyphicon-remove"></span></label>
+                </td>
+
+                <td>{{getName(item.getId())}}</td>
+
+                <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
+                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+                <td>{{ item.getPrice() | currency}}</td>
+                <td>{{ item.getTotal() | currency }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr/>
+    <div class="col-md-offset-9" ng-hide="myCart.getTotalItems() === 0">
+        <a class="btn btn-sm btn-primary"
+           ui-sref="checkout">Заказать</a>
+    </div>
 </div>
-
-<div class="table-responsive col-lg-12" ng-show="myCart.getTotalItems() > 0">
-
-    <table class="table table-striped ngCart cart">
-
-        <thead>
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Amount</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total:</td>
-            <td>{{ myCart.getTotalSumm() | currency }}</td>
-        </tr>
-        </tfoot>
-        <tbody>
-        <!--<tr ng-repeat="item in myCart.getCart().items track by $index">
-            <td><label><span ng-click="myCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></label></td>
-
-            <td></td>
-
-            <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
-                      ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
-                {{ item.getQuantity() | number }}&nbsp;&nbsp;
-                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
-            <td>{{ item.getPrice() | currency}}</td>
-            <td>{{ item.getTotal() | currency }}</td>
-        </tr>-->
-        <tr ng-repeat="item in Carts">
-            <td><label><span ng-click="removeItems(item.getId())" class="glyphicon glyphicon-remove"></span></label></td>
-
-            <td>{{getName(item.getId())}}</td>
-
-            <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
-                      ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
-                {{ item.getQuantity() | number }}&nbsp;&nbsp;
-                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
-            <td>{{ item.getPrice() | currency}}</td>
-            <td>{{ item.getTotal() | currency }}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<hr/>
-<div>
-    <a class="btn btn-sm btn-primary"
-       href="/checkout">Заказать</a>
-</div>
-

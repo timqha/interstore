@@ -1,18 +1,19 @@
-admin edit
-
-<div>
-    <div ng-show="error.message" class="alert alert-success">
-        <p>{{error.message}}</p>
+<div class="col col-md-offset-1 col-md-6">
+    admin edit
+    <div>
+        <div ng-show="error.message" class="alert alert-success">
+            <p>{{error.message}}</p>
+        </div>
+        <form>
+            <div>
+                <labal>Category name: </labal>
+                <input ng-model="category.name" required />
+            </div>
+            <div>
+                <labal>Category desc: </labal>
+                <input ng-model="category.desc" required />
+            </div>
+            <button ng-click="updateCategory()" class="btn btn-primary">Save Category</button>
+        </form>
     </div>
-    <form>
-        <div>
-            <labal>Category name: </labal>
-            <input ng-model="category.name" required />
-        </div>
-        <div>
-            <labal>Category desc: </labal>
-            <input ng-model="category.desc" required />
-        </div>
-        <button ng-click="updateCategory()" class="btn btn-primary">Save Category</button>
-    </form>
 </div>

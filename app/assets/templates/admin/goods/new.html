@@ -1,25 +1,27 @@
-<h1>New Product</h1>
-<div ng-show="error.message" class="alert alert-success">
-    <p>{{error.message}}</p>
-</div>
-<div>
-    <form>
-        <div>
-            <labal>Product name:</labal>
-            <input ng-model="product.name" required/>
-        </div>
-        <div>
-            <labal>Product price:</labal>
-            <input ng-model="product.price" required/>
-        </div>
-        <div>
-            <labal>Product colors:</labal>
-            <input ng-model="product.params" required/>
-        </div>
-        <div>
-            <select ng-init="product.category_id = options[0]" ng-model="product.category_id" ng-selected="0"
-                    ng-options="category.id as category.name for category in categories" required></select>
-        </div>
-        <button ng-click="addProduct()" class="btn btn-primary">Save Product</button>
-    </form>
+<div class="col col-md-offset-1 col-md-6">
+    <h1>New Product</h1>
+    <div ng-show="error.message" class="alert alert-success">
+        <p>{{error.message}}</p>
+    </div>
+    <div>
+        <form>
+            <div>
+                <labal>Product name:</labal>
+                <input ng-model="product.name" required/>
+            </div>
+            <div>
+                <labal>Product price:</labal>
+                <input ng-model="product.price" required/>
+            </div>
+            <div>
+                <labal>Product colors:</labal>
+                <input ng-model="product.params" required/>
+            </div>
+            <div>
+                <select ng-init="product.category_id = options[0]" ng-model="product.category_id" ng-selected="0"
+                        ng-options="category.id as category.name for category in categories" required></select>
+            </div>
+            <button ng-click="addProduct()" class="btn btn-primary">Save Product</button>
+        </form>
+    </div>
 </div>
