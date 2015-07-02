@@ -10,11 +10,17 @@ angular.module('app')
         return function(input, params) {
 
             var filtered = [];
-            angular.forEach(input, function(item) {
-                if(parseFloat(item.price)>params.min && parseFloat(item.price)<=params.max) {
-                    filtered.push(item);
-                }
-            });
+            if(params.max && params.min) {
+                angular.forEach(input, function (item) {
+                    //if(params.min || params.max)
+
+                    if (parseFloat(item.price) > params.min && parseFloat(item.price) <= params.max) {
+                        filtered.push(item);
+                    }
+                });
+            } else {
+                filtered = input;
+            }
             return filtered;
         };
 });

@@ -5,7 +5,6 @@ angular.module("app")
 
             var filtered = [];
 
-
             angular.forEach(items, function (item) {
                 if (ncolors.length < 1) {
                     filtered.push(item);
