@@ -20,14 +20,12 @@
 //= require ../angular/app
 //= require_tree ../angular
 
-//= require angular-slider/slider
-//= require ngcart/dist/ngCart
-//= require angular-route
+
 //= require angular-rails-templates
 //= require angular-ui-router
 //= require angular-ui-router-stateHelper/statehelper
 
-//= require angular-strap
+
 //= require angular-cookies
 
 //= require mystyle.js
