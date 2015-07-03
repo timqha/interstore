@@ -5,7 +5,6 @@ angular.module("myCart",[
 ]);
 
 angular.module("admin", [
- //   "ngRoute",
     "templates",
     'ui.router'
 

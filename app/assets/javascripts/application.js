@@ -23,7 +23,7 @@
 
 //= require angular-rails-templates
 //= require angular-ui-router
-//= require angular-ui-router-stateHelper/statehelper
+//= require angular-ui-router.stateHelper/statehelper
 
 
 //= require angular-cookies

@@ -46,10 +46,13 @@
                         <!--<ngcart-summary></ngcart-summary>-->
                     </div>
                         <div ng-repeat="product in products | filterColor:Filtr | filter:{visible:t} | filterPrice:priceFilter">
-                            <div class="col-md-4">
+                            <div class="col-md-4 maxheight">
                                 <div class="panel panel-info" >
                                     <div class="panel-heading">
-                                        <div class="panel-title">{{product.name}}</div>
+                                        <div class="longtext">
+                                            <div class="panel-title">{{product.name}}</div>
+                                            <div></div>
+                                        </div>
                                     </div>
                                     <div class="col-md-offset-1">
                                         <br>

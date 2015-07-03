@@ -199,3 +199,38 @@ a,a:hover {
 
 /* end custom theme */
 
+/* Что б не ехала разметка */
+.longtext{
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.2em;
+  height: 1.2em;
+  text-overflow: longtext;
+  -o-text-overflow: longtext;
+  width: 100%;
+}
+.longtext *
+{
+  display: inline;
+}
+
+.longtext > DIV:first-child
+{
+  float: left;
+}
+.longtext > DIV + DIV
+{
+  float: right;
+  margin-top: -1.2em;
+}
+.longtext > DIV + DIV::after
+{
+  background-color: #D9EDF7;
+  content: '...';
+}
+
+.maxheight {
+  max-height: 287px;
+}
+
+/*end что б не ехала разметка*/
