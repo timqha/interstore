@@ -1,5 +1,7 @@
 angular.module('app')
-    .service('ProductsService', function ($http) {
+    .service('ProductsService', function ($http, $rootScope) {
+
+
         return ({
             getProductsAll:     getProductsAll,
             addNewProduct:      addNewProduct,
@@ -19,7 +21,7 @@ angular.module('app')
                 url: '/api/products.json',
                 data: {"product": {"name": name, "price": price, "category_id": category_id, "params": params}},
                 headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
+                    'Content-Type': $rootScope.config.heders
                 }
             });
             return ( request.then(handleSuccess, handleError) );
@@ -41,7 +43,7 @@ angular.module('app')
                 url: '/api/products/' + id,
                 data: {"product": {"name": name, "price": price, "category_id": category_id, "params": params}},
                 headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
+                    'Content-Type':  $rootScope.config.heders
                 }
             });
             return ( request.then(handleSuccess, handleError) );

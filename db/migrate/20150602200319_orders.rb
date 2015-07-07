@@ -8,6 +8,8 @@ class Orders < ActiveRecord::Migration
       t.string :cart
       t.boolean :sent, default: false
       t.timestamps
+
     end
+    add_index :orders, :email, unique: true
   end
 end

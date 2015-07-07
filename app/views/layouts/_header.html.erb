@@ -14,7 +14,7 @@
             <i class="glyphicon glyphicon-chevron-down"></i></a>
               <ul class="dropdown-menu">
                 <li ng-show="!globals.currentUser"><a ui-sref="login">Login</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a ng-show="globals.currentUser" ui-sref="profile">Profile</a></li>
 
                 <li class="divider"></li>
 

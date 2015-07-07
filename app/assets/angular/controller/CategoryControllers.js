@@ -28,7 +28,7 @@ angular.module('app')
 
                 };
             });
-        $scope.priceFilter = {min: 0, max: 100000};
+        $scope.priceFilter = {min: 1, max: 100000};
     });
 angular.module("admin")
     .controller("Category", function ($scope, CategoryService) {
@@ -37,7 +37,7 @@ angular.module("admin")
             then(function (data, status) {
                 $scope.categories = data;
             });
-        $scope.priceFilter = {min: 0, max: 100000};
+        $scope.priceFilter = {min: 1, max: 100000};
         $scope.error = {message: null};
         $scope.deleteCategory = function (id) {
             CategoryService.deleteCategory(id)

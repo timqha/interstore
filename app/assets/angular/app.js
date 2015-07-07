@@ -30,5 +30,6 @@ angular.module('app', [
             $location.path('/login');
         }
     });
+    $rootScope.config = {heders: 'application/json; charset=UTF-8'}
 });
 

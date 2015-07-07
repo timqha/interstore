@@ -36,7 +36,7 @@
                 <td><label><span ng-click="removeItems(item.getId())" class="glyphicon glyphicon-remove"></span></label>
                 </td>
 
-                <td>{{getName(item.getId())}}</td>
+                <td><a ui-sref="goods.show({ productId: item.getId() })">{{item.name}}</a></td>
 
                 <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
                           ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;

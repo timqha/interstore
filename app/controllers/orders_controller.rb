@@ -30,7 +30,7 @@ respond_to :json
     @order = Order.new(order_params)
     respond_to do |format|
       if @order.save
-        format.json {render action: 'show', status: :created, location: @order}
+        format.json { render json: @order, status: :created, location: @category }
       else
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

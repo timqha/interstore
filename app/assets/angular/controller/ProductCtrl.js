@@ -15,9 +15,9 @@ angular.module('admin')
          ProductsService.getProductsAll().
             then(function (data) {
                 $scope.products = data.products;
-               // $scope.productslast = data.productslast;
-            });
+                 console.log(data);
 
+            });
         // Goods delete
         $scope.deleteProduc = function (id) {
             $scope.error = {message: null};
@@ -34,7 +34,7 @@ angular.module('admin')
             $scope.errors.g++;
             ProductsService.showProduct(item.getId())
                 .then(function (data) {
-                //    console.log('data', data, data.product.price, "cart", item.getPrice());
+                //    console.log('data', data, data.products.price, "cart", item.getPrice());
                     if (data.product.price != item.getPrice()) {
                         if ($scope.errors.g == 1) {
                             if (item.getPrice() <= data.product.price) {
@@ -59,14 +59,6 @@ angular.module('admin')
                 $scope.categories = data;
             });
         /* for admin sort*/
-       /* $scope.tablehead = [
-            {name:'title',    title:"Заголовок", sort:-2},
-            {name:'category', title:"Категория", list:$scope.categories,  sort:1},
-            {name:'color',    title:"Цвет"},
-            {name:'shown',    title:"Опубликован"},
-            {name:'edit',     title:"Редактировать"},
-            {name:'delete',   title:"Удалить"}
-        ];*/
 
         $scope.predicate = 'color';
         $scope.reverse = true;

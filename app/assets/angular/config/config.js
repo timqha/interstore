@@ -101,6 +101,18 @@ angular.module("app")
             }]
         })
         .state({
+            name: 'goods',
+            url: '/goods',
+            templateUrl: '_layouts.html',
+            children:[
+                {
+                    name: 'show',
+                    url: "/:productId/show",
+                    templateUrl: 'products/show.html',
+                    controller: 'ProductShow'
+                }]
+        })
+        .state({
             name:'cart',
             url: "/cart",
             templateUrl: 'cart.html',
@@ -133,7 +145,15 @@ angular.module("app")
             url: "/checkout",
             templateUrl: 'checkout.html',
             controller: 'CheckoutCtrl'
+        })
+        .state({
+            name:'profile',
+            url: "/profile",
+            templateUrl: 'users/profile.html',
+            controller: 'ProfileCtrl'
         });
+
+
 
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
     });

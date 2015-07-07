@@ -5,9 +5,12 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    #@user = User.find(params[:id])
+
+    @categories = Category.all.map { |c| [c.name, c.id] }
     #@productslast = Product.last(10)
     respond_to do |format|
-      format.json { render :json => {#:productslast => @productslast,
+      format.json { render :json => {:categories => @categories,
                                      :products => @products} }
     end
   end
@@ -80,6 +83,6 @@ class ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:name, :price, :category_id, :params)
+    params.require(:products).permit(:name, :price, :category_id, :params)
   end
 end

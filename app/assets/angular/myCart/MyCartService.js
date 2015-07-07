@@ -56,6 +56,12 @@ angular.module('myCart')
             }
             $rootScope.$broadcast('myCart:change', {});
         };
+        this.removeCart = function(){
+            localstorage.remove('mcart');
+            this.init();
+            //$rootScope.$broadcast('myCart:change', {});
+            console.log("корзина удалена");
+        };
         this.removeItem = function (index) {
             this.$cart.items.splice(index, 1);
             $rootScope.$broadcast('myCart:itemRemoved', {});
@@ -85,7 +91,7 @@ angular.module('myCart')
         };
 
         this.getItemById = function (id) {
-            var items = this.getCart().items;
+            var items = this.getItems();
             var temp = false;
             angular.forEach(items, function (item) {
                 if (item.getId() === id) {
@@ -96,7 +102,7 @@ angular.module('myCart')
         };
         this.getTotalSumm = function () {
             var totalPrice = 0;
-            var items = this.getCart().items;
+            var items = this.getItems();
             angular.forEach(items, function (item) {
                 totalPrice += item.getTotal();
             });
@@ -105,7 +111,7 @@ angular.module('myCart')
 
         this.getTotalItems = function () {
             var count = 0;
-            var items = this.getCart().items;
+            var items = this.getItems();
             angular.forEach(items, function (item) {
                 count += item.getQuantity();
             });
@@ -148,6 +154,9 @@ angular.module('myCart')
                 }
                 console.log('add cart');
                 return $window.localStorage[key];
+            },
+            remove: function(key){
+                $window.localStorage.removeItem(key);
             }
         }
     })

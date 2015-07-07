@@ -234,3 +234,11 @@ a,a:hover {
 }
 
 /*end что б не ехала разметка*/
+
+table {
+  table-layout: fixed;
+  width:100%
+}
+td {
+  word-wrap:break-word;
+}

@@ -10,9 +10,9 @@
 angular.module('app')
     .controller('CartCtrl', ['$scope', 'myCart','myproducts', function ($scope, myCart, myproducts) {
         $scope.myCart = myCart;
-        /*  Проверяем не пустая ли корзина, если она пуста, не какихдействий не производим.
+        /*  Проверяем не пустая ли корзина, если она пуста, не каких действий не производим.
         *   Если она не пустая, Получаем все записи в корзине.
-        *   Функции: удаления записи.
+        *   Функции: removeItems удаления записи.
         *
         * */
         if (myCart.getTotalItems() === 0) {
@@ -26,17 +26,14 @@ angular.module('app')
                     myCart.removeItemById(id);
                 }
             };
-
-            // DELETE то что не верно. 100% а как хз. Еще и вывод цены б сделать.
-            $scope.getName = function (id) {
+            angular.forEach($scope.Carts, function(item){
                 angular.forEach(myproducts, function (product) {
-                    if (product.id+"" == id) {
-                        console.log(product.name);
-                        return product.name;
-
+                    if (product.id+"" == item._id) {
+                        item.name = product.name;
                     }
                 })
-            };
+            });
+
 
         }
 

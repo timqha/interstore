@@ -1,0 +1,26 @@
+<div class="col col-md-offset-3 col-md-9">
+    <div class="col-md-12 maxheight">
+        <div class="panel">
+            <div class="panel-heading">Info product</div>
+            <div class="panel-body">
+
+                    <div class="panel-title">{{product.name}}</div>
+
+            </div>
+            <div class="col-md-offset-1">
+                <br>
+                <div class="row">
+                    цвет: {{product.params}}
+                </div>
+
+                <div class="row"><img src="//placehold.it/245x100/E7E7E7"></div>
+
+                <div class="row">
+                    цена: {{product.price | currency: "$"}}
+                </div>
+                <br>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
