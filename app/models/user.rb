@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :order
+  has_many :orders
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable :confirmable,
   devise :database_authenticatable, :registerable,  :lockable, :timeoutable,

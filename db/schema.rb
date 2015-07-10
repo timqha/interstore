@@ -11,17 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602200319) do
+ActiveRecord::Schema.define(version: 20150709121857) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id"
   end
 
-  add_index "categories", ["category_id"], name: "index_categories_on_category_id"
+  create_table "list_orders", force: true do |t|
+    t.integer  "quantity"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order_id"
+  end
+
+  add_index "list_orders", ["order_id"], name: "index_list_orders_on_order_id"
+  add_index "list_orders", ["product_id"], name: "index_list_orders_on_product_id"
 
   create_table "orders", force: true do |t|
     t.string   "name"
@@ -32,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150602200319) do
     t.boolean  "sent",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "products", force: true do |t|
@@ -43,12 +52,9 @@ ActiveRecord::Schema.define(version: 20150602200319) do
     t.string   "visible",     default: "t"
     t.string   "boolean",     default: "t"
     t.integer  "category_id"
-    t.integer  "products_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "products", ["products_id"], name: "index_products_on_products_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

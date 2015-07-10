@@ -3,7 +3,6 @@ class Products < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.string :price
-      #t.decimal :price, precision: 8, scale: 2
       t.string :data
       t.string :params
       t.boolean :visible, default: true

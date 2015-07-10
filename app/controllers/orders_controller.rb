@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
 respond_to :json
   def index
+
     @orders = Order.all
     render json: @orders, status: :ok
   end
@@ -62,6 +63,6 @@ respond_to :json
     end
 
     def order_params
-      params.require(:order).permit(:name, :city, :telephone, :email, :cart, :sent)
+      params.require(:order).permit(:name, :city, :telephone, :email, :cart, :status)
     end
 end

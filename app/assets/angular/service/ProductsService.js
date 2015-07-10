@@ -12,7 +12,7 @@ angular.module('app')
         });
         function getProductsAll() {
             var request = $http.get('api/products');
-            return (request.then(handleSuccess, handleError));
+            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function addNewProduct(name, price, category_id, params) {
@@ -24,17 +24,17 @@ angular.module('app')
                     'Content-Type': $rootScope.config.heders
                 }
             });
-            return ( request.then(handleSuccess, handleError) );
+            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function showProduct(id) {
             var request = $http.get('api/products/' + id);
-            return (request.then(handleSuccess, handleError));
+            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function deleteProduct(id) {
             var request = $http.delete('api/products/' + id);
-            return (request.then(handleSuccess, handleError));
+            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function updateProduct(id, name, price, category_id, params) {
@@ -46,26 +46,12 @@ angular.module('app')
                     'Content-Type':  $rootScope.config.heders
                 }
             });
-            return ( request.then(handleSuccess, handleError) );
+            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function editProduct(id) {
             var request = $http.get('api/products/' + id + '/edit');
-            return (request.then(handleSuccess, handleError));
-        }
-
-        /* private methods */
-        function handleError(response, $q) {
-            if (
-                !angular.isObject(response.data) || !response.data.message
-            ) {
-                return ( $q.reject("An unknown error occurred.") );
-            }
-            return ( $q.reject(response.data.message) );
-        }
-
-        function handleSuccess(response) {
-            return ( response.data);
+            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
     });

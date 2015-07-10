@@ -30,6 +30,19 @@ angular.module('app', [
             $location.path('/login');
         }
     });
-    $rootScope.config = {heders: 'application/json; charset=UTF-8'}
+    $rootScope.config = {heders: 'application/json; charset=UTF-8'};
+
+        $rootScope.handleSuccess = function(response){
+            return ( response.data);
+        };
+        $rootScope.handleError = function(response, $q) {
+            if (
+                !angular.isObject(response.data) || !response.data.message
+            ) {
+                return ( $q.reject("An unknown error occurred.") );
+            }
+            return ( $q.reject(response.data.message) );
+        }
+
 });
 

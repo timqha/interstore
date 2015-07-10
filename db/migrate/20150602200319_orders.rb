@@ -8,7 +8,7 @@ class Orders < ActiveRecord::Migration
       t.string :cart
       t.boolean :sent, default: false
       t.timestamps
-
+      t.string :status
     end
     add_index :orders, :email, unique: true
   end

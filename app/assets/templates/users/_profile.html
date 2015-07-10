@@ -5,7 +5,12 @@
             <div class="panel panel-default" id="sidebar">
                 <div class="panel-heading panel-left" >info</div>
                 <div class="panel-body">
-
+                    <div class="row">
+                        <ul class="nav nav-stacked">
+                            <li><a ui-sref="profile.index">Мой профиль</a></li>
+                            <li><a ui-sref="profile.orders">Список заказов</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <!--/panel body-->
             </div>
@@ -19,7 +24,7 @@
                 <div class="panel-heading">Profile</div>
                 <div class="panel-body">
                     <div class="row">
-
+                        <div ui-view></div>
                     </div>
                 </div>
                 <!--/panel-body-->

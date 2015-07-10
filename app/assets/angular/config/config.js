@@ -81,6 +81,31 @@ angular.module("app")
                 }
             ]
         })
+        .state({
+            name: 'orders',
+            url: '/admin/orders',
+            templateUrl: '_layouts.html',
+            children: [
+                {
+                    name: 'index',
+                    url: '/index',
+                    templateUrl: 'admin/orders/index.html',
+                    controller: 'AdminProfileIndexContr'
+                },
+                {
+                    name: 'delete',
+                    url: '/:orderId/delete',
+                    templateUrl: 'admin/orders/index.html',
+                    controller: 'AdminProfileIndexContr'
+                },
+                {
+                    name: 'edit',
+                    url: '/:orderId/edit',
+                    templateUrl: 'admin/orders/edit.html',
+                    controller: 'AdminProfileEditContr'
+                }
+            ]
+        })
             /*start Users rout*/
         .state({
             name:'home',
@@ -147,10 +172,23 @@ angular.module("app")
             controller: 'CheckoutCtrl'
         })
         .state({
-            name:'profile',
-            url: "/profile",
-            templateUrl: 'users/profile.html',
-            controller: 'ProfileCtrl'
+                name:'profile',
+                url: "/profile",
+                templateUrl: 'users/_profile.html',
+                children: [
+                    {
+                        name: 'orders',
+                        url: '/orders',
+                        templateUrl: 'users/orders.html',
+                        controller: 'ProfileCtrl'
+                    },
+                    {
+                        name: 'index',
+                        url: '/index',
+                        templateUrl: 'users/index.html'
+                        //controller: ''
+                    }
+                ]
         });
 
 

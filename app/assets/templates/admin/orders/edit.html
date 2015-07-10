@@ -1,0 +1,42 @@
+<div class="col col-md-offset-1 col-md-6">
+    admin edit orders
+
+    <div>
+        <div ng-show="error.message" class="alert alert-success">
+            <p>{{error.message}}</p>
+        </div>
+        <form>
+
+            <div>
+                <labal>Orders name: </labal>
+                <input ng-model="order.name" required />
+            </div>
+            <div>
+                <labal>Orders city: </labal>
+                <input ng-model="order.city" required />
+            </div>
+            <div>
+                <labal>Orders telephone: </labal>
+                <input ng-model="order.telephone" required />
+            </div>
+            <div>
+                <labal>Orders email: </labal>
+                <input ng-model="order.email" required />
+            </div>
+            <div>
+                <labal>Orders cart: </labal>
+                <input ng-model="order.cart" required />
+            </div>
+            <div>
+                <labal>Orders status: </labal>
+                    <select ng-model="order.status" convert-to-number>
+                        <option value="Заказ в обработке">Заказ в обработке</option>
+                        <option value="Заказ подтвержден">Заказ подтвержден</option>
+                        <option value="Заказ отправлен">Заказ отправлен</option>
+                    </select>
+                <!--<input ng-model="order.status" required />-->
+            </div>
+            <button ng-click="updateOrder()" class="btn btn-primary">Save Order</button>
+        </form>
+    </div>
+</div>

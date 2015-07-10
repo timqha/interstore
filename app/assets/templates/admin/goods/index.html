@@ -22,7 +22,7 @@
                         <span class="sortorder" ng-show="predicate === 'price'" ng-class="{reverse:reverse}"></span>
                     </th>
                     <th>Отображать</th>
-                    <th>Редактировать</th>
+                    <th>Править</th>
                     <th>Удалить</th>
 
                 </tr>
@@ -30,7 +30,7 @@
             <tbody>
             <tr ng-repeat="product in products | orderBy:predicate:reverse">
                 <td><a ui-sref="products.show({productId: product.id})">{{product.name}}</a></td>
-                <td>{{product.category_id}}</td>
+                <td>{{product.category_name}}</td>
                 <td>{{product.params}}</td>
                 <td>{{product.price}}</td>
                 <td>{{product.visible}}</td>

@@ -1,37 +1,43 @@
-angular.module('app')
-    .service('CategoryService', function ($http, $rootScope) {
+/**
+ * @ngdoc service
+ * @name ListOrders
+ * @description
+ * _Please update the description and dependencies._
+ *
+ * */
+angular.module('admin')
+    .service('ListOrdersService', function($http, $rootScope){
         return ({
-            showCategory: showCategory,
-            getCategoryAll: getCategoryAll,
-            addNewCategory: addNewCategory,
-            deleteCategory: deleteCategory,
-            editCategory: editCategory,
-            updateCategory: updateCategory
-
+            addList: addList,
+            getListAll: getListAll
+           // deleteList: deleteList
+            /*showCategory: showCategory,
+             editCategory: editCategory,
+             updateCategory: updateCategory*/
         });
-        function showCategory(id) {
-            var request = $http.get('api/categories/' + id);
-            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
 
-        }
-
-        function addNewCategory(name, desc) {
-
+        function addList(orders_id, products_id, quantity){
             var request = $http({
                 method: 'POST',
-                url: '/api/categories.json',
-                data: {"category": {"name": name, "desc": desc}},
+                url: 'api/list_orders',
+                data: {"list_order":{"orders_id": orders_id, "product_id": products_id, "quantity" : quantity}},
                 headers: {
                     'Content-Type': $rootScope.config.heders
                 }
             });
+            return (request.then($rootScope.handleSuccess, $rootScope.handleError))
+        }
+        function getListAll(){
+            var request = $http.get('api/list_orders/');
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
-
         }
 
-        function getCategoryAll() {
-            var request = $http.get('api/categories');
+
+
+     /*   function showCategory(id) {
+            var request = $http.get('api/categories/' + id);
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
+
         }
 
         function deleteCategory(id) {
@@ -57,6 +63,8 @@ angular.module('app')
             var request = $http.get('api/categories/' + id + '/edit');
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
+*/
 
 
     });
+

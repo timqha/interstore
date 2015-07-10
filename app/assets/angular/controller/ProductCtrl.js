@@ -8,15 +8,19 @@
  * @requires $scope
  * */
 angular.module('admin')
-    .controller('Product', function ($rootScope, $scope, ProductsService, myCart, CategoryService) {
-
+    .controller('Product', function ($rootScope, $scope, ProductsService) {
 
         // Goods index
          ProductsService.getProductsAll().
             then(function (data) {
                 $scope.products = data.products;
-                 console.log(data);
-
+                 angular.forEach($scope.products, function(product){
+                     angular.forEach(data.categories, function(category){
+                         if(product.category_id == category[1]){
+                             product.category_name = category[0];
+                         }
+                     })
+                 });
             });
         // Goods delete
         $scope.deleteProduc = function (id) {
@@ -27,39 +31,7 @@ angular.module('admin')
                 });
         };
 
-        // check update basket
-        //Наверное это нужно вынести в сервайс или что-то подобное.
-        $scope.errors = {text: null, g: 0};
-        angular.forEach(myCart.getCart().items, function (item) {
-            $scope.errors.g++;
-            ProductsService.showProduct(item.getId())
-                .then(function (data) {
-                //    console.log('data', data, data.products.price, "cart", item.getPrice());
-                    if (data.product.price != item.getPrice()) {
-                        if ($scope.errors.g == 1) {
-                            if (item.getPrice() <= data.product.price) {
-                                $scope.errors.text = "Цены на товар стали выше!";
-                            }
-                            else {
-                                $scope.errors.text = "Вам повезло, цены стали меньше!";
-                            }
-                        }
-                        else {
-                            $scope.errors.text = "Внимание! Цены изменились.";
-                        }
-                        item.setPrice(data.product.price);
-                        $rootScope.$broadcast('myCart:change', {});
-                    }
-                });
-        });
-
-
-        CategoryService.getCategoryAll().
-            then(function (data, status) {
-                $scope.categories = data;
-            });
         /* for admin sort*/
-
         $scope.predicate = 'color';
         $scope.reverse = true;
         $scope.order = function(predicate) {
@@ -68,9 +40,8 @@ angular.module('admin')
         };
         /*end admin sort*/
 
-
     })
-    .controller('ProductNew', function ($scope, ProductsService, CategoryService) {
+    .controller('ProductNew', function ($scope, ProductsService, CategoryService, $state) {
         $scope.error = {message: null};
 
         // GetCategory for SELECTED
@@ -87,7 +58,7 @@ angular.module('admin')
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });
-            return $scope.product = {name: null, price: null, category_id: null};
+            $state.go('admin');
         };
     })
     .controller('ProductShow', function ($scope, ProductsService, $stateParams) {
