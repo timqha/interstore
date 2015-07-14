@@ -14,11 +14,13 @@ angular.module('app')
         }
 
 
-        function addNewOrder(name, city, telephone, email, cart, status) {
+        function addNewOrder(name, city, telephone, email, status, products) {
             var request = $http({
                 method: 'POST',
                 url: '/api/orders.json',
-                data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "cart": cart, "status": status}},
+                data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "status": status, "products": products}},
+
+
                 headers: {
                     'Content-Type': $rootScope.config.heders
                 }
@@ -37,11 +39,11 @@ angular.module('app')
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
-        function updateOrder(id, name, city, telephone, email, cart, status) {
+        function updateOrder(id, name, city, telephone, email, status) {
             var request = $http({
                 method: 'PUT',
                 url: '/api/orders/' + id,
-                data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "cart": cart, "status": status}},
+                data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "status": status}},
                 headers: {
                     'Content-Type': $rootScope.config.heders
                 }

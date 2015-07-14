@@ -13,7 +13,7 @@ angular.module('app')
         $scope.orders = [];
         OrdersService.getOrdersAll()
             .then(function(data){
-                angular.forEach(data, function(order){
+                angular.forEach(data.order, function(order){
                     if(order.email == $scope.currentUser){
                         $scope.orders.push(order);
                     }
@@ -28,7 +28,9 @@ angular.module('app')
         $scope.orders = [];
         OrdersService.getOrdersAll()
             .then(function(data){
-                $scope.orders = data;
+                $scope.orders = data.order;
+                console.log(data.order);
+
             });
         $scope.deleteOrder = function (id) {
             $scope.error = {message: null};
@@ -44,10 +46,11 @@ angular.module('app')
         $scope.error = {message: null};
         OrdersService.editOrder($stateParams.orderId)
             .then(function (data){
+
                 $scope.order = data.order;
             });
         $scope.updateOrder = function(){
-            OrdersService.updateOrder($scope.order.id, $scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, $scope.order.cart, $scope.order.status)
+            OrdersService.updateOrder($scope.order.id, $scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, $scope.order.status)
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });

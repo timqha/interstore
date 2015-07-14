@@ -11,4 +11,10 @@ admin/orders/iindex.html
     {{order.status}}
     <a ui-sref="orders.edit({orderId: order.id})" > edit</a>
     <a ui-sref="orders.delete({orderId: order.id})" ng-click="deleteOrder(order.id)" class="glyphicon glyphicon-remove"></a>
+
+    <div ng-repeat="product in order.products">
+        {{product.product_id}}
+        {{product.quantity}}
+    </div>
+
 </div>

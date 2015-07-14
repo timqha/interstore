@@ -13,6 +13,8 @@ angular.module('app')
         $scope.error = {message: null};
         $scope.myCart = myCart;
 
+
+
         $scope.Checkout = function () {
             if(whenCartUpdated()) {
                 $scope.change = confirm("Цены изменились!");
@@ -39,7 +41,15 @@ angular.module('app')
             }
             else {
                 $scope.order.cart = myCart.getCart().items;
-                    OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, JSON.stringify($scope.order.cart), "Заказ в обработке")
+
+                // Формируем массив объектов для передачи внутреностей корзины.
+                var products = [];
+                angular.forEach($scope.order.cart, function(product){
+                    var temp = {product_id:product.getId(), quantity: product.getQuantity()};
+                    products.push(temp);
+                });
+
+                    OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, "Заказ в обработке", products)
                         .then(function () {
                             $scope.error.message = "Заказ в обработке!";
                             myCart.removeCart();

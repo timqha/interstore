@@ -6,9 +6,11 @@ class Orders < ActiveRecord::Migration
       t.string :telephone
       t.string :email
       t.string :cart
+
       t.boolean :sent, default: false
-      t.timestamps
       t.string :status
+      t.timestamps
+
     end
     add_index :orders, :email, unique: true
   end

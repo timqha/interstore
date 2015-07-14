@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709121857) do
+ActiveRecord::Schema.define(version: 20150714102841) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -20,27 +20,26 @@ ActiveRecord::Schema.define(version: 20150709121857) do
     t.datetime "updated_at"
   end
 
-  create_table "list_orders", force: true do |t|
-    t.integer  "quantity"
+  create_table "order_products", force: true do |t|
     t.integer  "product_id"
+    t.integer  "order_id"
+    t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order_id"
+    t.integer  "price"
   end
 
-  add_index "list_orders", ["order_id"], name: "index_list_orders_on_order_id"
-  add_index "list_orders", ["product_id"], name: "index_list_orders_on_product_id"
+  add_index "order_products", ["order_id"], name: "index_order_products_on_order_id"
+  add_index "order_products", ["product_id"], name: "index_order_products_on_product_id"
 
   create_table "orders", force: true do |t|
     t.string   "name"
     t.string   "city"
     t.string   "telephone"
     t.string   "email"
-    t.string   "cart"
-    t.boolean  "sent",       default: false
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
   end
 
   create_table "products", force: true do |t|
@@ -55,6 +54,17 @@ ActiveRecord::Schema.define(version: 20150709121857) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "relations", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "order_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relations", ["order_id"], name: "index_relations_on_order_id"
+  add_index "relations", ["product_id"], name: "index_relations_on_product_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
