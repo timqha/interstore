@@ -9,7 +9,7 @@
  * */
 angular.module('app')
     .controller('ProfileCtrl', function($scope, OrdersService, $rootScope){
-        $scope.currentUser = $rootScope.globals.currentUser.username;
+        $scope.currentUser = $rootScope.globals.username;
         $scope.orders = [];
         OrdersService.getOrdersAll()
             .then(function(data){

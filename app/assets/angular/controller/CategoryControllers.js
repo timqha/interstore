@@ -4,11 +4,15 @@ angular.module('app')
         $scope.category = [];
         $scope.products = [];
         $scope.colors = {};
+        $scope.priceFilter = {min: 1, max: 1000000};
         CategoryService.showCategory($stateParams.categoryId)
             .then(function (data) {
                 console.log(data);
                 $scope.category = data.category;
                 $scope.products = data.products;
+                $scope.maxprice = data.maxprice;
+
+                $scope.priceFilter = {min: 1, max: $scope.maxprice};
 
                 $scope.ncolors = data.colors;
                 for (var i = 0; i < $scope.ncolors.length; i++) {
@@ -28,16 +32,20 @@ angular.module('app')
 
                 };
             });
-        $scope.priceFilter = {min: 1, max: 100000};
+
     });
 angular.module("admin")
     .controller("Category", function ($scope, CategoryService) {
         // for category/index
+
+        $scope.priceFilter = {min: 1, max: 1000000};
+
         $scope.categories = CategoryService.getCategoryAll().
             then(function (data, status) {
                 $scope.categories = data;
+                $scope.priceFilter = {min: 1, max: data[0].max};
             });
-        $scope.priceFilter = {min: 1, max: 100000};
+
         $scope.error = {message: null};
         $scope.deleteCategory = function (id) {
             CategoryService.deleteCategory(id)

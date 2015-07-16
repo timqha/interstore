@@ -105,6 +105,7 @@ angular.module('app')
                 data: parameters.data
             })
                 .success(function (data, status) {
+                    console.log(data);
                     if (status == 201 || status == 204) {
                         parameters.error_entity.message = parameters.success_message;
                         $scope.reset_users();

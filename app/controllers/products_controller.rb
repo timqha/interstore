@@ -4,14 +4,15 @@ class ProductsController < ApplicationController
   respond_to :html, :json
   # GET /products.json
   def index
-    @products = Product.all
-    #@user = User.find(params[:id])
+    @products = Product.all.as_json
 
     @categories = Category.all.map { |c| [c.name, c.id] }
+
     #@productslast = Product.last(10)
     respond_to do |format|
       format.json { render :json => {:categories => @categories,
-                                     :products => @products} }
+                                     :products => @products
+                           } }
     end
   end
 

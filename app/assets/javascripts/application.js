@@ -24,9 +24,12 @@
 //= require angular-rails-templates
 //= require angular-ui-router
 //= require angular-ui-router.stateHelper/statehelper
+//= require ng-token-auth
 
 
 //= require angular-cookies
+// = require angular-cookie
+
 
 //= require mystyle.js
 

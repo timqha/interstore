@@ -6,21 +6,21 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-right navbar-nav">
 
-        <li ng-show="globals.currentUser"><a ui-sref="admin">admin</a></li>
+        <li ng-show="user.id"><a ui-sref="admin">admin</a></li>
         <li><a ui-sref="cart">cart</a></li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>
             <i class="glyphicon glyphicon-chevron-down"></i></a>
               <ul class="dropdown-menu">
-                <li ng-show="!globals.currentUser"><a ui-sref="login">Login</a></li>
-                <li><a ng-show="globals.currentUser" ui-sref="profile.index">Profile</a></li>
+                <li ng-show="!user.id"><a ui-sref="login">Login</a></li>
+                <li><a ng-show="user.id" ui-sref="profile.index">Profile</a></li>
 
                 <li class="divider"></li>
 
 
-                <li ng-controller="RegisterCtrl" ng-show="globals.currentUser"><a ui-sref="home" ng-click="logout()">Logout</a></li>
-                <li ng-show="!globals.currentUser"><a ui-sref="register">Register</a></li>
+                <li  ng-show="user.id"><a ui-sref="home" ng-click="signOut()">Logout ({{user.email}})</a></li>
+                <li ng-show="!user.id"><a ui-sref="register">Register</a></li>
               </ul>
         </li>
       </ul>

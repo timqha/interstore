@@ -1,11 +1,17 @@
 class CategoriesController < ApplicationController
+  before_filter :authenticate_user!, only: [:destroy,:edit, :update ]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
   respond_to :json, :html
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.all.as_json
+    @max = Product.maximum(:price)
+
+    @categories.each do |category|
+      category['max'] = @max.as_json
+    end
     render json: @categories, status: :ok
   end
 
@@ -14,11 +20,14 @@ class CategoriesController < ApplicationController
   def show
     #@category = Category.find(params[:id])
     @products = @category.products.all
+    @max = @category.products.maximum(:price)
     @colors = @category.products.select(:params).distinct
     respond_to do |format|
       format.json { render :json => {:category => @category,
                                      :products => @products,
-                                     :colors => @colors} }
+                                     :colors => @colors,
+                                     :maxprice => @max
+                           } }
     end
   end
 

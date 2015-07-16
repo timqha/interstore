@@ -1,5 +1,8 @@
 angular.module("app")
-    .config(function (stateHelperProvider, $urlRouterProvider, $httpProvider) {
+    .config(function (stateHelperProvider, $urlRouterProvider, $httpProvider, $authProvider) {
+        $authProvider.configure({
+            apiUrl: '/api'
+        });
         $urlRouterProvider.otherwise("/home");
 
         stateHelperProvider
@@ -149,21 +152,34 @@ angular.module("app")
                     return ProductsService.getProductsAll().then(function (response) {
                         return response.products;
                     });
-                }
+                },
+
+
+                auth: ['$auth', function($auth, $state) {
+
+                    if($auth.validateUser().$$state.status == 2) {
+                        console.log('not welcome');
+                        $state.go(login);
+
+                    } else {
+                        console.log('welcome');
+                    }
+                }]
+
             }
           //  controller: 'Product'
         })
         .state({
             name: 'login',
             url: "/login",
-            templateUrl: 'devise/login.html',
-            controller: 'RegisterCtrl'
+            templateUrl: 'devise/loginform.html',
+            controller: 'MyAuthLoginCtrl'
         })
         .state({
             name:'register',
             url: "/register",
-            templateUrl: 'devise/register.html',
-            controller: 'RegisterCtrl'
+            templateUrl: 'devise/regform.html',
+            controller: 'MyAuthRegCtrl'
         })
         .state({
             name:'checkout',
