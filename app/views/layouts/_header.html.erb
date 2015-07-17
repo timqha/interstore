@@ -13,14 +13,14 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>
             <i class="glyphicon glyphicon-chevron-down"></i></a>
               <ul class="dropdown-menu">
-                <li ng-show="!user.signedIn"><a ui-sref="login">Login</a></li>
+                <li ng-show="!user.signedIn"><a ui-sref="account.login">Login</a></li>
                 <li><a ng-show="user.signedIn" ui-sref="profile.index">Profile</a></li>
 
                 <li class="divider"></li>
 
 
                 <li  ng-show="user.signedIn"><a ui-sref="home" ng-click="signOut()">Logout ({{user.email}})</a></li>
-                <li ng-show="!user.signedIn"><a ui-sref="register">Register</a></li>
+                <li ng-show="!user.signedIn"><a ui-sref="account.register">Register</a></li>
               </ul>
         </li>
       </ul>

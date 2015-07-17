@@ -28,11 +28,6 @@ angular.module('app')
             //Регистрация пользователя
             $auth.submitRegistration($scope.registrationForm)
                 .then(function (resp) {
-
-                    $auth.submitLogin({
-                        email: $scope.registrationForm.email,
-                        password: $scope.registrationForm.password
-                    });
                     console.log(resp);
                 })
                 .catch(function (resp) {

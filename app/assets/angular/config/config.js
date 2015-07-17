@@ -147,14 +147,12 @@ angular.module("app")
                 templateUrl: 'cart.html',
                 controller: 'CartCtrl',
                 resolve: {
-                    //this gets passed as 'thing' to edit controller
-                    //we can now use full promise interface and as the model
+
                     myproducts: function (ProductsService) {
                         return ProductsService.getProductsAll().then(function (response) {
                             return response.products;
                         });
                     },
-
 
                     auth: ['$auth', function ($auth, $state) {
                         if ($auth.validateUser().$$state.status == 2) {
@@ -165,7 +163,7 @@ angular.module("app")
                         } else {
                             console.log('welcome');
                         }
-                            return $auth.validateUser();
+                        return $auth.validateUser();
 
                     }]
 
@@ -188,27 +186,28 @@ angular.module("app")
                         url: '/destroy-account',
                         templateUrl: 'devise/_destroyAccount.html',
                         controller: 'MyAuthDestroyCtrl'
+                    },
+                    {
+                        name: 'login',
+                        url: "/login",
+                        templateUrl: 'devise/_loginform.html',
+                        controller: 'MyAuthLoginCtrl'
+                    },
+                    {
+                        name: 'register',
+                        url: "/register",
+                        templateUrl: 'devise/_regform.html',
+                        controller: 'MyAuthRegCtrl'
+                    },
+                    {
+                        name: 'resetpass',
+                        url: '/reset_password',
+                        templateUrl: 'devise/_resetpass.html',
+                        controller: 'MyAuthResetCtrl'
                     }
                 ]
             })
-            .state({
-                name: 'login',
-                url: "/login",
-                templateUrl: 'devise/_loginform.html',
-                controller: 'MyAuthLoginCtrl'
-            })
-            .state({
-                name: 'register',
-                url: "/register",
-                templateUrl: 'devise/_regform.html',
-                controller: 'MyAuthRegCtrl'
-            })
-            .state({
-                name: 'resetpass',
-                url: '/reset_password',
-                templateUrl: 'devise/_resetpass.html',
-                controller: 'MyAuthResetCtrl'
-            })
+
             .state({
                 name: 'checkout',
                 url: "/checkout",
