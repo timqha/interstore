@@ -1,20 +1,45 @@
-<div ng-show="error.message" class="alert alert-success">
-    <p>{{error.message}}</p>
-</div>
-admin/orders/iindex.html
-<div ng-repeat="order in orders">
-    {{order.id}}
-    {{order.name}}
-    {{order.telephone}}
-    {{order.city}}
-    {{order.cart}}
-    {{order.status}}
-    <a ui-sref="orders.edit({orderId: order.id})" > edit</a>
-    <a ui-sref="orders.delete({orderId: order.id})" ng-click="deleteOrder(order.id)" class="glyphicon glyphicon-remove"></a>
+<div class="col col-md-offset-1 col-md-10">
 
-    <div ng-repeat="product in order.products">
-        {{product.product_id}}
-        {{product.quantity}}
+    <div ng-show="error.message" class="alert alert-success">
+        <p>{{error.message}}</p>
     </div>
+    admin/orders/iindex.html
+    <div ng-repeat="order in orders">
+        <div class="bg-success">
+            <b >id:</b> {{order.id}}
+            <b class="text-muted">Имя:</b> {{order.name}}
+            <b class="text-muted">Телефон:</b> {{order.telephone}}
+            <b class="text-muted">Город:</b> {{order.city}}
+            <b class="text-muted">Статус заказа:</b> <span class="text-info">{{order.status}}</span>
+            <a ui-sref="orders.edit({orderId: order.id})"> edit</a>
+            <a ui-sref="orders.delete({orderId: order.id})" ng-click="deleteOrder(order.id)"
+               class="glyphicon glyphicon-remove"></a>
+        </div>
 
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th>id продукта</th>
+                <th>Название</th>
+                <th>Цвет</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th>Подсчет</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in order.products">
+                <td>{{product.product_id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.params}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.price | currency}}</td>
+                <td>{{product.total | currency}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="pull-right"> Всего: {{order.totals | currency}}</div>
+        <br>
+        <hr>
+    </div>
 </div>

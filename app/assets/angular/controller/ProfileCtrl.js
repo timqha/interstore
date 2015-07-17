@@ -26,13 +26,23 @@ angular.module('app')
             });
 
     })
-    .controller('AdminProfileIndexContr', function($scope, OrdersService){
+    .controller('AdminProfileIndexContr', function($scope, OrdersService, ProductsService){
         $scope.orders = [];
+
         OrdersService.getOrdersAll()
             .then(function(data){
                 $scope.orders = data.order;
-                console.log(data.order);
-
+                console.log($scope.orders);
+                angular.forEach(data.order, function(order){
+                    angular.forEach(order.products, function(product){
+                        ProductsService.showProduct(product.product_id)
+                            .then(function (data) {
+                                product.name = data.product.name;
+                                product.params = data.product.params;
+                            });
+                    });
+                   //order.products = ["a","s"];
+                });
             });
         $scope.deleteOrder = function (id) {
             $scope.error = {message: null};
@@ -41,6 +51,8 @@ angular.module('app')
                     $scope.error.message = "Удалено";
                 });
         };
+
+
 
     })
     .controller('AdminProfileEditContr', function($scope, OrdersService, $stateParams){
