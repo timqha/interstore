@@ -4,10 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.1'
 
 # Use sqlite3 as the database for Active Record
-group :development, :test do
-  gem 'sqlite3', '1.3.8'
-  gem 'rspec-rails', '2.13.1'
-
+group :development do
+  gem 'sqlite3'
 end
 
 # Use SCSS for stylesheets
@@ -40,6 +38,9 @@ gem 'omniauth-github'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem "bower-rails", "~> 0.9.2"
+group :test do
+  gem 'rspec-rails'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

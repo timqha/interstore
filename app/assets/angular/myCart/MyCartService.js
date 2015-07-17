@@ -16,7 +16,7 @@ angular.module('myCart')
         };
     })
 
-    .run(['$rootScope', 'localstorage', 'myCart', 'myCartItem','$window', function ($rootScope, localstorage, myCart, myCartItem, $window) {
+    .run(['$rootScope', 'localstorage', 'myCart', 'myCartItem', '$window', function ($rootScope, localstorage, myCart, myCartItem, $window) {
 
 
         $rootScope.$on('myCart:change', function () {
@@ -27,12 +27,11 @@ angular.module('myCart')
             myCart.$restore(localstorage.get('mcart'));
 
         } else {
-            console.log('init');
             myCart.init();
         }
 
     }])
-    .service('myCart',['$rootScope', 'localstorage', 'myCartItem' ,function ($rootScope, localstorage, myCartItem) {
+    .service('myCart', ['$rootScope', 'localstorage', 'myCartItem', function ($rootScope, localstorage, myCartItem) {
 
         this.init = function () {
             this.$cart = {
@@ -48,7 +47,6 @@ angular.module('myCart')
 
             if (typeof carthav === "object") {
                 carthav.setQuantity(quantity, false);
-                console.log('Я вижу что есть объект');
             } else {
                 var newItem = new myCartItem(id, price, quantity, data);
                 this.$cart.items.push(newItem);
@@ -56,11 +54,11 @@ angular.module('myCart')
             }
             $rootScope.$broadcast('myCart:change', {});
         };
-        this.removeCart = function(){
+        this.removeCart = function () {
             localstorage.remove('mcart');
             this.init();
             //$rootScope.$broadcast('myCart:change', {});
-            console.log("корзина удалена");
+
         };
         this.removeItem = function (index) {
             this.$cart.items.splice(index, 1);
@@ -86,7 +84,7 @@ angular.module('myCart')
             this.$cart = cart;
             return this.getCart();
         };
-        this.getItems = function(){
+        this.getItems = function () {
             return this.$cart.items;
         };
 
@@ -144,18 +142,17 @@ angular.module('myCart')
                 return false;
             },
             set: function (key, val) {
-                console.log('save');
                 if (val === undefined) {
-                    console.log('Нужно удалить это!');
+
                     $window.localStorage.removeItem(key);
                 } else {
-                    console.log('Корзинка добавлена');
+
                     $window.localStorage[key] = angular.toJson(val);
                 }
-                console.log('add cart');
+
                 return $window.localStorage[key];
             },
-            remove: function(key){
+            remove: function (key) {
                 $window.localStorage.removeItem(key);
             }
         }
@@ -196,9 +193,9 @@ angular.module('myCart')
             }
         };
         item.prototype.getPrice = function () {
-          // console.log('getPrice',this._price);
+            // console.log('getPrice',this._price);
 
-                return this._price;
+            return this._price;
         };
 
 
@@ -218,7 +215,7 @@ angular.module('myCart')
                 this._quantity = 1;
                 $log.info('Quantity must be an integer and was defaulted to 1');
             }
-          //  $rootScope.$broadcast('myCart:change', {});
+            //  $rootScope.$broadcast('myCart:change', {});
 
         };
 

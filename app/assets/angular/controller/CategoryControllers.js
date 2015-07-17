@@ -37,7 +37,6 @@ angular.module('app')
 angular.module("admin")
     .controller("Category", function ($scope, CategoryService) {
         // for category/index
-            console.log("users");
         $scope.priceFilter = {min: 1, max: 1000000};
 
         $scope.categories = CategoryService.getCategoryAll().
