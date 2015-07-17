@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => [:create, :update, :destroy]
   respond_to :html, :json

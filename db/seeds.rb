@@ -50,7 +50,6 @@ products = Product.create([
 
 
                           ])
-User.create!(:name => 'haar', :email => 'haar@example.com', :password => 'password', :password_confirmation => 'password')
 
 
 order = Order.create([
@@ -68,3 +67,4 @@ order[1].order_products.create(product_id: 1, quantity: 5, price: 2223)
 order[1].order_products.create(product_id: 5, quantity: 6, price: 775)
 order[1].order_products.create(product_id: 4, quantity: 4, price: 444)
 
+User.create(:email => 'haar@example.com', :password => 'password', :password_confirmation => 'password')

@@ -12,7 +12,8 @@ angular.module('app')
         $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
         $scope.error = {message: null};
         $scope.myCart = myCart;
-
+        $scope.order.email = user.uid;
+        //$rootScope.globals.username;
 
 
         $scope.Checkout = function () {
@@ -28,7 +29,7 @@ angular.module('app')
             }
         };
 
-        $scope.order.email = $rootScope.globals.username;
+
 
         function addOrder() {
             if ($scope.order.name == null || $scope.order.city == null || $scope.order.telephone == null || $scope.order.email == null || myCart.getTotalItems() === 0) {

@@ -1,0 +1,17 @@
+<div class="col-md-offset-1 col-md-11">
+    <div>
+        <h1>Destroy Account</h1>
+    </div>
+<br><br><br>
+    <div class="row col-md-offset-3 col-md-5 wall">
+        Вы уверенны, что желаете удалить аккаунт ?
+
+        <br/>
+
+        <button class="btn btn-danger" ng-click="destroyAccount()" ng-class="{disabled: !user.signedIn}">
+            Да
+        </button>
+        <a class="btn btn-default" ui-sref="profile.index">Нет</a>
+        <br/>
+    </div>
+</div>

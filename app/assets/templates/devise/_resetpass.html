@@ -1,0 +1,18 @@
+<div class="col-md-offset-1 col-md-11">
+    <div>
+        <h1>Reset password</h1>
+    </div>
+
+    <div class="row col-md-offset-3 col-md-5 wall">
+
+    <form ng-submit="requestPasswordReset(passwordResetForm)" role="form" ng-init="passwordResetForm = {}">
+        <div class="form-group">
+            <label>email</label>
+            <input type="email" name="email" ng-model="passwordResetForm.email" required="required" class="form-control"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">Request password reset</button>
+    </form>
+
+    </div>
+</div>

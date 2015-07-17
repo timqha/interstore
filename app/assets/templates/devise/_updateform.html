@@ -1,0 +1,35 @@
+<div class="alert alert-danger" role="alert" ng-show="error">
+    {{error}}
+</div>
+
+
+<form ng-submit="updateAccount(updateAccountForm)" role="form" ng-init="updateAccountForm = {name: null}">
+    <fieldset ng-disabled="!user.signedIn">
+        <div>
+            <label>name sign</label>
+            <input type="text" name="text" ng-model="updateAccountForm.name">
+        </div>
+
+        <div>
+            <label>nickname</label>
+            <input type="text" name="text" ng-model="updateAccountForm.nickname">
+        </div>
+
+        <div>
+            <label>image</label>
+            <input type="text" name="text" ng-model="updateAccountForm.image">
+        </div>
+
+        <div>
+            <label>email</label>
+            <input type="text" name="text" ng-model="updateAccountForm.email">
+        </div>
+
+        <button class="btn-primary btn" ng-click="handleUpdateAccountBtnClick()" type="submit">Update your name sign</button>
+    </fieldset>
+</form>
+<br>
+<a class="btn btn-success" ui-sref="account.reset-password">Изменить пароль</a>
+<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>
+
+

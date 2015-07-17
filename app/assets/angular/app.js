@@ -21,15 +21,23 @@ angular.module('app', [
 
     .run(function($rootScope, $state) {
         $rootScope.$on('auth:password-reset-confirm-success', function() {
-            $state.go('account.password-reset');
+            $state.go('account.reset-password');
+           // $state.go('home');
         });
 
+        $rootScope.$on('auth:password-reset-confirm-error', function(ev, reason) {
+            alert("Unable to verify your account. Please try again.");
+        });
+
+        $rootScope.$on('auth:password-change-success', function(ev) {
+            alert("Your password has been successfully updated!");
+            $state.go('home');
+        });
 
         $rootScope.$on('auth:email-confirmation-success', function(ev, user) {
             alert("Welcome, "+user.email+". Your account has been verified.");
             $state.go('home');
         });
-
 
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
             alert("A registration email was sent to " + message.email);
@@ -58,12 +66,8 @@ angular.module('app', [
             $state.go('home');
         });
 
-        $rootScope.$on('auth:password-reset-confirm-error', function(ev, reason) {
-            alert("Unable to verify your account. Please try again.");
-        });
-
-        $rootScope.$on('auth:password-change-success', function(ev) {
-            alert("Your password has been successfully updated!");
+        $rootScope.$on('auth:session-expired', function(ev) {
+            alert('Session has expired');
         });
 
         $rootScope.config = {heders: 'application/json; charset=UTF-8'};

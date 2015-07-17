@@ -36,6 +36,9 @@ gem 'omniauth-github'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem "bower-rails", "~> 0.9.2"
+group :test do
+  gem 'rspec-rails'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
