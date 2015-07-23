@@ -36,6 +36,8 @@ angular.module('app')
     });
 angular.module("admin")
     .controller("Category", function ($scope, CategoryService) {
+
+
         // for category/index
         $scope.priceFilter = {min: 1, max: 1000000};
 
@@ -61,7 +63,7 @@ angular.module("admin")
 
         $scope.error = {message: null};
         $scope.updateCategory = function () {
-            CategoryService.updateCategory($scope.category.id, $scope.category.name, $scope.category.desc)
+            CategoryService.updateCategory($scope.category.id, $scope.category.name)
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });
@@ -69,18 +71,21 @@ angular.module("admin")
         }
     })
     .controller('NewCategoryController', function ($http, $scope, CategoryService) {
-        $scope.new_category = {name: null, desc: 'Поле оставленно на будущее, {"white":false,"black":false}'};
+        $scope.new_category = {name: null};
         $scope.error = {message: null};
 
         $scope.addNewCategory = function () {
-            CategoryService.addNewCategory($scope.new_category.name, $scope.new_category.desc)
+            CategoryService.addNewCategory($scope.new_category.name)
                 .then(function () {
                     return $scope.error.message = "Сохранено";
-                });
+                })
+                .catch(function(data){
+                    console.log('errors', data);
+                })
+            ;
 
             return $scope.new_category = {
-                name: null,
-                desc: '{"Поле оставленно на будущее, {white":false,"black":false}'
+                name: null
             };
         };
     });

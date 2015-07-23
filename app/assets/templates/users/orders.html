@@ -1,7 +1,33 @@
 Ваши заказы.
 <div ng-repeat="order in orders">
-    {{order.id}}
-    {{order.name}}
-    {{rder.telephone}}
-    {{order.status}}
+    <div ng-repeat="order in orders">
+        <div>
+            <b >id:</b> {{order.id}}
+            <b class="text-muted">Указаное имя:</b> {{order.name}}
+            <b class="text-muted">Телефон:</b> {{order.telephone}}
+            <b class="text-muted">Статус заказа:</b> <span class="text-info">{{order.status}}</span>
+        </div>
+
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th>id продукта</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th>Подсчет</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in order.products">
+                <td>{{product.product_id}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.price | currency}}</td>
+                <td>{{product.total | currency}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="pull-right"> Всего: {{order.totals | currency}}</div>
+        <br>
+        <hr>
+    </div>
 </div>

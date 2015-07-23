@@ -8,11 +8,25 @@
  * @requires $scope
  * */
 angular.module('app')
-    .controller('CheckoutCtrl', function ($scope, OrdersService,ListOrdersService, ProductsService, myCart, $rootScope) {
+    .controller('CheckoutCtrl', function ($scope, UserService, OrdersService, ProductsService, myCart, $rootScope) {
         $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
         $scope.error = {message: null};
         $scope.myCart = myCart;
-        $scope.order.email = user.uid;
+        $scope.order.email = null;
+
+
+        UserService.getUser()
+            .then(function(data){
+                console.log(data.data.data.user.email);
+                $scope.order.email = data.data.data.user.email;
+                $scope.order.name = data.data.data.user.name;
+                $scope.order.city = data.data.data.user.sity;
+                $scope.order.telephone = data.data.data.user.telephone;
+            })
+            .catch(function(data){
+                console.log(data);
+            });
+
         //$rootScope.globals.username;
 
 
@@ -46,7 +60,8 @@ angular.module('app')
                 // Формируем массив объектов для передачи внутреностей корзины.
                 var products = [];
                 angular.forEach($scope.order.cart, function(product){
-                    var temp = {product_id:product.getId(), quantity: product.getQuantity()};
+                    var temp = {product_id:product.getId(), quantity: product.getQuantity(), price: product.getPrice()};
+                    console.log(temp);
                     products.push(temp);
                 });
 

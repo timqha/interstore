@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+
+  before_filter :authenticate_user!, only: [:destroy, :update, :create ]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
 
@@ -23,6 +26,7 @@ class OrdersController < ApplicationController
 
       # Данные о продуктах в красивой форме
       @orders[n].order_products.as_json.each do |order|
+        # product = order.attributes delete as_json
         total = 0
         product = {}
         product["quantity"] = order["quantity"]
@@ -65,9 +69,10 @@ class OrdersController < ApplicationController
   end
 
   def create
+
     @order = Order.new(order_params)
     params[:order][:products].each do |product|
-      @order.order_products.build(:product_id => product["product_id"], :quantity => product["quantity"])
+      @order.order_products.build(:product_id => product["product_id"], :quantity => product["quantity"], :price => product["price"])
     end
 
     respond_to do |format|

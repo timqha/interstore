@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('OrdersService', function ($http, $rootScope) {
+    .service('OrdersService', function ($http, $rootScope,$auth) {
         return ({
             getOrdersAll:    getOrdersAll,
             addNewOrder:     addNewOrder,
@@ -20,10 +20,15 @@ angular.module('app')
                 url: '/api/orders.json',
                 data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "status": status, "products": products}},
 
-
-                headers: {
-                    'Content-Type': $rootScope.config.heders
-                }
+                headers: $auth.retrieveData('auth_headers')
+                /*headers: {
+                    'Content-Type': $rootScope.config.heders,
+                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                    'client' :          $auth.retrieveData('auth_headers')['client'],
+                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                    'uid':              $auth.retrieveData('auth_headers')['uid']
+                }*/
             });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
@@ -35,18 +40,40 @@ angular.module('app')
         }
 
         function deleteOrder(id) {
-            var request = $http.delete('api/orders/' + id);
+            var request = $http({
+                method: 'DELETE',
+                url: 'api/orders/' + id,
+                headers: $auth.retrieveData('auth_headers')
+                /*headers: {
+                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                    'client' :          $auth.retrieveData('auth_headers')['client'],
+                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                    'uid':              $auth.retrieveData('auth_headers')['uid']
+                }*/
+
+            });
+
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
+
+
         }
+
 
         function updateOrder(id, name, city, telephone, email, status) {
             var request = $http({
                 method: 'PUT',
                 url: '/api/orders/' + id,
                 data: {"order": {"name": name, "city": city, "telephone": telephone, "email": email, "status": status}},
-                headers: {
-                    'Content-Type': $rootScope.config.heders
-                }
+                headers: $auth.retrieveData('auth_headers')
+                /*headers: {
+                    'Content-Type': $rootScope.config.heders,
+                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                    'client' :          $auth.retrieveData('auth_headers')['client'],
+                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                    'uid':              $auth.retrieveData('auth_headers')['uid']
+                }*/
             });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }

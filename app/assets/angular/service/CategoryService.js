@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('CategoryService', function ($http, $rootScope) {
+    .service('CategoryService', function ($http, $rootScope, $auth) {
         return ({
             showCategory: showCategory,
             getCategoryAll: getCategoryAll,
@@ -15,15 +15,25 @@ angular.module('app')
 
         }
 
-        function addNewCategory(name, desc) {
+        function addNewCategory(name) {
 
             var request = $http({
                 method: 'POST',
                 url: '/api/categories.json',
-                data: {"category": {"name": name, "desc": desc}},
+                data: {"category": {"name": name}},
+              //  headers: $auth.retrieveData('auth_headers')
                 headers: {
-                    'Content-Type': $rootScope.config.heders
+                    'Content-Type': $rootScope.config.heders,
+                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                    'client' :          $auth.retrieveData('auth_headers')['client'],
+                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                    'uid':              $auth.retrieveData('auth_headers')['uid']
                 }
+            /*    headers: {
+                    'Content-Type': $rootScope.config.heders
+
+                }*/
             });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
 

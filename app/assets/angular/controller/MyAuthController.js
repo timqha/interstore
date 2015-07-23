@@ -1,5 +1,18 @@
 angular.module('app')
-    .controller('ProfileUserCtrl', function($scope, $auth){
+    .controller('ProfileUserCtrl', function($scope, $auth, UserService){
+
+        $scope.updateAccountForm = {name: null, sity: null, telephone: null, email:null};
+        UserService.getUser()
+            .then(function(data){
+                console.log(data);
+                $scope.updateAccountForm.email = data.data.data.user.email;
+                $scope.updateAccountForm.name = data.data.data.user.name;
+                $scope.updateAccountForm.sity = data.data.data.user.sity;
+                $scope.updateAccountForm.telephone = data.data.data.user.telephone;
+            })
+            .catch(function(data){
+                console.log(data);
+            });
         $scope.handleUpdateAccountBtnClick = function() {
             $auth.updateAccount($scope.updateAccountForm)
                 .then(function(resp) {

@@ -1,7 +1,8 @@
 angular.module("app")
     .config(function (stateHelperProvider, $urlRouterProvider, $httpProvider, $authProvider) {
         $authProvider.configure({
-            apiUrl: '/api'
+            apiUrl: '/api',
+            storage: 'localStorage'
         });
         $urlRouterProvider.otherwise("/home");
 
@@ -162,8 +163,9 @@ angular.module("app")
 
                         } else {
                             console.log('welcome');
+                            return $auth.validateUser();
                         }
-                        return $auth.validateUser();
+
 
                     }]
 

@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate_user!, only: [:destroy,:edit, :update ]
+  before_filter :authenticate_user!, only: [:destroy, :update, :create ]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
   respond_to :json, :html
@@ -54,7 +54,7 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render json: @category, status: :created, location: @category }
+        format.json { render json: @category, status: :created }
       else
         format.html { render action: 'new' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
@@ -94,6 +94,6 @@ class CategoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
-    params.require(:category).permit(:name, :desc)
+    params.require(:category).permit(:name)
   end
 end

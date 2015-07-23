@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
 
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, :only => [:create, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => [:edit,:create, :update, :destroy]
   respond_to :html, :json
   # GET /products.json
   def index
-    @products = Product.all.as_json
+    @products = Product.all
 
     @categories = Category.all.map { |c| [c.name, c.id] }
 

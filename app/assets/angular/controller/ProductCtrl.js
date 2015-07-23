@@ -10,6 +10,8 @@
 angular.module('admin')
     .controller('Product', function ($rootScope, $scope, ProductsService) {
 
+
+
         // Goods index
          ProductsService.getProductsAll().
             then(function (data) {

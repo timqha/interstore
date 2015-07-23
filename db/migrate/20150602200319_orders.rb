@@ -12,6 +12,6 @@ class Orders < ActiveRecord::Migration
       t.timestamps
 
     end
-    add_index :orders, :email, unique: true
+    add_index :orders, :email#, unique: true
   end
 end

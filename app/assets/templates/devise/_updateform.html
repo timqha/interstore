@@ -3,21 +3,21 @@
 </div>
 
 
-<form ng-submit="updateAccount(updateAccountForm)" role="form" ng-init="updateAccountForm = {name: null}">
+<form ng-submit="updateAccount(updateAccountForm)" role="form">
     <fieldset ng-disabled="!user.signedIn">
         <div>
-            <label>name sign</label>
+            <label>name</label>
             <input type="text" name="text" ng-model="updateAccountForm.name">
         </div>
 
         <div>
-            <label>nickname</label>
-            <input type="text" name="text" ng-model="updateAccountForm.nickname">
+            <label>city</label>
+            <input type="text" name="text" ng-model="updateAccountForm.sity">
         </div>
 
         <div>
-            <label>image</label>
-            <input type="text" name="text" ng-model="updateAccountForm.image">
+            <label>telephone</label>
+            <input type="text" name="text" ng-model="updateAccountForm.telephone">
         </div>
 
         <div>
@@ -29,7 +29,8 @@
     </fieldset>
 </form>
 <br>
-<a class="btn btn-success" ui-sref="account.reset-password">Изменить пароль</a>
-<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>
-
+<fieldset ng-disabled="!user.signedIn">
+    <a class="btn btn-success" ui-sref="account.reset-password">Изменить пароль</a>
+    <!--<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>-->
+</fieldset>
 

@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150715115020) do
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["email"], name: "index_orders_on_email", unique: true
+  add_index "orders", ["email"], name: "index_orders_on_email"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -72,8 +72,9 @@ ActiveRecord::Schema.define(version: 20150715115020) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "name"
-    t.string   "nickname"
+    t.string   "sity"
     t.string   "image"
+    t.integer  "telephone"
     t.string   "email"
     t.text     "tokens"
     t.datetime "created_at"

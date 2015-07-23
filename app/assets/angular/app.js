@@ -6,14 +6,15 @@ angular.module("myCart",[
 
 angular.module("admin", [
     "templates",
-    'ui.router'
+    'ui.router',
+    'ipCookie'
 
 ]);
 angular.module('app', [
     'ui.router',
     'ui.router.stateHelper',
     'templates',
-    'ngCookies',
+   // 'ngCookies',
     'ng-token-auth',
     'myCart',
     'admin'
@@ -71,6 +72,7 @@ angular.module('app', [
         });
 
         $rootScope.config = {heders: 'application/json; charset=UTF-8'};
+
 
         $rootScope.handleSuccess = function(response){
             return ( response.data);

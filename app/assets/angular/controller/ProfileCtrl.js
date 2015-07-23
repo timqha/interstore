@@ -9,8 +9,18 @@
  * */
 angular.module('app')
 
-    .controller('ProfileOrdersCtrl', function($scope, OrdersService, $rootScope){
-        $scope.currentUser = user.uid;
+    .controller('ProfileOrdersCtrl', function($scope, OrdersService, $rootScope, ProductsService, UserService){
+        $scope.currentUser = null;
+
+        UserService.getUser()
+            .then(function(data){
+                console.log(data.data.data.user.email);
+                $scope.currentUser = data.data.data.user.email;
+            })
+            .catch(function(data){
+                console.log(data);
+            });
+
         //$rootScope.globals.username;
         $scope.orders = [];
         OrdersService.getOrdersAll()
@@ -32,7 +42,7 @@ angular.module('app')
         OrdersService.getOrdersAll()
             .then(function(data){
                 $scope.orders = data.order;
-                console.log($scope.orders);
+
                 angular.forEach(data.order, function(order){
                     angular.forEach(order.products, function(product){
                         ProductsService.showProduct(product.product_id)

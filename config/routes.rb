@@ -8,6 +8,8 @@ Interstore::Application.routes.draw do
     mount_devise_token_auth_for 'User', at: 'auth'
   end
 
+  get '/get_user', to: 'users#get_user'
+
 
   #devise_for :users
   root 'application#home'

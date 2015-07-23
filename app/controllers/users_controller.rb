@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def members_only
+  def get_user
     render json: {
                data: {
                    message: "Welcome #{current_user.email}",
-                   user: current_user
+                   user: current_user,
+                   users: @users = User.all
                }
            }, status: 200
   end

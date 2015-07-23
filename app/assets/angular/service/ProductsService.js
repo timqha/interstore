@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('ProductsService', function ($http, $rootScope) {
+    .service('ProductsService', function ($http, $rootScope, $auth) {
 
 
         return ({
@@ -11,7 +11,10 @@ angular.module('app')
             editProduct:        editProduct
         });
         function getProductsAll() {
-            var request = $http.get('api/products');
+            var request = $http({
+                method: 'GET',
+                url: 'api/products'
+            });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
@@ -20,9 +23,15 @@ angular.module('app')
                 method: 'POST',
                 url: '/api/products.json',
                 data: {"product": {"name": name, "price": price, "category_id": category_id, "params": params}},
-                headers: {
-                    'Content-Type': $rootScope.config.heders
-                }
+                headers: $auth.retrieveData('auth_headers')
+                /*headers: {
+                    'Content-Type':     $rootScope.config.heders,
+                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                    'client' :          $auth.retrieveData('auth_headers')['client'],
+                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                    'uid':              $auth.retrieveData('auth_headers')['uid']
+                }*/
             });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
@@ -33,7 +42,21 @@ angular.module('app')
         }
 
         function deleteProduct(id) {
-            var request = $http.delete('api/products/' + id);
+            var request = $http({
+                method: 'DELETE',
+                url: 'api/products/' + id,
+                headers: $auth.retrieveData('auth_headers')
+                /*headers: {
+
+                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                    'client' :          $auth.retrieveData('auth_headers')['client'],
+                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                    'uid':              $auth.retrieveData('auth_headers')['uid']
+                }*/
+
+
+        });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
@@ -42,15 +65,36 @@ angular.module('app')
                 method: 'PUT',
                 url: '/api/products/' + id,
                 data: {"product": {"name": name, "price": price, "category_id": category_id, "params": params}},
-                headers: {
-                    'Content-Type':  $rootScope.config.heders
+                headers: $auth.retrieveData('auth_headers')
+                /*headers: {
+                     'Content-Type':     $rootScope.config.heders,
+                     'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                     'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                     'client' :          $auth.retrieveData('auth_headers')['client'],
+                     'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                     'uid':              $auth.retrieveData('auth_headers')['uid']
                 }
+*/
+
+
             });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function editProduct(id) {
-            var request = $http.get('api/products/' + id + '/edit');
+            var request = $http({
+                method: 'GET',
+                url: 'api/products/' + id + '/edit',
+              //  headers: $auth.retrieveData('auth_headers')
+                headers: {
+
+                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
+                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
+                    'client' :          $auth.retrieveData('auth_headers')['client'],
+                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
+                    'uid':              $auth.retrieveData('auth_headers')['uid']
+                }
+            });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 

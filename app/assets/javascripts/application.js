@@ -27,7 +27,7 @@
 //= require ng-token-auth
 
 
-//= require angular-cookies
+
 // = require angular-cookie
 
 

@@ -53,9 +53,9 @@ products = Product.create([
 
 
 order = Order.create([
-          {name: 'Pite', city: 'Gasburg', telephone: '06565544444', email: 'pite@gmail.com', status: 'В обработке'
+          {name: 'Pite', city: 'Gasburg', telephone: '06565544444', email: 'pite@gmail.com', status: 'Заказ в обработке'
           },
-          {name: 'Dave', city: 'Dublin', telephone: '655555545444', email: 'test@gmail.com', status: 'В обработке'
+          {name: 'Dave', city: 'Dublin', telephone: '655555545444', email: 'test@gmail.com', status: 'Заказ в обработке'
           }
       ])
 
@@ -68,3 +68,4 @@ order[1].order_products.create(product_id: 5, quantity: 6, price: 775)
 order[1].order_products.create(product_id: 4, quantity: 4, price: 444)
 
 User.create(:email => 'haar@example.com', :password => 'password', :password_confirmation => 'password')
+
