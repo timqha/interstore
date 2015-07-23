@@ -1,0 +1,316 @@
+@charset "UTF-8";/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+
+
+
+
+ */
+
+
+@import url(bootstrap/dist/css/bootstrap.css);
+/* bootstrap 3 helpers */
+/* line 5, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-form input, .form-inline input {
+  width: auto;
+}
+
+/* line 9, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+header {
+  min-height: 180px;
+  margin-bottom: 5px;
+}
+
+/* Для широких экранов */
+@media (min-width: 1200px) {
+  /* line 16, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  #sidebar {
+    margin-left: 15px;
+  }
+
+  /* line 20, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  #content {
+    padding-right: 15px;
+  }
+
+  /* line 24, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  #sidebar.affix-top {
+    position: static;
+  }
+
+  /* настройки после скролла */
+  /* line 28, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  #sidebar.affix {
+    position: fixed !important;
+    top: 0px;
+    width: 20.999999999999996%;
+  }
+}
+/* line 35, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.affix {
+  position: static;
+}
+
+/* line 40, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+body {
+  font-family: Arial,Helvetica,Sans-Serif;
+  font-weight: 300;
+  color: #676767;
+  background-color: #efefef;
+}
+
+/* line 47, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+a, a:hover {
+  color: #66d9ef;
+  text-decoration: none;
+}
+
+/* line 52, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.panel-heading {
+  background-color: #111;
+  color: #fff;
+}
+
+/* line 56, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.panel-left {
+  background-color: #888 !important;
+  color: #fff;
+}
+
+/* line 61, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar {
+  background-color: #272822;
+  color: #66d9ef;
+  border-radius: 0;
+}
+
+/* line 66, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-nav > li > a {
+  color: #efefef;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: 1px solid #75715e;
+}
+
+/* line 72, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-nav > li:last-child > a {
+  border-right: 1px solid #75715e;
+}
+
+/* line 76, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-nav li a:hover {
+  background-color: #efefef;
+}
+
+/* line 80, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
+  color: #000;
+  opacity: .9;
+}
+
+/* line 85, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-brand {
+  color: #fff;
+}
+
+/* line 89, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.accordion-group {
+  border-width: 0;
+}
+
+/* line 93, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.dropdown-menu {
+  min-width: 250px;
+}
+
+/* line 97, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.caret {
+  color: #fff;
+}
+
+/* line 101, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-toggle {
+  color: #fff;
+  border-width: 0;
+}
+
+/* line 106, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.navbar-toggle:hover {
+  background-color: #fff;
+}
+
+/* line 110, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.panel, .panel-heading {
+  border-radius: 0;
+  border-width: 0;
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.09);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.09);
+}
+
+/* line 117, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.thumbnail {
+  margin-bottom: 8px;
+  border-radius: 0;
+}
+
+/* line 122, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.well {
+  border-radius: 0;
+}
+
+/* line 125, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.wall {
+  border-radius: 10px;
+  background-color: #e3e1da;
+}
+
+/* line 131, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/* line 137, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.content {
+  flex: 1;
+  padding-bottom: 20px;
+}
+
+/* line 142, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.footer {
+  height: 5vh;
+  border-top: 1px solid #eaeaea;
+  color: lightgray;
+  background-color: #dfdfdf;
+}
+
+/* Что б небыло зазоров, между колонками */
+@media (min-width: 960px) {
+  /* line 152, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > div[class*='col-md'] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* line 156, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-12 {
+    width: 99.99999999999999%;
+    *width: 99.93055555555554%;
+  }
+
+  /* line 160, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row .col-md-11 {
+    width: 91.66666666666666%;
+    *width: 91.59722222222221%;
+  }
+
+  /* line 164, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-10 {
+    width: 83.33333333333331%;
+    *width: 83.26388888888887%;
+  }
+
+  /* line 168, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-9 {
+    width: 74.99999999999999%;
+    *width: 74.93055555555554%;
+  }
+
+  /* line 172, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-8 {
+    width: 66.66666666666666%;
+    *width: 66.59722222222221%;
+  }
+
+  /* line 176, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-7 {
+    width: 58.33333333333333%;
+    *width: 58.263888888888886%;
+  }
+
+  /* line 180, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-6 {
+    width: 49.99999999999999%;
+  }
+
+  /* line 183, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-4 {
+    width: 33.33333333333333%;
+  }
+
+  /* line 186, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-3 {
+    width: 24.999999999999996%;
+    *width: 24.930555555555554%;
+  }
+
+  /* line 190, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-2 {
+    width: 16.666666666666664%;
+    *width: 16.59722222222222%;
+  }
+
+  /* line 194, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+  .no-gutter.row > .col-md-1 {
+    width: 8.333333333333332%;
+    *width: 8.263888888888888%;
+  }
+}
+/* end custom theme */
+/* Что б не ехала разметка */
+/* line 203, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.longtext {
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.2em;
+  height: 1.2em;
+  text-overflow: longtext;
+  -o-text-overflow: longtext;
+  width: 100%;
+}
+
+/* line 212, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.longtext * {
+  display: inline;
+}
+
+/* line 217, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.longtext > DIV:first-child {
+  float: left;
+}
+
+/* line 221, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.longtext > DIV + DIV {
+  float: right;
+  margin-top: -1.2em;
+}
+
+/* line 226, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.longtext > DIV + DIV::after {
+  background-color: #D9EDF7;
+  content: '...';
+}
+
+/* line 232, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+.maxheight {
+  max-height: 287px;
+}
+
+/*end что б не ехала разметка*/
+/* line 238, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* line 242, /home/prosolvo/rails/interstore/app/assets/stylesheets/styleuser.css.scss */
+td {
+  word-wrap: break-word;
+}
