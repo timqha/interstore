@@ -1,5 +1,7 @@
 angular.module('app')
     .service('CategoryService', function ($http, $rootScope, $auth) {
+        var apiUrlcategory = 'api/categories/';
+        var apiUrlcategories = 'api/categories';
         return ({
             showCategory: showCategory,
             getCategoryAll: getCategoryAll,
@@ -10,7 +12,7 @@ angular.module('app')
 
         });
         function showCategory(id) {
-            var request = $http.get('api/categories/' + id);
+            var request = $http.get(apiUrlcategory + id);
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
 
         }
@@ -19,9 +21,10 @@ angular.module('app')
 
             var request = $http({
                 method: 'POST',
-                url: '/api/categories.json',
+                url: apiUrlcategories,
                 data: {"category": {"name": name}},
-              //  headers: $auth.retrieveData('auth_headers')
+
+                // После подобного все остается работать, если просто $auth.retrieveData('auth_headers') все в небытие
                 headers: {
                     'Content-Type': $rootScope.config.heders,
                     'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
@@ -30,29 +33,31 @@ angular.module('app')
                     'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
                     'uid':              $auth.retrieveData('auth_headers')['uid']
                 }
-            /*    headers: {
-                    'Content-Type': $rootScope.config.heders
 
-                }*/
             });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
 
         }
 
         function getCategoryAll() {
-            var request = $http.get('api/categories');
+            var request = $http.get(apiUrlcategories);
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function deleteCategory(id) {
-            var request = $http.delete('api/categories/' + id);
+
+            var request = $http({
+                method: 'delete',
+                url: apiUrlcategory + id,
+                headers: $auth.retrieveData('auth_headers')
+            });
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 
         function updateCategory(id, name, desc) {
             var request = $http({
                 method: 'PUT',
-                url: '/api/categories/' + id,
+                url: apiUrlcategory + id,
                 data: {"category": {"name": name, "desc": desc}},
                 headers: {
                     'Content-Type': $rootScope.config.heders
@@ -64,7 +69,7 @@ angular.module('app')
         }
 
         function editCategory(id) {
-            var request = $http.get('api/categories/' + id + '/edit');
+            var request = $http.get(apiUrlcategory + id + '/edit');
             return (request.then($rootScope.handleSuccess, $rootScope.handleError));
         }
 

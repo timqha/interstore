@@ -155,11 +155,10 @@ angular.module("app")
                         });
                     },
 
-                    auth: ['$auth', function ($auth, $state) {
+                    auth: ['$auth', function ($auth) {
                         if ($auth.validateUser().$$state.status == 2) {
                             console.log('not welcome');
                             alert("register or login");
-                            $state.go(login);
 
                         } else {
                             console.log('welcome');
