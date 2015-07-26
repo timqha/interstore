@@ -162,9 +162,9 @@ angular.module("app")
 
                         } else {
                             console.log('welcome');
-                            return $auth.validateUser();
-                        }
 
+                        }
+                        return $auth.validateUser();
 
                     }]
 

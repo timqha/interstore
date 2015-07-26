@@ -40037,7 +40037,7 @@ angular.module('app')
                 console.log(data.data.data.user.email);
                 $scope.order.email = data.data.data.user.email;
                 $scope.order.name = data.data.data.user.name;
-                $scope.order.city = data.data.data.user.sity;
+                $scope.order.city = data.data.data.user.city;
                 $scope.order.telephone = data.data.data.user.telephone;
             })
             .catch(function(data){
@@ -40125,13 +40125,13 @@ angular.module('app')
 angular.module('app')
     .controller('ProfileUserCtrl', function($scope, $auth, UserService){
 
-        $scope.updateAccountForm = {name: null, sity: null, telephone: null, email:null};
+        $scope.updateAccountForm = {name: null, city: null, telephone: null, email:null};
         UserService.getUser()
             .then(function(data){
                 console.log(data);
                 $scope.updateAccountForm.email = data.data.data.user.email;
                 $scope.updateAccountForm.name = data.data.data.user.name;
-                $scope.updateAccountForm.sity = data.data.data.user.sity;
+                $scope.updateAccountForm.city = data.data.data.user.city;
                 $scope.updateAccountForm.telephone = data.data.data.user.telephone;
             })
             .catch(function(data){
@@ -46558,7 +46558,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/templates/devise/_updateform.html
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("devise/_updateform.html", '<div class="alert alert-danger" role="alert" ng-show="error">\n    {{error}}\n</div>\n\n\n<form ng-submit="updateAccount(updateAccountForm)" role="form">\n    <fieldset ng-disabled="!user.signedIn">\n        <div>\n            <label>name</label>\n            <input type="text" name="text" ng-model="updateAccountForm.name">\n        </div>\n\n        <div>\n            <label>city</label>\n            <input type="text" name="text" ng-model="updateAccountForm.sity">\n        </div>\n\n        <div>\n            <label>telephone</label>\n            <input type="text" name="text" ng-model="updateAccountForm.telephone">\n        </div>\n\n        <div>\n            <label>email</label>\n            <input type="text" name="text" ng-model="updateAccountForm.email">\n        </div>\n\n        <button class="btn-primary btn" ng-click="handleUpdateAccountBtnClick()" type="submit">Update your name sign</button>\n    </fieldset>\n</form>\n<br>\n<fieldset ng-disabled="!user.signedIn">\n    <a class="btn btn-success" ui-sref="account.reset-password">Изменить пароль</a>\n    <!--<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>-->\n</fieldset>\n')
+  $templateCache.put("devise/_updateform.html", '<div class="alert alert-danger" role="alert" ng-show="error">\n    {{error}}\n</div>\n\n\n<form ng-submit="updateAccount(updateAccountForm)" role="form">\n    <fieldset ng-disabled="!user.signedIn">\n        <div>\n            <label>name</label>\n            <input type="text" name="text" ng-model="updateAccountForm.name">\n        </div>\n\n        <div>\n            <label>city</label>\n            <input type="text" name="text" ng-model="updateAccountForm.city">\n        </div>\n\n        <div>\n            <label>telephone</label>\n            <input type="text" name="text" ng-model="updateAccountForm.telephone">\n        </div>\n\n        <div>\n            <label>email</label>\n            <input type="text" name="text" ng-model="updateAccountForm.email">\n        </div>\n\n        <button class="btn-primary btn" ng-click="handleUpdateAccountBtnClick()" type="submit">Update your name sign</button>\n    </fieldset>\n</form>\n<br>\n<fieldset ng-disabled="!user.signedIn">\n    <a class="btn btn-success" ui-sref="account.reset-password">Изменить пароль</a>\n    <!--<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>-->\n</fieldset>\n')
 }]);
 
 // Angular Rails Template

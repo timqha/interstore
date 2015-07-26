@@ -20,7 +20,7 @@ angular.module('app')
                 console.log(data.data.data.user.email);
                 $scope.order.email = data.data.data.user.email;
                 $scope.order.name = data.data.data.user.name;
-                $scope.order.city = data.data.data.user.sity;
+                $scope.order.city = data.data.data.user.city;
                 $scope.order.telephone = data.data.data.user.telephone;
             })
             .catch(function(data){
