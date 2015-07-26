@@ -5,9 +5,9 @@ Interstore::Application.routes.draw do
     resources :products
     resources :orders
     resources :list_orders
-    mount_devise_token_auth_for 'User', at: 'auth'
-  end
 
+  end
+  mount_devise_token_auth_for 'User', at: '/api/auth'
   get '/get_user', to: 'users#get_user'
 
 

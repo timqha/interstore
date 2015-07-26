@@ -5,9 +5,8 @@ class UsersController < ApplicationController
     render json: {
                data: {
                    message: "Welcome #{current_user.email}",
-                   user: current_user,
-                   users: @users = User.all
+                   user: current_user
                }
-           }, status: 200
+           }, status: :ok
   end
 end

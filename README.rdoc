@@ -3,28 +3,20 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
+* Ruby version 2.2.2
 
 * Configuration
-
-* Database creation
+<tt>bundle install</tt>
+<tt>rake bower:install</tt>
 
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+<tt>rake db:migrate</tt>,
+<tt>rake db:setup</tt>
 
 for login
 test@test.com
 1q2w3e4r
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+

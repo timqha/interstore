@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate_user!, only: [:destroy, :update, :create ]
+  before_action :authenticate_user!, only: [:destroy, :update, :create ]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
+  #skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
   respond_to :json, :html
   # GET /categories
   # GET /categories.json

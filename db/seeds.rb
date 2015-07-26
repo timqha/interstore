@@ -50,12 +50,28 @@ products = Product.create([
 
 
                           ])
+user = User.new(
+    :email                 => "test@test.com",
+    :provider              => "email",
+    :password              => "1q2w3e4r",
+    :password_confirmation => "1q2w3e4r"
+)
+user.skip_confirmation!
+user.save!
 
+user2 = User.new(
+    :email                 => "timqha@rambler.ru",
+    :provider              => "email",
+    :password              => "1q2w3e4r",
+    :password_confirmation => "1q2w3e4r"
+)
+user2.skip_confirmation!
+user2.save!
 
 order = Order.create([
-          {name: 'Pite', city: 'Gasburg', telephone: '06565544444', email: 'pite@gmail.com', status: 'Заказ в обработке'
+          {name: 'Pite', city: 'Gasburg', telephone: '06565544444', email: user.email, status: 'Заказ в обработке'
           },
-          {name: 'Dave', city: 'Dublin', telephone: '655555545444', email: 'test@gmail.com', status: 'Заказ в обработке'
+          {name: 'Dave', city: 'Dublin', telephone: '655555545444', email: user2.email, status: 'Заказ в обработке'
           }
       ])
 
