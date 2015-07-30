@@ -7,8 +7,15 @@ Interstore::Application.routes.draw do
     resources :list_orders
 
   end
-  mount_devise_token_auth_for 'User', at: '/api/auth'
-  get '/get_user', to: 'users#get_user'
+  namespace :api do
+    namespace :v1 do
+
+
+      get '/profile', to: 'users#members_only'
+    end
+  end
+  mount_devise_token_auth_for 'User', at: '/api/v1/auth'
+
 
 
   #devise_for :users

@@ -1,7 +1,7 @@
 angular.module("app")
     .config(function (stateHelperProvider, $urlRouterProvider, $httpProvider, $authProvider) {
         $authProvider.configure({
-            apiUrl: '/api',
+            apiUrl: '/api/v1',
             storage: 'localStorage'
         });
         $urlRouterProvider.otherwise("/home");

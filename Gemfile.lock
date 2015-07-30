@@ -40,6 +40,8 @@ GEM
       railties (>= 3.1)
       sprockets (~> 2)
       tilt
+    angular_rails_csrf (1.0.4)
+      rails (>= 3, < 5)
     arel (6.0.2)
     autoprefixer-rails (5.2.1.1)
       execjs
@@ -205,10 +207,10 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
+  angular_rails_csrf
   bootstrap-sass (~> 3.3.5)
   bower-rails (~> 0.9.2)
   coffee-rails (~> 4.0.0)
-  devise
   devise_token_auth
   jbuilder (~> 1.2)
   jquery-rails

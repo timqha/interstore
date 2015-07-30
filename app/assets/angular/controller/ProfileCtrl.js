@@ -9,13 +9,13 @@
  * */
 angular.module('app')
 
-    .controller('ProfileOrdersCtrl', function($scope, OrdersService, $rootScope, ProductsService, UserService){
+    .controller('ProfileOrdersCtrl', function($q,$scope, OrdersService, $rootScope, ProductsService, UserService){
         $scope.currentUser = null;
 
         UserService.getUser()
             .then(function(data){
-                console.log(data.data.data.user.email);
-                $scope.currentUser = data.data.data.user.email;
+                console.log(data.data.user.email);
+                $scope.currentUser = data.data.user.email;
             })
             .catch(function(data){
                 console.log(data);

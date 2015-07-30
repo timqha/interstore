@@ -27,8 +27,12 @@ gem 'sprockets-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+
+
+
+gem 'angular_rails_csrf'
 gem 'angular-rails-templates'
-gem 'devise'
+#gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth-github'
 

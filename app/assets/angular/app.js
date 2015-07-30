@@ -6,8 +6,7 @@ angular.module("myCart",[
 
 angular.module("admin", [
     "templates",
-    'ui.router',
-    'ipCookie'
+    'ui.router'
 
 ]);
 angular.module('app', [
@@ -20,7 +19,9 @@ angular.module('app', [
     'admin'
 ])
 
-    .run(function($rootScope, $state) {
+    .run(function($rootScope, $state, $q) {
+        $q.defer();
+
         $rootScope.$on('auth:password-reset-confirm-success', function() {
             $state.go('account.reset-password');
            // $state.go('home');
@@ -78,12 +79,11 @@ angular.module('app', [
             return ( response.data);
         };
         $rootScope.handleError = function(response, $q) {
-            if (
-                !angular.isObject(response.data) || !response.data.message
-            ) {
-                return ( $q.reject("An unknown error occurred.") );
+            var deferred = $q.defer();
+            if (!angular.isObject(response.data) || !response.data.message) {
+                return ( deferred.reject("An unknown error occurred.") );
             }
-            return ( $q.reject(response.data.message) );
+            return ( deferred.reject(response.data.message) );
         }
     });
     /*

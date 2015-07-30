@@ -5,10 +5,10 @@ angular.module('app')
         UserService.getUser()
             .then(function(data){
                 console.log(data);
-                $scope.updateAccountForm.email = data.data.data.user.email;
-                $scope.updateAccountForm.name = data.data.data.user.name;
-                $scope.updateAccountForm.city = data.data.data.user.city;
-                $scope.updateAccountForm.telephone = data.data.data.user.telephone;
+                $scope.updateAccountForm.email = data.data.user.email;
+   /*             $scope.updateAccountForm.name = data.data.user.name;
+                $scope.updateAccountForm.city = data.data.user.city;
+                $scope.updateAccountForm.telephone = data.data.user.telephone;*/
             })
             .catch(function(data){
                 console.log(data);

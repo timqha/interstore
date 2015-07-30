@@ -16,7 +16,7 @@ angular.module('admin')
          ProductsService.getProductsAll().
             then(function (data) {
                 $scope.products = data.products;
-
+                    console.log(data);
                  angular.forEach($scope.products, function(product){
                      angular.forEach(data.categories, function(category){
                          if(product.category_id == category[1]){

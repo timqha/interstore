@@ -9,19 +9,16 @@
  * */
 angular.module('app')
     .controller('CheckoutCtrl', function ($scope, UserService, OrdersService, ProductsService, myCart, $rootScope) {
-        $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
-        $scope.error = {message: null};
+        $scope.order = {email: null, cart: null};
+        $scope.error = {message: null, danger: null};
         $scope.myCart = myCart;
         $scope.order.email = null;
 
 
         UserService.getUser()
             .then(function(data){
-                console.log(data.data.data.user.email);
-                $scope.order.email = data.data.data.user.email;
-                $scope.order.name = data.data.data.user.name;
-                $scope.order.city = data.data.data.user.city;
-                $scope.order.telephone = data.data.data.user.telephone;
+                console.log(data);
+                $scope.order.email = data.data.user.email;
             })
             .catch(function(data){
                 console.log(data);
@@ -36,7 +33,7 @@ angular.module('app')
                 if ($scope.change == true) {
                     addOrder();
                 } else {
-                    $scope.error.message = "Заказ отменён!";
+                    $scope.error.danger = "Заказ отменён!";
                 }
             } else {
                 addOrder();
@@ -49,9 +46,10 @@ angular.module('app')
             if ($scope.order.name == null || $scope.order.city == null || $scope.order.telephone == null || $scope.order.email == null || myCart.getTotalItems() === 0) {
                 if(myCart.getTotalItems() === 0)
                 {
-                    $scope.error.message = "Корзина пуста, вы не можете заказать пустую корзину!";
+                    $scope.error.danger = "Корзина пуста, вы не можете заказать пустую корзину!";
+
                 } else {
-                    $scope.error.message = "Заполните все поля!";
+                    $scope.error.danger = "Заполните все поля!";
                 }
             }
             else {
@@ -103,5 +101,12 @@ angular.module('app')
                         }
                     });
             });
+        }
+
+        // Стираем любое сообщение
+        $scope.CleanMessage = function(){
+            $scope.error.message = null;
+            $scope.error.danger = null;
+
         }
     });

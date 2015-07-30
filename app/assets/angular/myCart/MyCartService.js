@@ -1,16 +1,17 @@
 /**
  * @ngdoc service
  * @name MyCart
- * @description
- * _Please update the description and dependencies._
  *
  * */
 angular.module('myCart')
 
-    .config([function () {
+    /*
+     .config([function () {
 
-    }])
+     }])
+     */
 
+    //when using $ mycart we receive products.
     .provider('$myCart', function () {
         this.$get = function () {
         };
@@ -23,6 +24,7 @@ angular.module('myCart')
             myCart.$save();
         });
 
+        // если что-то у нас есть мы перезаписываем это. в противном случае инициализируем.
         if (angular.isObject(localstorage.get('mcart'))) {
             myCart.$restore(localstorage.get('mcart'));
 
@@ -269,6 +271,7 @@ angular.module('myCart')
             transclude: true,
             templateUrl: 'myCart/_addtocart.html',
             link: function (scope, element, attrs) {
+                // код позаимствован.
                 scope.attrs = attrs;
                 scope.carthav = function () {
                     return myCart.getItemById(attrs.id);

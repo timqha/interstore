@@ -1,7 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.secret_key = 'bcc80ea13e0d73c9cdfb423b93f703123287a3a60ebeb9721cdbc402d28cea1fa66288ac1cc2bc5033e544208f053e95e896b7500cfe9f24906e9ef5f8780e20'
+ # config.secret_key = 'bcc80ea13e0d73c9cdfb423b93f703123287a3a60ebeb9721cdbc402d28cea1fa66288ac1cc2bc5033e544208f053e95e896b7500cfe9f24906e9ef5f8780e20'
   config.authentication_keys = [:email]
 
 
@@ -68,7 +68,7 @@ Devise.setup do |config|
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
-  config.paranoid = false
+ ## config.paranoid = false
 
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
@@ -103,7 +103,7 @@ Devise.setup do |config|
   # able to access the website for two days without confirming their account,
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming their account.
-  config.allow_unconfirmed_access_for = 100.days
+ ## config.allow_unconfirmed_access_for = 100.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -111,7 +111,7 @@ Devise.setup do |config|
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
-  config.confirm_within = 3.days
+ ## config.confirm_within = 3.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -120,11 +120,11 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
-   config.confirmation_keys = [ :email ]
+ ##  config.confirmation_keys = [ :email ]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  ##config.remember_for = 2.day
 
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
@@ -138,7 +138,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..128
+  config.password_length = 8..72
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly

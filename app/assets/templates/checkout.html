@@ -1,16 +1,25 @@
 <div>
-    <div class="alert alert-error" ng-show="errors.text">{{errors.text}}</div>
-    <div class="alert alert-error" ng-show="error.message">{{error.message}}</div>
-<br><br>
-    <div class="container">
+    <div class="row col-md-6 col-md-offset-3">
+        <div class=" alert alert-success" ng-show="error.message">{{error.message}}
+            <a class="pull-right" href="#" ng-click="CleanMessage()">X</a>
+        </div>
+        <div class="alert alert-danger" ng-show="error.danger">{{error.danger}}
+            <a class="pull-right" href="#" ng-click="CleanMessage()">X</a>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div ng-hide="error.message ||  error.danger" class="container">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-            <div class="panel panel-primary" >
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="panel-title">Оформление заказа!</div>
                 </div>
-                <form>
+                <form novalidate>
                     <div class="col-md-offset-1">
                         <br>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <labal>Имя и фамилия:</labal>
@@ -20,6 +29,7 @@
                             </div>
                         </div>
                         <br>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <labal>Город:</labal>
@@ -29,6 +39,7 @@
                             </div>
                         </div>
                         <br>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <labal>Мобильный телефон:</labal>
@@ -38,6 +49,7 @@
                             </div>
                         </div>
                         <br>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <labal>Эл. почта:</labal>
@@ -52,9 +64,6 @@
                         <br>
                     </div>
                 </form>
-
-
-
 
             </div>
         </div>

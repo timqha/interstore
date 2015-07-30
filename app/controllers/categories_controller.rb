@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
-  #  @category = Category.find(params[:id])
+    #  @category = Category.find(params[:id])
 
     respond_to do |format|
       format.json { render :json => {:category => @category} }
