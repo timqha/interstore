@@ -62,8 +62,6 @@ angular.module('app')
                 });
         };
 
-
-
     })
     .controller('AdminProfileEditContr', function($scope, OrdersService, $stateParams){
         $scope.order = [];

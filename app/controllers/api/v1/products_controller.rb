@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class API::V1::ProductsController < ApplicationController
 
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 

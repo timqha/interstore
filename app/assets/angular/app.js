@@ -1,26 +1,22 @@
 
 'use strict';
 angular.module("myCart",[
-    'app'
+   // 'app'
 ]);
-
 angular.module("admin", [
     "templates",
     'ui.router'
-
 ]);
 angular.module('app', [
     'ui.router',
     'ui.router.stateHelper',
     'templates',
-   // 'ngCookies',
     'ng-token-auth',
     'myCart',
     'admin'
 ])
 
-    .run(function($rootScope, $state, $q) {
-        $q.defer();
+    .run(function($rootScope, $state) {
 
         $rootScope.$on('auth:password-reset-confirm-success', function() {
             $state.go('account.reset-password');
@@ -72,19 +68,8 @@ angular.module('app', [
             alert('Session has expired');
         });
 
-        $rootScope.config = {heders: 'application/json; charset=UTF-8'};
 
 
-        $rootScope.handleSuccess = function(response){
-            return ( response.data);
-        };
-        $rootScope.handleError = function(response, $q) {
-            var deferred = $q.defer();
-            if (!angular.isObject(response.data) || !response.data.message) {
-                return ( deferred.reject("An unknown error occurred.") );
-            }
-            return ( deferred.reject(response.data.message) );
-        }
     });
     /*
 .run(function ($rootScope, $location, $cookieStore, $http) {

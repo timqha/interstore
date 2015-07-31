@@ -2,7 +2,6 @@ angular.module("app")
     .filter('filterColor', function () {
         return function (items, ncolors) {
 
-
             var filtered = [];
 
             angular.forEach(items, function (item) {
@@ -17,7 +16,6 @@ angular.module("app")
                         }
                     }
                 }
-
             });
 
             return filtered;

@@ -1,5 +1,5 @@
 angular.module('app')
-.service('UserService', function($auth, $http,$rootScope){
+.service('UserService', function($auth, $http, ConfigANDRouts){
         return ({
            getUser: getUser
         });
@@ -7,7 +7,7 @@ angular.module('app')
         function getUser(){
             var request = $http({
                 method: 'GET',
-                url: 'api/v1/profile',
+                url: ConfigANDRouts.apiUrlusers,
              //   headers: $auth.retrieveData('auth_headers')
                 headers: {
                     'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
@@ -17,7 +17,7 @@ angular.module('app')
                     'uid':              $auth.retrieveData('auth_headers')['uid']
                 }
             });
-            return (request.then($rootScope.handleSuccess, $rootScope.handleError));
+            return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
 
         }
 

@@ -1,16 +1,12 @@
 Interstore::Application.routes.draw do
 
-  scope "api", defaults: {format: :json} do
-    resources :categories
-    resources :products
-    resources :orders
-    resources :list_orders
-
-  end
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     namespace :v1 do
 
-
+      resources :categories
+      resources :products
+      resources :orders
+      resources :list_orders
       get '/profile', to: 'users#members_only'
     end
   end

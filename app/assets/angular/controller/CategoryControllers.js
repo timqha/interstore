@@ -7,7 +7,6 @@ angular.module('app')
         $scope.priceFilter = {min: 1, max: 1000000};
         CategoryService.showCategory($stateParams.categoryId)
             .then(function (data) {
-                console.log(data);
                 $scope.category = data.category;
                 $scope.products = data.products;
                 $scope.maxprice = data.maxprice;
@@ -79,7 +78,7 @@ angular.module("admin")
                 .then(function () {
                     return $scope.error.message = "Сохранено";
                 })
-                .catch(function(data){
+                .catch(function (data) {
                     console.log('errors', data);
                 })
             ;

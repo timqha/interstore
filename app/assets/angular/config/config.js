@@ -5,7 +5,6 @@ angular.module("app")
             storage: 'localStorage'
         });
         $urlRouterProvider.otherwise("/home");
-
         stateHelperProvider
             .state({
                 name: 'admin',
@@ -148,28 +147,22 @@ angular.module("app")
                 templateUrl: 'cart.html',
                 controller: 'CartCtrl',
                 resolve: {
-
                     myproducts: function (ProductsService) {
                         return ProductsService.getProductsAll().then(function (response) {
                             return response.products;
                         });
                     },
-
                     auth: ['$auth', function ($auth) {
                         if ($auth.validateUser().$$state.status == 2) {
                             console.log('not welcome');
                             alert("register or login");
-
                         } else {
                             console.log('welcome');
-
                         }
                         return $auth.validateUser();
 
                     }]
-
                 }
-                //  controller: 'Product'
             })
             .state({
                 name: 'account',
@@ -208,7 +201,6 @@ angular.module("app")
                     }
                 ]
             })
-
             .state({
                 name: 'checkout',
                 url: "/checkout",
@@ -234,7 +226,6 @@ angular.module("app")
                     }
                 ]
             });
-
 
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
     });

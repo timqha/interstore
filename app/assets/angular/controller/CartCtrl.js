@@ -8,13 +8,13 @@
  * @requires $scope
  * */
 angular.module('app')
-    .controller('CartCtrl', ['$scope', 'myCart','myproducts','$rootScope','ProductsService', function ($scope, myCart, myproducts, $rootScope, ProductsService) {
+    .controller('CartCtrl', ['$scope', 'myCart', 'myproducts', '$rootScope', 'ProductsService', function ($scope, myCart, myproducts, $rootScope, ProductsService) {
         $scope.myCart = myCart;
         /*  Проверяем не пустая ли корзина, если она пуста, не каких действий не производим.
-        *   Если она не пустая, Получаем все записи в корзине.
-        *   Функции: removeItems удаления записи.
-        *
-        * */
+         *   Если она не пустая, Получаем все записи в корзине.
+         *   Функции: removeItems удаления записи.
+         *
+         * */
         if (myCart.getTotalItems() === 0) {
             console.log('Cart empty');
 
@@ -26,15 +26,13 @@ angular.module('app')
                     myCart.removeItemById(id);
                 }
             };
-            angular.forEach($scope.Carts, function(item){
+            angular.forEach($scope.Carts, function (item) {
                 angular.forEach(myproducts, function (product) {
-                    if (product.id+"" == item._id) {
+                    if (product.id + "" == item._id) {
                         item.name = product.name;
                     }
                 })
             });
-
-
         }
 
         // check update basket

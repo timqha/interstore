@@ -6,7 +6,8 @@ class API::V1::UsersController < ApplicationController
     render json: {
                data: {
                    message: "Welcome #{current_user.name}",
-                   user: current_user
+                   user: current_user,
+                #  order: current_user.User.orders.all
                }
            }, status: 200
   end

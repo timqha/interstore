@@ -16,11 +16,11 @@ angular.module('app')
 
 
         UserService.getUser()
-            .then(function(data){
+            .then(function (data) {
                 console.log(data);
                 $scope.order.email = data.data.user.email;
             })
-            .catch(function(data){
+            .catch(function (data) {
                 console.log(data);
             });
 
@@ -28,7 +28,7 @@ angular.module('app')
 
 
         $scope.Checkout = function () {
-            if(whenCartUpdated()) {
+            if (whenCartUpdated()) {
                 $scope.change = confirm("Цены изменились!");
                 if ($scope.change == true) {
                     addOrder();
@@ -41,11 +41,9 @@ angular.module('app')
         };
 
 
-
         function addOrder() {
             if ($scope.order.name == null || $scope.order.city == null || $scope.order.telephone == null || $scope.order.email == null || myCart.getTotalItems() === 0) {
-                if(myCart.getTotalItems() === 0)
-                {
+                if (myCart.getTotalItems() === 0) {
                     $scope.error.danger = "Корзина пуста, вы не можете заказать пустую корзину!";
 
                 } else {
@@ -57,23 +55,24 @@ angular.module('app')
 
                 // Формируем массив объектов для передачи внутреностей корзины.
                 var products = [];
-                angular.forEach($scope.order.cart, function(product){
-                    var temp = {product_id:product.getId(), quantity: product.getQuantity(), price: product.getPrice()};
+                angular.forEach($scope.order.cart, function (product) {
+                    var temp = {
+                        product_id: product.getId(),
+                        quantity: product.getQuantity(),
+                        price: product.getPrice()
+                    };
                     console.log(temp);
                     products.push(temp);
                 });
 
-                    OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, "Заказ в обработке", products)
-                        .then(function () {
-                            $scope.error.message = "Заказ в обработке!";
-                            myCart.removeCart();
-                        })
-                        .catch(function(data){
-                            console.log('catch',data);
-                        });
+                OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, "Заказ в обработке", products)
+                    .then(function () {
+                        $scope.error.message = "Заказ в обработке!";
+                        myCart.removeCart();
+                    });
 
-                        return $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
-                }
+                return $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
+            }
         }
 
         ////Наверное это нужно вынести в сервайс или что-то подобное.
@@ -104,9 +103,9 @@ angular.module('app')
         }
 
         // Стираем любое сообщение
-        $scope.CleanMessage = function(){
-            $scope.error.message = null;
-            $scope.error.danger = null;
-
+        $scope.CleanMessage = function () {
+            $scope.error.message =  null;
+            $scope.error.danger =   null;
+            $scope.errors.text =    null;
         }
     });

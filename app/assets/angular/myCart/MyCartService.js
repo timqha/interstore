@@ -5,12 +5,6 @@
  * */
 angular.module('myCart')
 
-    /*
-     .config([function () {
-
-     }])
-     */
-
     //when using $ mycart we receive products.
     .provider('$myCart', function () {
         this.$get = function () {
@@ -42,7 +36,6 @@ angular.module('myCart')
         };
 
         this.addToCart = function (id, price, quantity, data) {
-
 
             // Находим есть ли в корзине товар с таким же id. Если есть заменяем количество, если нет добавляем.
             var carthav = this.getItemById(id);
@@ -271,7 +264,6 @@ angular.module('myCart')
             transclude: true,
             templateUrl: 'myCart/_addtocart.html',
             link: function (scope, element, attrs) {
-                // код позаимствован.
                 scope.attrs = attrs;
                 scope.carthav = function () {
                     return myCart.getItemById(attrs.id);
@@ -300,9 +292,7 @@ angular.module('myCart')
             transclude: true,
             templateUrl: 'myCart/_cart.html',
             link: function (scope, element, attrs) {
-
             }
-
         };
     }])
 ;
