@@ -4,8 +4,9 @@ class CreateCategories < ActiveRecord::Migration
       t.string :name
       t.text :desc
       t.timestamps
-      t.integer :category_id
+
+
     end
-    add_index :categories, [:category_id]
+
   end
 end

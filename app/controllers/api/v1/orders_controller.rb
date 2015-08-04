@@ -1,4 +1,4 @@
-class AAPI::V1::OrdersController < ApplicationController
+class API::V1::OrdersController < ApplicationController
 
 
   before_action :authenticate_user!, only: [:destroy, :update, :create ]

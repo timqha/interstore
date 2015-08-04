@@ -24,10 +24,8 @@ angular.module('app')
                 console.log(data);
             });
 
-        //$rootScope.globals.username;
-
-
         $scope.Checkout = function () {
+
             if (whenCartUpdated()) {
                 $scope.change = confirm("Цены изменились!");
                 if ($scope.change == true) {
@@ -65,10 +63,11 @@ angular.module('app')
                     products.push(temp);
                 });
 
+
                 OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, "Заказ в обработке", products)
                     .then(function () {
                         $scope.error.message = "Заказ в обработке!";
-                        myCart.removeCart();
+                      //  myCart.removeCart();
                     });
 
                 return $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
@@ -106,6 +105,6 @@ angular.module('app')
         $scope.CleanMessage = function () {
             $scope.error.message =  null;
             $scope.error.danger =   null;
-            $scope.errors.text =    null;
+            //$scope.errors.text =    null;
         }
     });

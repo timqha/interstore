@@ -1,5 +1,5 @@
 angular.module('app')
-    .factory('ConfigANDRouts', function(){
+    .factory('ConfigANDRouts', function($q){
 
         var RouteUrl = {};
         // Настройка роутинга в сервисах
@@ -16,12 +16,12 @@ angular.module('app')
             return ( response.data);
         };
         //Обработка неудачногоответа. $q defer problem
-        RouteUrl.handleError = function(response, $q) {
-            var deferred = $q.defer();
+        RouteUrl.handleError = function(response) {
+          //  var deferred = $q.defer();
             if (!angular.isObject(response.data) || !response.data.message) {
-                return ( deferred.reject("An unknown error occurred.") );
+                return ( $q.reject("An unknown error occurred.") );
             }
-            return ( deferred.reject(response.data.message) );
+            return ( $q.reject(response.data.message) );
         };
 
         return RouteUrl;

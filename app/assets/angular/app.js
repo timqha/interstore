@@ -16,7 +16,7 @@ angular.module('app', [
     'admin'
 ])
 
-    .run(function($rootScope, $state) {
+    .run(function($rootScope, $state, $timeout) {
 
         $rootScope.$on('auth:password-reset-confirm-success', function() {
             $state.go('account.reset-password');
@@ -60,8 +60,12 @@ angular.module('app', [
         });
 
         $rootScope.$on('auth:login-success', function(ev, user) {
-            alert('Welcome, '+user.email+' !');
-            $state.go('home');
+
+            $timeout(function() {
+                alert('Welcome, '+user.email+' !');
+                $state.go('home');
+            });
+            //$timeout(function(){$state.go('home')},0);
         });
 
         $rootScope.$on('auth:session-expired', function(ev) {

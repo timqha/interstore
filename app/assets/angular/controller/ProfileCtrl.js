@@ -14,26 +14,27 @@ angular.module('app')
 
         UserService.getUser()
             .then(function(data){
-                console.log(data.data.user.email);
+                console.log(data);
                 $scope.currentUser = data.data.user.email;
             })
             .catch(function(data){
                 console.log(data);
             });
 
-        //$rootScope.globals.username;
         $scope.orders = [];
+        var count = 0;
         OrdersService.getOrdersAll()
             .then(function(data){
+                console.log(data);
                 angular.forEach(data.order, function(order){
                     if(order.email == $scope.currentUser){
                         $scope.orders.push(order);
+                        count++;
                     }
+                    console.log(count);
                 });
             })
-            .catch(function(data){
-                console.log(data);
-            });
+
 
     })
     .controller('AdminProfileIndexContr', function($scope, OrdersService, ProductsService){

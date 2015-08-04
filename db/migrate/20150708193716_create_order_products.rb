@@ -5,6 +5,8 @@ class CreateOrderProducts < ActiveRecord::Migration
       t.belongs_to :product, index: true
       t.belongs_to :order, index: true
       t.integer :quantity
+      t.integer :price
+
       t.timestamps
     end
   end

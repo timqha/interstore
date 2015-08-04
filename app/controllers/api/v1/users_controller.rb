@@ -5,7 +5,6 @@ class API::V1::UsersController < ApplicationController
   def members_only
     render json: {
                data: {
-                   message: "Welcome #{current_user.name}",
                    user: current_user,
                 #  order: current_user.User.orders.all
                }

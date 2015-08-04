@@ -5,9 +5,6 @@ class Orders < ActiveRecord::Migration
       t.string :city
       t.string :telephone
       t.string :email
-      t.string :cart
-
-      t.boolean :sent, default: false
       t.string :status
       t.timestamps
 

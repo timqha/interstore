@@ -18,15 +18,18 @@ ActiveRecord::Schema.define(version: 20150715115020) do
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
+
+  add_index "categories", ["category_id"], name: "index_categories_on_category_id"
 
   create_table "order_products", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "order_id"
     t.integer  "quantity"
+    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "price"
   end
 
   add_index "order_products", ["order_id"], name: "index_order_products_on_order_id"

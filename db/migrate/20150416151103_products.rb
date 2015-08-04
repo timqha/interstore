@@ -7,9 +7,8 @@ class Products < ActiveRecord::Migration
       t.string :params
       t.boolean :visible, default: true
       t.integer :category_id
-      t.integer :products_id
       t.timestamps
     end
-    add_index :products, [:products_id]
+
   end
 end
