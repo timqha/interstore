@@ -1,15 +1,11 @@
 angular.module('app')
-    .controller('ProfileUserCtrl', function($scope, $auth, UserService){
+    .controller('ProfileUserCtrl', function($scope, $auth, UserService, $timeout){
 
         $scope.updateAccountForm = {name: null, city: null, telephone: null, email:null};
 
         UserService.getUser()
             .then(function(data){
-                console.log(data);
-                $scope.updateAccountForm.email = data.data.user.email;
-   /*             $scope.updateAccountForm.name = data.data.user.name;
-                $scope.updateAccountForm.city = data.data.user.city;
-                $scope.updateAccountForm.telephone = data.data.user.telephone;*/
+                $scope.updateAccountForm = data.data.user;
             })
             .catch(function(data){
                 console.log(data);
@@ -18,14 +14,23 @@ angular.module('app')
         $scope.handleUpdateAccountBtnClick = function() {
             $auth.updateAccount($scope.updateAccountForm)
                 .then(function(resp) {
-                    console.log(resp);
                     // handle success response
                 })
                 .catch(function(resp) {
                     // handle error response
-                    console.log(resp);
                 });
         };
+
+        $scope.$on('auth:account-update-success', function(ev) {
+           $timeout(function(){
+               alert("Your account has been successfully updated!");
+           });
+        });
+        $scope.$on('auth:account-update-error', function(ev, reason) {
+            $timeout(function(){
+                alert("Registration failed: " + reason.errors[0]);
+            });
+        });
     })
 
     .controller('MyAuthRegCtrl', function($scope, $auth) {
@@ -43,22 +48,21 @@ angular.module('app')
             //Регистрация пользователя
             $auth.submitRegistration($scope.registrationForm)
                 .then(function (resp) {
-                    console.log(resp);
+
                 })
                 .catch(function (resp) {
-                    console.log(resp);
+
                 });
         };
     })
     .controller('MyAuthLoginCtrl', function($scope, $auth) {
         $scope.handleLoginBtnClick = function() {
-            console.log("dsd");
             $auth.submitLogin($scope.loginForm)
                 .then(function (resp) {
-                    console.log(resp);
+
                 })
                 .catch(function (resp) {
-                    console.log(resp);
+
                 });
         };
 

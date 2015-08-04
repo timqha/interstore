@@ -18,10 +18,7 @@ ActiveRecord::Schema.define(version: 20150715115020) do
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id"
   end
-
-  add_index "categories", ["category_id"], name: "index_categories_on_category_id"
 
   create_table "order_products", force: :cascade do |t|
     t.integer  "product_id"
@@ -77,7 +74,7 @@ ActiveRecord::Schema.define(version: 20150715115020) do
     t.string   "name"
     t.string   "city"
     t.string   "image"
-    t.integer  "telephone"
+    t.string   "telephone"
     t.string   "email"
     t.text     "tokens"
     t.datetime "created_at"

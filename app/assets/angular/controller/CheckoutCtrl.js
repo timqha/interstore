@@ -18,7 +18,7 @@ angular.module('app')
         UserService.getUser()
             .then(function (data) {
                 console.log(data);
-                $scope.order.email = data.data.user.email;
+                $scope.order = data.data.user;
             })
             .catch(function (data) {
                 console.log(data);
@@ -67,7 +67,7 @@ angular.module('app')
                 OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, "Заказ в обработке", products)
                     .then(function () {
                         $scope.error.message = "Заказ в обработке!";
-                      //  myCart.removeCart();
+                          myCart.removeCart();
                     });
 
                 return $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
@@ -105,6 +105,6 @@ angular.module('app')
         $scope.CleanMessage = function () {
             $scope.error.message =  null;
             $scope.error.danger =   null;
-            //$scope.errors.text =    null;
+            $scope.errors.text =    null;
         }
     });

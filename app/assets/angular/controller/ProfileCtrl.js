@@ -12,6 +12,7 @@ angular.module('app')
     .controller('ProfileOrdersCtrl', function($q,$scope, OrdersService, $rootScope, ProductsService, UserService){
         $scope.currentUser = null;
 
+        console.log('asdfsdf');
         UserService.getUser()
             .then(function(data){
                 console.log(data);
