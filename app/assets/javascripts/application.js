@@ -27,6 +27,7 @@
 //= require ng-token-auth
 
 //= require angular-sanitize
+//= require angular-flash-alert/dist/angular-flash
 
 // = require angular-cookie
 

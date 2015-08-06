@@ -2,35 +2,62 @@
     {{error}}
 </div>
 
+<div class="no-gutter row">
+    <div class="col-md-offset-1 col-md-10">
+        <div flash-message="5000" ></div>
+    </div>
+</div>
+<div class="col-md-offset-1">
+    <form ng-submit="updateAccount(updateAccountForm)" role="form">
 
-<form ng-submit="updateAccount(updateAccountForm)" role="form">
-    <fieldset ng-disabled="!user.signedIn">
-        <div>
-            <label>name</label>
-            <input type="text" name="text" ng-model="updateAccountForm.name">
-        </div>
+        <fieldset ng-disabled="!user.signedIn">
+            <br>
 
-        <div>
-            <label>city</label>
-            <input type="text" name="text" ng-model="updateAccountForm.city">
-        </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>name</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="text" ng-model="updateAccountForm.name">
+                </div>
+            </div><br>
 
-        <div>
-            <label>telephone</label>
-            <input type="text" name="text" ng-model="updateAccountForm.telephone">
-        </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>city</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="text" ng-model="updateAccountForm.city">
+                </div>
+            </div><br>
 
-        <div>
-            <label>email</label>
-            <input type="text" name="text" ng-model="updateAccountForm.email">
-        </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>telephone</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="text" ng-model="updateAccountForm.telephone">
+                </div>
+            </div><br>
 
-        <button class="btn-primary btn" ng-click="handleUpdateAccountBtnClick()" type="submit">Update your name sign</button>
-    </fieldset>
-</form>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>email</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="text" ng-model="updateAccountForm.email">
+                </div>
+            </div><br>
+
+            <br>
+
+            <button class="btn-primary btn" ng-click="handleUpdateAccountBtnClick()" type="submit">Update your name sign</button>
+        </fieldset>
+    </form>
+</div>
 <br>
 <fieldset ng-disabled="!user.signedIn">
-    <a class="btn btn-success" ui-sref="account.reset-password">Изменить пароль</a>
+
     <!--<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>-->
 </fieldset>
 

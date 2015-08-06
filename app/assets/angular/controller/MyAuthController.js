@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ProfileUserCtrl', function($scope, $auth, UserService, $timeout){
+    .controller('ProfileUserCtrl', function($scope, $auth, UserService, $timeout, Flash){
 
         $scope.updateAccountForm = {name: null, city: null, telephone: null, email:null};
 
@@ -23,21 +23,24 @@ angular.module('app')
 
         $scope.$on('auth:account-update-success', function(ev) {
            $timeout(function(){
-               alert("Your account has been successfully updated!");
+               var message = "Your account has been successfully updated!";
+               Flash.create('success', message, 'custom-class');
            });
         });
         $scope.$on('auth:account-update-error', function(ev, reason) {
             $timeout(function(){
-                alert("Registration failed: " + reason.errors[0]);
+                var message = "Registration failed: " + reason.errors[0];
+                Flash.create('success', message, 'custom-class');
             });
         });
     })
 
-    .controller('MyAuthRegCtrl', function($scope, $auth) {
+    .controller('MyAuthRegCtrl', function($scope, $auth, Flash) {
         $scope.$on('auth:registration-email-error', function(ev, reason) {
-            //$scope.error = reason.errors.full_messages[0];
-            console.log(reason, ev);
-            alert("Registration failed: " + reason.errors.full_messages[0]);
+            var message = "Registration failed: " + reason.errors.full_messages[0];
+            Flash.create('danger', message, 'custom-class');
+           /* console.log(reason, ev);
+            alert("Registration failed: " + reason.errors.full_messages[0]);*/
         });
 
         $scope.handleRegBtnClick = function () {
@@ -79,12 +82,14 @@ angular.module('app')
 
 
     })
-    .controller('MyAuthResetCtrl', function($scope, $auth){
+    .controller('MyAuthResetCtrl', function($scope, $auth, Flash){
         $scope.$on('auth:password-reset-request-success', function(ev, data) {
-            alert("Password reset instructions were sent to " + data.email);
+            var message = "Password reset instructions were sent to " + data.email;
+            Flash.create('success', message, 'custom-class');
         });
         $scope.$on('auth:password-reset-request-error', function(ev, resp) {
-            alert("Password reset request failed: " + resp.errors[0]);
+            var message = "Password reset request failed: " + resp.errors[0];
+            Flash.create('danger', message, 'custom-class');
         });
         $scope.handlePwdResetBtnClick = function() {
             $auth.requestPasswordReset($scope.pwdResetForm)
@@ -110,16 +115,17 @@ angular.module('app')
             };
     })
 
-    .controller('MyAuthDestroyCtrl', function($scope, $auth){
+    .controller('MyAuthDestroyCtrl', function($scope, $auth, Flash){
         $scope.$on('auth:account-destroy-success', function(ev) {
-            alert("Your account has been successfully destroyed!");
+            var message = "Your account has been successfully destroyed!";
+            Flash.create('success', message, 'custom-class');
         });
 
         $scope.$on('auth:account-destroy-error', function(ev, reason) {
-            alert("Account deletion failed: " + reason.errors[0]);
+            var message = "Account deletion failed: " + reason.errors[0];
+            Flash.create('danger', message, 'custom-class');
         });
 
-        console.log("destoy account!");
         $scope.handleDestroyAccountBtnClick = function() {
             $auth.destroyAccount()
                 .then(function(resp) {

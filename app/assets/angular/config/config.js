@@ -152,11 +152,10 @@ angular.module("app")
                             return response.products;
                         });
                     },
-                    auth: ['$auth', function ($auth) {
+                    auth: ['$auth', function ($auth, $rootScope, Flash) {
                         if ($auth.validateUser().$$state.status == 2) {
-                            console.log('not welcome');
-
-                            alert("register or login");
+                            alert('You must login or register!');
+                            $rootScope.$broadcast('auth:redirect to login', {});
                         } else {
                             console.log('welcome');
                         }

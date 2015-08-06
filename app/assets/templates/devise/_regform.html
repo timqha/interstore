@@ -8,12 +8,15 @@
             <div class="center-block ">
                 <form  ng-submit="submitRegistration(registrationForm)" role="form" ng-init="registrationForm = {}">
                     <br>
+
                     <div ng-show="login_error.message" class="error">
                         <p>{{login_error.message}}</p>
                     </div>
+
+                    <div flash-message="5000" ></div>
+
                     <br>
                     <div class="body ">
-
 
                         <div class="form-group">
                             <label>email</label>
@@ -21,7 +24,6 @@
                         </div>
 
                         <br>
-
 
                         <div class="form-group">
                             <label>password</label>

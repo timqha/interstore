@@ -13,12 +13,16 @@ angular.module('app', [
     'templates',
     'ng-token-auth',
     'ngSanitize',
+    'flash',
     'myCart',
     'admin'
 
 ])
 
-    .run(function($rootScope, $state, $timeout) {
+    .run(function($rootScope, $state, $timeout, Flash) {
+        $rootScope.$on('auth:redirect to login', function() {
+            $state.go('account.login');
+        });
 
         $rootScope.$on('auth:password-reset-confirm-success', function() {
             $state.go('account.reset-password');
@@ -26,49 +30,56 @@ angular.module('app', [
         });
 
         $rootScope.$on('auth:password-reset-confirm-error', function(ev, reason) {
-            alert("Unable to verify your account. Please try again.");
+            var message = "Unable to verify your account. Please try again.";
+            Flash.create('success', message, 'custom-class');
         });
 
         $rootScope.$on('auth:password-change-success', function(ev) {
-            alert("Your password has been successfully updated!");
             $state.go('home');
+            var message = "Your password has been successfully updated!";
+            Flash.create('success', message, 'custom-class');
         });
 
         $rootScope.$on('auth:email-confirmation-success', function(ev, user) {
-            alert("Welcome, "+user.email+". Your account has been verified.");
             $state.go('home');
+            var message = "Welcome, "+user.email+". Your account has been verified.";
+            Flash.create('success', message, 'custom-class');
         });
 
         $rootScope.$on('auth:registration-email-success', function(ev, message) {
-            alert("A registration email was sent to " + message.email);
-            $state.go('home');
-        });
-
-        $rootScope.$on('auth:logout-error', function(ev, reason) {
-            alert('logout failed because ' + reason.errors[0]);
-        });
-        $rootScope.$on('auth:logout-success', function(ev) {
-            alert('goodbye');
-            $state.go('home');
+            var message = "A registration email was sent to " + message.email;
+            Flash.create('success', message, 'custom-class');
         });
 
         $rootScope.$on('auth:oauth-registration', function(ev, user) {
-            alert('new user registered through oauth:' + user.email);
+            var message = 'new user registered through oauth:' + user.email;
+            Flash.create('danger', message, 'custom-class');
         });
 
+
+        $rootScope.$on('auth:logout-error', function(ev, reason) {
+            $state.go('home');
+            var message = 'logout failed because ' + reason.errors[0];
+            Flash.create('danger', message, 'custom-class');
+
+        });
+        $rootScope.$on('auth:logout-success', function(ev) {
+            $state.go('home');
+            var message = 'goodbye';
+            Flash.create('success', message, 'custom-class');
+        });
+
+
+
         $rootScope.$on('auth:login-error', function(ev, reason) {
-            alert('auth failed because: '+reason.errors[0]);
-            console.log(reason);
+            var message = 'auth failed because: '+reason.errors[0];
+            Flash.create('danger', message, 'custom-class');
         });
 
         $rootScope.$on('auth:login-success', function(ev, user) {
-
             $timeout(function() {
-
-                alert('Welcome, '+user.email+' !');
                 $state.go('home');
             });
-            //$timeout(function(){$state.go('home')},0);
         });
 
         $rootScope.$on('auth:session-expired', function(ev) {

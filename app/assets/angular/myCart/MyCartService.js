@@ -18,6 +18,8 @@ angular.module('myCart')
             myCart.$save();
         });
 
+
+
         // если что-то у нас есть мы перезаписываем это. в противном случае инициализируем.
         if (angular.isObject(localstorage.get('mcart'))) {
             myCart.$restore(localstorage.get('mcart'));
