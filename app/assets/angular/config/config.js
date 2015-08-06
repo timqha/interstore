@@ -155,6 +155,7 @@ angular.module("app")
                     auth: ['$auth', function ($auth) {
                         if ($auth.validateUser().$$state.status == 2) {
                             console.log('not welcome');
+
                             alert("register or login");
                         } else {
                             console.log('welcome');
@@ -220,7 +221,7 @@ angular.module("app")
                     },
                     {
                         name: 'index',
-                        url: '/index',
+                        url: '/index',// При изменении поправить CheckoutCtrl dialogInfo()
                         templateUrl: 'devise/_updateform.html',
                         controller: 'ProfileUserCtrl'
                     }

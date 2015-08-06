@@ -24,22 +24,18 @@ angular.module('app')
                 console.log(data);
             });
 
+
         $scope.Checkout = function () {
 
             if (whenCartUpdated()) {
-                $scope.change = confirm("Цены изменились!");
-                if ($scope.change == true) {
-                    addOrder();
-                } else {
-                    $scope.error.danger = "Заказ отменён!";
-                }
+                $scope.ConfirmDialog();
             } else {
-                addOrder();
+                $scope.addOrder();
             }
         };
 
 
-        function addOrder() {
+        $scope.addOrder = function() {
             if ($scope.order.name == null || $scope.order.city == null || $scope.order.telephone == null || $scope.order.email == null || myCart.getTotalItems() === 0) {
                 if (myCart.getTotalItems() === 0) {
                     $scope.error.danger = "Корзина пуста, вы не можете заказать пустую корзину!";
@@ -72,7 +68,7 @@ angular.module('app')
 
                 return $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
             }
-        }
+        };
 
         ////Наверное это нужно вынести в сервайс или что-то подобное.
         // И убрать повторение с ProductCtrl
@@ -106,5 +102,17 @@ angular.module('app')
             $scope.error.message =  null;
             $scope.error.danger =   null;
             $scope.errors.text =    null;
-        }
+        };
+
+        // Диалог info
+        $scope.dialogInfo = function(){
+            $scope.popUpDialogContent = 'Вы можете заполнить профиль "<a href="#/profile/index">здесь</a>", тогда форма будет заполняться автоматически!';
+            $scope.showPopUpDialog = true;
+        };
+        $scope.ConfirmDialog = function(){
+            $scope.popUpDialogContentTwo = 'Цены изменились, продолжить?';
+            $scope.showPopUpDialogTwo = true;
+            $scope.popUpDialogCallback = 'addOrder';
+        };
+
     });

@@ -12,8 +12,10 @@ angular.module('app', [
     'ui.router.stateHelper',
     'templates',
     'ng-token-auth',
+    'ngSanitize',
     'myCart',
     'admin'
+
 ])
 
     .run(function($rootScope, $state, $timeout) {
@@ -62,6 +64,7 @@ angular.module('app', [
         $rootScope.$on('auth:login-success', function(ev, user) {
 
             $timeout(function() {
+
                 alert('Welcome, '+user.email+' !');
                 $state.go('home');
             });

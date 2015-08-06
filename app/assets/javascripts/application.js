@@ -26,7 +26,7 @@
 //= require angular-ui-router.stateHelper/statehelper
 //= require ng-token-auth
 
-
+//= require angular-sanitize
 
 // = require angular-cookie
 

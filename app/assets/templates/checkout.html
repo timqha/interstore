@@ -14,11 +14,23 @@
 
     <br><br>
 
+
+
     <div ng-hide="error.message ||  error.danger" class="container">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="panel-title">Оформление заказа!</div>
+                    <div class="panel-title">
+                        <div class="row">
+                            <div class="col-lg-8">Оформление заказа!</div>
+                            <div class="col-md-4">
+                                <a href="" class="pull-right btn-circle btn-info" ng-click="dialogInfo()">
+                                    help
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
                 <form novalidate>
                     <div class="col-md-offset-1">
@@ -74,3 +86,5 @@
     </div>
 
 </div>
+<pop-up-dialog></pop-up-dialog>
+<pop-up-dialog-two></pop-up-dialog-two>
