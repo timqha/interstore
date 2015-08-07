@@ -50,7 +50,9 @@
                                 <div class="panel panel-info" >
                                     <div class="panel-heading">
                                         <div class="longtext">
-                                            <div class="panel-title">{{product.name}}</div>
+                                            <div class="panel-title">
+                                                <a ui-sref="goods.show({productId: product.id})">{{product.name}}</a>
+                                            </div>
                                             <div></div>
                                         </div>
                                     </div>

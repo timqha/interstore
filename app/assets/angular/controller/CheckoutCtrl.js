@@ -8,7 +8,7 @@
  * @requires $scope
  * */
 angular.module('app')
-    .controller('CheckoutCtrl', function ($scope, UserService, OrdersService, ProductsService, myCart, $rootScope) {
+    .controller('CheckoutCtrl', function ($state, $scope, UserService, OrdersService, ProductsService, myCart, $rootScope, Flash) {
         $scope.order = {email: null, cart: null};
         $scope.error = {message: null, danger: null};
         $scope.myCart = myCart;
@@ -62,8 +62,10 @@ angular.module('app')
 
                 OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, "Заказ в обработке", products)
                     .then(function () {
-                        $scope.error.message = "Заказ в обработке!";
+                        var message = "Заказ в обработке!";
+                        Flash.create('success', message, 'custom-class');
                           myCart.removeCart();
+                        $state.go('profile.orders');
                     });
 
                 return $scope.order = {name: null, city: null, telephone: null, email: null, cart: null};
