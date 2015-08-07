@@ -31,7 +31,7 @@ angular.module("app")
                     {
                         name: 'show',
                         url: '/:productId/show',
-                        templateUrl: 'admin/goods/show.html',
+                        templateUrl: 'products/show.html',
                         controller: 'ProductShow'
                     },
                     {
@@ -156,6 +156,7 @@ angular.module("app")
                         if ($auth.validateUser().$$state.status == 2) {
                             alert('You must login or register!');
                             $rootScope.$broadcast('auth:redirect to login', {});
+                            //http://stackoverflow.com/questions/29080128/angular-ui-router-state-go-is-not-redirecting-inside-resolve
                         } else {
                             console.log('welcome');
                         }
