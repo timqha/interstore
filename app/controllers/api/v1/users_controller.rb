@@ -1,6 +1,6 @@
 
 class API::V1::UsersController < ApplicationController
- # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def members_only
     render json: {
