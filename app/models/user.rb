@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  enum sex: [:undefined, :female, :male]
+
   has_many :orders#, dependent: :destroy
   # Include default devise modules.
   devise :database_authenticatable, :registerable,:confirmable,

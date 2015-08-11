@@ -8,12 +8,14 @@
                     <div class="row">
                         <ul class="nav nav-stacked">
                             <li><a ui-sref="profile.index">Мой профиль</a></li>
-
                             <li><a ui-sref="profile.orders">Список заказов</a></li>
                             <li>&nbsp;</li>
                             <li>&nbsp;</li>
                             <li>&nbsp;</li>
+                        <fieldset ng-disabled="!user.signedIn">
                             <li><a ui-sref="account.reset-password">Изменить пароль</a></li>
+        <!--<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>-->
+                        </fieldset>
                         </ul>
                     </div>
                 </div>
@@ -22,7 +24,6 @@
             <!--/panel-->
         </div>
         <!--/end left column-->
-
         <!-- right content column-->
         <div class="col-md-9" id="content">
             <div class="panel">

@@ -19,6 +19,5 @@ angular.module("app")
             });
 
             return filtered;
-
         };
     });

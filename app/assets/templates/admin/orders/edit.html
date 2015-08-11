@@ -26,9 +26,11 @@
             <div>
                 <labal>Orders status: </labal>
                     <select ng-model="order.status" convert-to-number>
-                        <option value="Заказ в обработке">Заказ в обработке</option>
-                        <option value="Заказ подтвержден">Заказ подтвержден</option>
-                        <option value="Заказ отправлен">Заказ отправлен</option>
+                        <option value="active">Заказ в обработке</option>
+                        <option value="confirmed">Заказ подтвержден</option>
+                        <option value="archived">Заказ отправлен</option>
+                        <option value="canceled">Заказ отменён</option>
+
                     </select>
                 <!--<input ng-model="order.status" required />-->
             </div>

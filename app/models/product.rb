@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-
+	dragonfly_accessor :image
 
 	belongs_to :category
 	has_many 	 :order_products

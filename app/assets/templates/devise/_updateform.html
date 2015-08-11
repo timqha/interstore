@@ -4,7 +4,7 @@
 
 <div class="no-gutter row">
     <div class="col-md-offset-1 col-md-10">
-        <div flash-message="5000" ></div>
+        <div flash-message="5000"></div>
     </div>
 </div>
 <div class="col-md-offset-1">
@@ -20,7 +20,8 @@
                 <div class="col-md-6">
                     <input type="text" name="text" ng-model="updateAccountForm.name">
                 </div>
-            </div><br>
+            </div>
+            <br>
 
             <div class="row">
                 <div class="col-md-3">
@@ -29,7 +30,8 @@
                 <div class="col-md-6">
                     <input type="text" name="text" ng-model="updateAccountForm.city">
                 </div>
-            </div><br>
+            </div>
+            <br>
 
             <div class="row">
                 <div class="col-md-3">
@@ -38,7 +40,8 @@
                 <div class="col-md-6">
                     <input type="text" name="text" ng-model="updateAccountForm.telephone">
                 </div>
-            </div><br>
+            </div>
+            <br>
 
             <div class="row">
                 <div class="col-md-3">
@@ -47,17 +50,40 @@
                 <div class="col-md-6">
                     <input type="text" name="text" ng-model="updateAccountForm.email">
                 </div>
-            </div><br>
-
+            </div>
             <br>
 
-            <button class="btn-primary btn" ng-click="handleUpdateAccountBtnClick()" type="submit">Update your name sign</button>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label>age</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="text" ng-model="updateAccountForm.age">
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <labal>Sex:</labal>
+                </div>
+                <div class="col-md-6">
+                    <select ng-model="updateAccountForm.sex" convert-to-number>
+                        <option value="undefined">-----</option>
+                        <option value="female">Женский</option>
+                        <option value="male">Мужской</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+
+            <button class="btn-primary btn" ng-click="handleUpdateAccountBtnClick()" type="submit">Update your name
+                sign
+            </button>
         </fieldset>
     </form>
 </div>
 <br>
-<fieldset ng-disabled="!user.signedIn">
 
-    <!--<a class="btn btn-default" ui-sref="account.destaccount">Удалить аккаунт</a>-->
-</fieldset>
 

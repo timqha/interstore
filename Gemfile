@@ -36,6 +36,10 @@ gem 'angular-rails-templates'
 gem 'devise_token_auth'
 gem 'omniauth-github'
 
+#FOR IMAGE
+gem 'dragonfly', '~> 1.0.10'
+
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks'
 
@@ -51,6 +55,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 group :production do
+  gem 'rack-cache', :require => 'rack/cache'
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end

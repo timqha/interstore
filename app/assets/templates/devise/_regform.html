@@ -23,6 +23,20 @@
                             <input type="email" name="email" ng-model="registrationForm.email" required="required" class="form-control"/>
                         </div>
 
+                        <div class="form-group">
+                            <label>age</label>
+                            <input type="text" name="age" ng-model="registrationForm.age" required="required" class="form-control"/>
+                        </div>
+
+                        <div>
+                            <labal>Sex: </labal>
+                            <select ng-model="registrationForm.sex" convert-to-number>
+                                <option value="undefined">-----</option>
+                                <option value="female">Женский</option>
+                                <option value="male">Мужской</option>
+                            </select>
+                        </div>
+
                         <br>
 
                         <div class="form-group">

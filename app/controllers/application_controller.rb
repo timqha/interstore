@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:account_update) << :city << :name << :telephone
+    devise_parameter_sanitizer.for(:account_update) << :city << :name << :telephone  << :age << :sex
+    devise_parameter_sanitizer.for(:sign_up) << :sex << :age
   end
 
 end

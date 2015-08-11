@@ -5,7 +5,7 @@ class Orders < ActiveRecord::Migration
       t.string :city
       t.string :telephone
       t.string :email
-      t.string :status
+      t.integer :status, default: 0
       t.timestamps
 
     end

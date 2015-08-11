@@ -75,9 +75,9 @@ user2.skip_confirmation!
 user2.save!
 
 order = Order.create([
-          {name: user2.name, city: user2.city, telephone: user2.telephone, email: user2.email, status: 'Заказ в обработке'
+          {name: user2.name, city: user2.city, telephone: user2.telephone, email: user2.email, status: 0
           },
-          {name: user.name, city: user.city, telephone: user.telephone, email: user.email, status: 'Заказ в обработке'
+          {name: user.name, city: user.city, telephone: user.telephone, email: user.email, status: 0
           }
       ])
 

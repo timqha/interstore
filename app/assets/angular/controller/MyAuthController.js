@@ -1,7 +1,7 @@
 angular.module('app')
-    .controller('ProfileUserCtrl', function($scope, $auth, UserService, $timeout, Flash){
+    .controller('ProfileUserCtrl', function($scope, $state, $auth, UserService, Flash){
 
-        $scope.updateAccountForm = {name: null, city: null, telephone: null, email:null};
+        $scope.updateAccountForm = {name: null, city: null, telephone: null, email:null, age: null, sex:null};
 
         UserService.getUser()
             .then(function(data){
@@ -22,16 +22,13 @@ angular.module('app')
         };
 
         $scope.$on('auth:account-update-success', function(ev) {
-           $timeout(function(){
+               $state.go('home');
                var message = "Your account has been successfully updated!";
                Flash.create('success', message, 'custom-class');
-           });
         });
         $scope.$on('auth:account-update-error', function(ev, reason) {
-            $timeout(function(){
                 var message = "Registration failed: " + reason.errors[0];
                 Flash.create('success', message, 'custom-class');
-            });
         });
     })
 
