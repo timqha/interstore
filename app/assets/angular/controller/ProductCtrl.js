@@ -55,9 +55,10 @@ angular.module('admin')
             });
 
         // goods NEW forms
-        $scope.product = {name: null, price: null, category_id: null};
+        $scope.product = {name: null, price: null, category_id: null, image:null, data:null};
         $scope.addProduct = function () {
-            ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params)
+            console.log($scope.product.data);
+            ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params, $scope.product.image)
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });
