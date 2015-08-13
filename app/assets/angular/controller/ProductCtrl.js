@@ -17,8 +17,10 @@ angular.module('admin')
             then(function (data) {
                 $scope.products = data.products;
 
+
                  angular.forEach($scope.products, function(product){
                      angular.forEach(data.categories, function(category){
+                         product.data = JSON.parse(product.data);
                          if(product.category_id == category[1]){
                              product.category_name = category[0];
                          }
@@ -55,10 +57,10 @@ angular.module('admin')
             });
 
         // goods NEW forms
-        $scope.product = {name: null, price: null, category_id: null, image:null, data:null};
+        $scope.product = {name: null, price: null, category_id: null, data:null};
         $scope.addProduct = function () {
             console.log($scope.product.data);
-            ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params, $scope.product.image)
+            ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params, JSON.stringify($scope.product.data))
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });
@@ -71,6 +73,7 @@ angular.module('admin')
         ProductsService.showProduct($stateParams.productId)
             .then(function (data, status) {
                 $scope.product = data.product;
+                $scope.product.data = JSON.parse(data.product.data);
             });
     })
     .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $stateParams) {

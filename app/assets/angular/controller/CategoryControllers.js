@@ -4,7 +4,7 @@ angular.module('app')
         $scope.category = [];
         $scope.products = [];
         $scope.colors = {};
-        $scope.priceFilter = {min: 1, max: 1000000};
+        $scope.priceFilter = {min: 1, max: 900000000};
         CategoryService.showCategory($stateParams.categoryId)
             .then(function (data) {
                 $scope.category = data.category;

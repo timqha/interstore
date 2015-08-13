@@ -1,8 +1,10 @@
 class API::V1::ProductsController < ApplicationController
 
+
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
 
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+
   #skip_before_filter :verify_authenticity_token, :only => [:edit,:create, :update, :destroy]
   respond_to :html, :json
   # GET /products.json
@@ -50,7 +52,7 @@ class API::V1::ProductsController < ApplicationController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.json { render json: @product, status: :created, location: @product }
+        format.json { render json: @product, status: :created }
       else
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
@@ -87,6 +89,6 @@ class API::V1::ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:name, :price, :category_id, :params, :image)
+    params.require(:product).permit(:name, :price, :category_id, :params, :data)
   end
 end

@@ -1,5 +1,6 @@
 class API::V1::CategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:destroy, :update, :create ]
+
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   #skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
   respond_to :json, :html
@@ -8,7 +9,7 @@ class API::V1::CategoriesController < ApplicationController
   def index
     @categories = Category.all.as_json
     @max = Product.maximum(:price)
-
+puts @max
     @categories.each do |category|
       category['max'] = @max.as_json
     end
