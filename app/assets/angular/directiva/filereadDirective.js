@@ -26,13 +26,14 @@ angular.module('app')
             }
         }
     }])
+/*
 
     .directive('appFilereader', function(
         $q
     ) {
-        /*
+        /!*
          made by elmerbulthuis@gmail.com WTFPL licensed
-         */
+         *!/
         var slice = Array.prototype.slice;
 
         return {
@@ -78,4 +79,12 @@ angular.module('app')
         }; //return
 
     }) //appFilereader
-;
+;*/
+
+/*
+2015/08/14/2wbbyj0o84_file*/
+
+/*Parameters: {"utf8"=>"✓", "authenticity_token"=>"6aJ3kdoIlGzH5WDxadtKxgxCbNJZSSEpmuEoqA8M75vzBEgdp9LA6aOt0l0eUI0reu8X3SH+cCDaoz4ufdNCBw==", "photo"=>{"image"=>#<ActionDispatch::Http::UploadedFile:0xb50691a8 @tempfile=#<Tempfile:/tmp/RackMultipart20150814-7932-1yz8c5o.jpg>, @original_filename="anypics.ru-28205.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"photo[image]\"; filename=\"anypics.ru-28205.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Photo"}
+ (0.1ms)  begin transaction
+ SQL (0.4ms)  INSERT INTO "photos" ("image_name", "image_uid", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["image_name", "anypics.ru-28205.jpg"], ["image_uid", "2015/08/14/53yvxv3wuk_anypics.ru_28205.jpg"], ["created_at", "2015-08-14 11:08:40.074632"], ["updated_at", "2015-08-14 11:08:40.074632"]]
+ (140.5ms)  commit transaction*/

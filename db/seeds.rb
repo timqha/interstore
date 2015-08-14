@@ -17,7 +17,7 @@ categories = Category.create([
                              ])
 
 products = Product.create([
-                              {name: 'Asus', price: '2223', category_id: '1', params:'red'},
+                              {name: 'Asus', price: '2223', category_id: '1', params:'red', image: 'logo.png'},
                               {name: 'Dell', price: '546', category_id: '1', params:'green'},
                               {name: 'Lenovo', price: '433', category_id: '1', params:'red'},
                               {name: 'HP', price: '444', category_id: '1', params:'green'},

@@ -14,6 +14,7 @@ angular.module('app', [
     'ng-token-auth',
     'ngSanitize',
     'flash',
+    'ngFileUpload',
     'myCart',
     'admin'
 

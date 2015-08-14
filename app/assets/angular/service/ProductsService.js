@@ -19,7 +19,7 @@ angular.module('app')
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
 
-        function addNewProduct(name, price, category_id, params, data) {
+        function addNewProduct(name, price, category_id, params, image) {
             var request = $http({
                 method: 'POST',
                 url: apiUrl,
@@ -29,8 +29,7 @@ angular.module('app')
                         "price":        price,
                         "category_id":  category_id,
                         "params":       params,
-                        "data":        data
-
+                        "image":        image
                     }
                 },
                 headers: {
@@ -59,7 +58,7 @@ angular.module('app')
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
 
-        function updateProduct(id, name, price, category_id, params, data) {
+        function updateProduct(id, name, price, category_id, params) {
             var request = $http({
                 method: 'PUT',
                 url: apiUrl+ '/' + id,
@@ -68,8 +67,7 @@ angular.module('app')
                         "name":         name,
                         "price":        price,
                         "category_id":  category_id,
-                        "params":       params,
-                        "data":        data
+                        "params":       params
                     }
                 },
                 headers: {

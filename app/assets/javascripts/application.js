@@ -31,6 +31,8 @@
 
 // = require angular-cookie
 
+// = require ng-file-upload
+
 
 //= require mystyle.js
 

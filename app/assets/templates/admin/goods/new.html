@@ -5,11 +5,28 @@
         <p>{{error.message}}</p>
     </div>
     <div>
-        <form enctype="multipart/form-data">
-            Pick an image-file: <input type="file" ng-model="product.data" accept="image/*" multiple app-filereader />
+
+        <div ng-app="fileUpload">
+            watching model:
+            <div class="btn btn-warning" ngf-select ng-model="file">Upload using model $watch</div>
+
+            <!--<div class="button" ngf-select ngf-change="upload($file)">Upload on file change</div>
+            <div class="button" ngf-select ngf-change="upload($files)" ngf-multiple="true">Upload multiple on file change</div>
+            Drop File:-->
+            <!--<div ngf-drop ng-model="files" class="drop-box"
+                 ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                 ngf-accept="'image/*,application/pdf'">Drop Images or PDFs files here</div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+-->
+            Image thumbnail: <img ngf-src="file" ngf-default-src="'/thumb.jpg'" ngf-accept="'image/*'" width="275">
+        </div>
+
+
+        <form> <!--enctype="multipart/form-data"-->
+ <!--           Pick an image-file: <input type="file" ng-model="product.data" accept="image/*" multiple app-filereader />
             <img ng-repeat="image in product.data" ng-src="{{image}}" width="300">
             <button ng-click="product.data = null" ng-show="!!product.data">Remove {{product.data.length}} images</button><br />
-
+-->
                 <div>
                     <labal>Product name:</labal>
                     <input ng-model="product.name" required/>
@@ -22,13 +39,11 @@
                     <labal>Product colors:</labal>
                     <input ng-model="product.params" required/>
                 </div>
-<!--
 
-                <div>
+             <!--   <div>
                     <input type="file" fileread="product.image" id="photo_image"/>
                 </div>
 -->
-
                 <div>
                     <select ng-init="product.category_id = options[0]" ng-model="product.category_id" ng-selected="0"
                             ng-options="category.id as category.name for category in categories" required></select>
