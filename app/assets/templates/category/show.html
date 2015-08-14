@@ -61,7 +61,9 @@
                                         <div class="row">
                                             цвет: {{product.params}}
                                         </div>
-                                        <div class="row"><img src="//placehold.it/245x100/E7E7E7"></div>
+
+                                        <div ng-include src="'category/_images.html'"></div>
+
                                         <div class="row">
                                             цена: {{product.price | currency: "$"}}
                                         </div>

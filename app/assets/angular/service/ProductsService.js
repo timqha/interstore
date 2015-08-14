@@ -51,8 +51,8 @@ angular.module('app')
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
 
-        function updateProduct(id, name, price, category_id, params) {
-            var request = $http({
+        function updateProduct(id, name, price, category_id, params, file) {
+           /* var request = $http({
                 method: 'PUT',
                 url: apiUrl+ '/' + id,
                 data: {
@@ -71,6 +71,20 @@ angular.module('app')
                      'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
                      'uid':              $auth.retrieveData('auth_headers')['uid']
                 }
+            });*/
+            var request = Upload.upload({
+                method: 'PUT',
+                url: apiUrl+ '/' + id,
+                fields: {
+                    'product[name]': name,
+                    'product[price]': price,
+                    'product[category_id]': category_id,
+                    'product[params]':params
+                },
+                file: file,
+                fileFormDataName: 'product[image]',
+
+                headers: $auth.retrieveData('auth_headers')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }

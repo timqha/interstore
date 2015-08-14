@@ -8,7 +8,7 @@
  * @requires $scope
  * */
 angular.module('admin')
-    .controller('Product', function ($rootScope, $scope, ProductsService) {
+    .controller('Product', function ($rootScope, $scope, ProductsService,ConfigANDRouts) {
 
         // Goods index
          ProductsService.getProductsAll().
@@ -17,8 +17,9 @@ angular.module('admin')
 
 
                  angular.forEach($scope.products, function(product){
+                     if(product.image_uid)
+                         product.image_uid = ConfigANDRouts.baseImage+product.image_uid;
                      angular.forEach(data.categories, function(category){
-                /*         product.data = JSON.parse(product.data);*/
                          if(product.category_id == category[1]){
                              product.category_name = category[0];
                          }
@@ -44,7 +45,7 @@ angular.module('admin')
         /*end admin sort*/
 
     })
-    .controller('ProductNew', function ($scope, Upload,  ProductsService, CategoryService, $state) {
+    .controller('ProductNew', function ($scope,  ProductsService, CategoryService, $state, Flash) {
         $scope.error = {message: null};
 
         // GetCategory for SELECTED
@@ -54,53 +55,46 @@ angular.module('admin')
                 $scope.categories = data;
             });
 
-        $scope.$watch('files', function () {
-            $scope.upload($scope.files);
-        });
         $scope.$watch('file', function () {
             if ($scope.file != null) {
                 $scope.upload([$scope.file]);
             }
         });
         $scope.log = '';
-        /*$scope.upload = function (file) {
-            Upload.upload({
-                url: 'upload/url',
-                fields: {'username': $scope.username},
-                file: file
-            }).progress(function (evt) {
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-            }).success(function (data, status, headers, config) {
-                console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-            }).error(function (data, status, headers, config) {
-                console.log('error status: ' + status);
-            })
-        };*/
-
 
         // goods NEW forms
-        $scope.product = {name: null, price: null, category_id: null, image:null};
+        $scope.product = {name: null, price: null, category_id: null, file:null};
         $scope.addProduct = function () {
             console.log($scope.product.data);
             ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params, $scope.product.file)
                 .then(function () {
-                    $scope.error.message = "Сохранено";
+                    var message = "Сохранено!";
+                    Flash.create('success', message, 'custom-class');
+                    $state.go('admin');
                 });
-            $state.go('admin');
         };
     })
-    .controller('ProductShow', function ($scope, ProductsService, $stateParams) {
+    .controller('ProductShow', function ($scope, ProductsService, $stateParams, ConfigANDRouts) {
 
         // Goods show
         ProductsService.showProduct($stateParams.productId)
             .then(function (data, status) {
                 $scope.product = data.product;
-                $scope.product.data = JSON.parse(data.product.data);
+                if(data.product.image_uid){
+                    $scope.product.image_uid = ConfigANDRouts.baseImage+data.product.image_uid;
+                }
+
             });
     })
     .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $stateParams) {
         $scope.error = {message: null};
+
+        $scope.product = {name: null, price: null, category_id: null, file:null};
+        $scope.$watch('file', function () {
+            if ($scope.file != null) {
+                $scope.upload([$scope.file]);
+            }
+        });
 
         // Goods show
         ProductsService.editProduct($stateParams.productId)
@@ -113,7 +107,7 @@ angular.module('admin')
                 $scope.categories = data;
             });
         $scope.updateProduct = function () {
-            ProductsService.updateProduct($scope.product.id, $scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params)
+            ProductsService.updateProduct($scope.product.id, $scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params, $scope.product.file)
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });
