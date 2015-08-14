@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('ProductsService', function ($http, $auth, ConfigANDRouts) {
+    .service('ProductsService', function ($http, $auth, ConfigANDRouts, Upload) {
 
         var apiUrl = ConfigANDRouts.apiUrlproducts;
 
@@ -19,27 +19,20 @@ angular.module('app')
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
 
-        function addNewProduct(name, price, category_id, params, image) {
-            var request = $http({
+        function addNewProduct(name, price, category_id, params, file) {
+            var request = Upload.upload({
                 method: 'POST',
                 url: apiUrl,
-                data: {
-                    "product": {
-                        "name":         name,
-                        "price":        price,
-                        "category_id":  category_id,
-                        "params":       params,
-                        "image":        image
-                    }
+                fields: {
+                    'product[name]': name,
+                    'product[price]': price,
+                    'product[category_id]': category_id,
+                    'product[params]':params
                 },
-                headers: {
-                    'Content-Type':     ConfigANDRouts.config.heders,
-                    'access-token' :    $auth.retrieveData('auth_headers')['access-token'],
-                    'token-type' :      $auth.retrieveData('auth_headers')['token-type'],
-                    'client' :          $auth.retrieveData('auth_headers')['client'],
-                    'expiry' :          $auth.retrieveData('auth_headers')['expiry'],
-                    'uid':              $auth.retrieveData('auth_headers')['uid']
-                }
+                file: file,
+                fileFormDataName: 'product[image]',
+
+                headers: $auth.retrieveData('auth_headers')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }

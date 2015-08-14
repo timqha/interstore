@@ -44,7 +44,7 @@ angular.module('admin')
         /*end admin sort*/
 
     })
-    .controller('ProductNew', function ($scope, Upload, $auth, ProductsService, CategoryService, $state) {
+    .controller('ProductNew', function ($scope, Upload,  ProductsService, CategoryService, $state) {
         $scope.error = {message: null};
 
         // GetCategory for SELECTED
@@ -63,30 +63,27 @@ angular.module('admin')
             }
         });
         $scope.log = '';
-
+        /*$scope.upload = function (file) {
+            Upload.upload({
+                url: 'upload/url',
+                fields: {'username': $scope.username},
+                file: file
+            }).progress(function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+            }).success(function (data, status, headers, config) {
+                console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+            }).error(function (data, status, headers, config) {
+                console.log('error status: ' + status);
+            })
+        };*/
 
 
         // goods NEW forms
         $scope.product = {name: null, price: null, category_id: null, image:null};
         $scope.addProduct = function () {
             console.log($scope.product.data);
-
-            $scope.upload = function (file) {
-                Upload.upload({
-                    url: 'api/v1/products',
-                    file: file,
-                    headers: $auth.retrieveData('auth_headers')
-                }).progress(function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                }).success(function (data, status, headers, config) {
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                }).error(function (data, status, headers, config) {
-                    console.log('error status: ' + status);
-                })
-            };
-
-            ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params)
+            ProductsService.addNewProduct($scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params, $scope.product.file)
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });
