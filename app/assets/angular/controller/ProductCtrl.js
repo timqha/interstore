@@ -86,7 +86,7 @@ angular.module('admin')
 
             });
     })
-    .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $stateParams) {
+    .controller('ProductEdit', function ($scope, ProductsService, CategoryService, $stateParams, ConfigANDRouts) {
         $scope.error = {message: null};
 
         $scope.product = {name: null, price: null, category_id: null, file:null};
@@ -100,6 +100,8 @@ angular.module('admin')
         ProductsService.editProduct($stateParams.productId)
             .then(function (data, status) {
                 $scope.product = data.product;
+                if(data.product.image_uid)
+                    $scope.product.image_uid = ConfigANDRouts.baseImage+data.product.image_uid;
             });
 
         CategoryService.getCategoryAll().

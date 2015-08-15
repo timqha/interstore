@@ -8,10 +8,8 @@
 
         <div ng-include src="'admin/goods/_form.html'"></div>
     <div class="row">
-        <img ng-hide="product.file" ng-src="system/dragonfly/development/{{product.image_uid}}">
+        <img ng-hide="product.file" ng-src="{{product.image_uid}}">
     </div>
-
-
         <button ng-click="updateProduct()" class="btn btn-primary">Save Product</button>
     </div>
 </div>
