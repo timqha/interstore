@@ -18,7 +18,7 @@ categories = Category.create([
 
 products = Product.create([
                               {name: 'Asus', price: '2223', category_id: '4', params:'black', image_uid: '2015/08/14/9bctm8mm3m_asus_rt_n14u_8938967.jpg', image_name: 'asus_rt_n14u_8938967.jpg'},
-                              {name: 'HP', price: '546', category_id: '1', params:'black', image_uid: '2015/08/14/1qhwykyaz3_record_72135369.jpg', image_name: 'record_72135369.jpg'},
+                              {name: 'HP', price: '546', category_id: '1', params:'silver', image_uid: '2015/08/14/1qhwykyaz3_record_72135369.jpg', image_name: 'record_72135369.jpg'},
                               {name: 'MSI 622', price: '433', category_id: '1', params:'red', image_uid: '2015/08/14/1rhhjh0pcf_msi_ge622qf_268xua_987319779.jpg', image_name: 'msi_ge622qf_268xua_987319779.jpg'},
                               {name: 'Lenovo e32', price: '453', category_id: '1', params:'black', image_uid: '2015/08/14/7zgyhsra0p_record_401424367.jpg', image_name: 'record_401424367.jpg'},
                               {name: 'MSI', price: '775', category_id: '1', params:'black', image_uid: '2015/08/14/1i72qlk9te_msi_gs602qc_066xua_989709944.jpg', image_name: 'msi_gs602qc_066xua_989709944.jpg' },
