@@ -20,15 +20,7 @@ angular.module('app')
                 method: 'POST',
                 url: apiUrlcategories,
                 data: {"category": {"name": name}},
-// После подобного все остается работать, если просто $auth.retrieveData('auth_headers') все в небытие
-                headers: {
-                    'Content-Type':     ConfigANDRouts.config.heders,
-                    'access-token':     $auth.retrieveData('auth_headers')['access-token'],
-                    'token-type':       $auth.retrieveData('auth_headers')['token-type'],
-                    'client':           $auth.retrieveData('auth_headers')['client'],
-                    'expiry':           $auth.retrieveData('auth_headers')['expiry'],
-                    'uid':              $auth.retrieveData('auth_headers')['uid']
-                }
+                headers: $auth.retrieveData('auth_headers')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
@@ -52,14 +44,6 @@ angular.module('app')
                 method: 'PUT',
                 url: apiUrlcategories + '/' + id,
                 data: {"category": {"name": name, "desc": desc}},
-                /*headers: {
-                    'Content-Type':     ConfigANDRouts.config.heders,
-                    'access-token':     $auth.retrieveData('auth_headers')['access-token'],
-                    'token-type':       $auth.retrieveData('auth_headers')['token-type'],
-                    'client':           $auth.retrieveData('auth_headers')['client'],
-                    'expiry':           $auth.retrieveData('auth_headers')['expiry'],
-                    'uid':              $auth.retrieveData('auth_headers')['uid']
-                }*/
                 headers: $auth.retrieveData('auth_headers')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
