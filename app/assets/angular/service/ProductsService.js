@@ -37,20 +37,6 @@ angular.module('app')
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
 
-        function showProduct(id) {
-            var request = $http.get(apiUrl+ '/' + id);
-            return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
-        }
-
-        function deleteProduct(id) {
-            var request = $http({
-                method: 'DELETE',
-                url: apiUrl+ '/' + id,
-                headers: $auth.retrieveData('auth_headers')
-        });
-            return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
-        }
-
         function updateProduct(id, name, price, category_id, params, file) {
            /* var request = $http({
                 method: 'PUT',
@@ -84,6 +70,21 @@ angular.module('app')
                 file: file,
                 fileFormDataName: 'product[image]',
 
+                headers: $auth.retrieveData('auth_headers')
+            });
+            return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
+        }
+
+
+        function showProduct(id) {
+            var request = $http.get(apiUrl+ '/' + id);
+            return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
+        }
+
+        function deleteProduct(id) {
+            var request = $http({
+                method: 'DELETE',
+                url: apiUrl+ '/' + id,
                 headers: $auth.retrieveData('auth_headers')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));

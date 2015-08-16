@@ -29,7 +29,7 @@ products = Product.create([
                               {name: 'Samsung 3', price: '111', category_id: '3', params:'black', image_uid: '2015/08/14/3zpka6c7b0_record_269905657.jpg', image_name: 'record_269905657.jpg'},
                               {name: 'lg', price: '50', category_id: '3', params:'brown',image_uid: '2015/08/14/royponzyg_record_621652272.jpg', image_name: 'record_621652272.jpg'},
                               {name: 'Tp-link', price: '35', category_id: '4', params:'white', image_uid: '2015/08/14/hsdr4ri42_tp_link_tl_mr3420_8885128.jpg', image_name: 'tp_link_tl_mr3420_8885128.jpg'},
-                              {name: 'D-link', price: '40', category_id: '4', params:'white', image_uid: '2015/08/14/kz56mdf8j_d_link_dir_300_a_c1_9927631.jpg', image_name: 'd_link_dir_300_a_c1_9927631.jpg'},
+                              {name: 'D-link', price: '40', category_id: '4', params:'black', image_uid: '2015/08/14/kz56mdf8j_d_link_dir_300_a_c1_9927631.jpg', image_name: 'd_link_dir_300_a_c1_9927631.jpg'},
                               {name: 'TP-Link', price: '60', category_id: '4', params:'grey', image_uid: '2015/08/14/2tpggc7ox4_198555_6024816.jpg', image_name: '198555_6024816.jpg'},
                               {name: 'DELL', price: '444', category_id: '1', params:'green'},
                               {name: 'Samsung', price: '345', category_id: '1', params:'gray'},

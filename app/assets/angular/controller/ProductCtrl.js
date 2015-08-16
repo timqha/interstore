@@ -109,6 +109,7 @@ angular.module('admin')
                 $scope.categories = data;
             });
         $scope.updateProduct = function () {
+            console.log($scope.product);
             ProductsService.updateProduct($scope.product.id, $scope.product.name, $scope.product.price, $scope.product.category_id, $scope.product.params, $scope.product.file)
                 .then(function () {
                     $scope.error.message = "Сохранено";
