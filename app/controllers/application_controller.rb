@@ -21,7 +21,10 @@ class ApplicationController < ActionController::Base
     auth_headers = JSON.parse cookies[:auth_headers]
     current_user = User.find_by uid: auth_headers["uid"]
     puts current_user.admin
-    redirect_to("/#/") unless current_user.admin?
+    unless current_user.admin?
+      render :layout => 'application', :nothing => true
+    end
+    #redirect_to("/#/") unless
     #render json: {}, status: :unauthorized if get_current_user.nil?
   end
 =begin

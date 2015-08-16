@@ -9,12 +9,18 @@ angular.module("app")
             .state({
                 name: 'admin',
                 url: '/admin',
+                data: {
+                    admin: true
+                },
                 templateUrl: "admin/admin.html"
             })
             .state({
                 name: 'products',
                 url: '/admin/products',
                 templateUrl: '_layouts.html',
+                data: {
+                    admin: true
+                },
                 children: [
                     {
                         name: 'new',
@@ -52,6 +58,9 @@ angular.module("app")
                 name: 'category',
                 url: '/admin/categories',
                 templateUrl: '_layouts.html',
+                data: {
+                    admin: true
+                },
                 children: [
                     {
                         name: 'new',
@@ -88,6 +97,9 @@ angular.module("app")
             .state({
                 name: 'orders',
                 url: '/admin/orders',
+                data: {
+                    admin: true
+                },
                 templateUrl: '_layouts.html',
                 children: [
                     {
@@ -114,12 +126,18 @@ angular.module("app")
             .state({
                 name: 'home',
                 url: "/home",
+                data: {
+                    admin: false
+                },
                 templateUrl: "category/home.html",
                 controller: 'Category'
             })
             .state({
                 name: 'categories',
                 url: '/categories',
+                data: {
+                    admin: false
+                },
                 templateUrl: '_layouts.html',
                 children: [
                     {
@@ -132,6 +150,9 @@ angular.module("app")
             .state({
                 name: 'goods',
                 url: '/goods',
+                data: {
+                    admin: false
+                },
                 templateUrl: '_layouts.html',
                 children: [
                     {
@@ -144,6 +165,9 @@ angular.module("app")
             .state({
                 name: 'cart',
                 url: "/cart",
+                data: {
+                    admin: false
+                },
                 templateUrl: 'cart.html',
                 controller: 'CartCtrl',
                 resolve: {
@@ -168,6 +192,9 @@ angular.module("app")
             .state({
                 name: 'account',
                 url: '/account',
+                data: {
+                    admin: false
+                },
                 templateUrl: '_layouts.html',
                 children: [
                     {
@@ -205,12 +232,18 @@ angular.module("app")
             .state({
                 name: 'checkout',
                 url: "/checkout",
+                data: {
+                    admin: false
+                },
                 templateUrl: 'checkout.html',
                 controller: 'CheckoutCtrl'
             })
             .state({
                 name: 'profile',
                 url: "/profile",
+                data: {
+                    admin: false
+                },
                 templateUrl: 'users/_profile.html',
                 children: [
                     {

@@ -20,7 +20,34 @@ angular.module('app', [
 
 ])
 
-    .run(function($rootScope, $state, $timeout, Flash) {
+    .run(function($rootScope, $state, $timeout, Flash, UserService) {
+        $rootScope.$on('$stateChangeStart',function(event, toState,  toParams, fromState, fromParams){
+           console.log( event.currentScope.user.admin, toState);
+            var authorization = toState.data.admin;
+
+            UserService.getUser()
+                .then(function (data) {
+                    console.log(data.data.user.admin);
+                    $rootScope.globaluser = data.data.user;
+                    if(!data.data.user.admin && authorization != false){
+                        console.log('ADMIN!!!');
+                        event.preventDefault();
+                        $state.go('account.login');
+                    }
+                })
+                .catch(function (data) {
+                    console.log(data);
+                });
+console.log("se",$rootScope.globaluser);
+            var user =  event.currentScope.user.admin;
+
+
+           /* var authorization = toState.data.authorization;
+
+            if(!Security.isAuthenticated() && authorization != false)
+                $location.path('/login');*/
+        });
+
         $rootScope.$on('auth:redirect to login', function() {
             $state.go('account.login');
         });

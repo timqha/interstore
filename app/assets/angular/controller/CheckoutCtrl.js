@@ -60,7 +60,7 @@ angular.module('app')
                 });
 
 
-                OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, "Заказ в обработке", products)
+                OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, 0, products)
                     .then(function () {
                         var message = "Заказ в обработке!";
                         Flash.create('success', message, 'custom-class');

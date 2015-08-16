@@ -9,5 +9,6 @@ class API::V1::UsersController < ApplicationController
                }
            }, status: 200
   end
+
 end
 

@@ -1,7 +1,7 @@
 class API::V1::ProductsController < ApplicationController
 
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
- # before_action :authenticateadmin_current_user, only: [:edit, :update, :destroy, :create]
+  before_action :authenticateadmin_current_user, only: [:edit, :update, :destroy, :create]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   #
