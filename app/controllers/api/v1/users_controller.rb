@@ -5,10 +5,10 @@ class API::V1::UsersController < ApplicationController
   def members_only
     render json: {
                data: {
-                   user: current_user,
-                #  order: current_user.User.orders.all
+                   user: current_user
                }
            }, status: 200
   end
+
 end
 

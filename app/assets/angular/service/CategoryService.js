@@ -52,14 +52,15 @@ angular.module('app')
                 method: 'PUT',
                 url: apiUrlcategories + '/' + id,
                 data: {"category": {"name": name, "desc": desc}},
-                headers: {
+                /*headers: {
                     'Content-Type':     ConfigANDRouts.config.heders,
                     'access-token':     $auth.retrieveData('auth_headers')['access-token'],
                     'token-type':       $auth.retrieveData('auth_headers')['token-type'],
                     'client':           $auth.retrieveData('auth_headers')['client'],
                     'expiry':           $auth.retrieveData('auth_headers')['expiry'],
                     'uid':              $auth.retrieveData('auth_headers')['uid']
-                }
+                }*/
+                headers: $auth.retrieveData('auth_headers')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }

@@ -28,7 +28,7 @@ angular.module('app')
         });
         $scope.$on('auth:account-update-error', function(ev, reason) {
                 var message = "Registration failed: " + reason.errors[0];
-                Flash.create('success', message, 'custom-class');
+                Flash.create('danger', message, 'custom-class');
         });
     })
 

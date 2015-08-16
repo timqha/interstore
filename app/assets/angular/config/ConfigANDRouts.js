@@ -8,6 +8,8 @@ angular.module('app')
         RouteUrl.apiUrlproducts =   'api/v1/products';
         RouteUrl.apiUrlusers =      'api/v1/profile';
 
+        RouteUrl.baseImage =         'system/dragonfly/development/';
+
         //Headers
         RouteUrl.config = {heders: 'application/json; charset=UTF-8'};
 

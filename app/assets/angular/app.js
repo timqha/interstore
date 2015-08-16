@@ -14,12 +14,28 @@ angular.module('app', [
     'ng-token-auth',
     'ngSanitize',
     'flash',
+    'ngFileUpload',
     'myCart',
     'admin'
 
 ])
 
-    .run(function($rootScope, $state, $timeout, Flash) {
+    .run(function($rootScope, $state, $timeout, Flash, UserService) {
+        $rootScope.$on('$stateChangeStart',function(event, toState,  toParams, fromState, fromParams){
+            var authorization = toState.data.admin;
+            UserService.getUser()
+                .then(function (data) {
+                    $rootScope.globaluser = data.data.user;
+                    if(!data.data.user.admin && authorization != false){
+                        event.preventDefault();
+                        $state.go('account.login');
+                    }
+                })
+                .catch(function (data) {
+                    console.log(data);
+                });
+        });
+
         $rootScope.$on('auth:redirect to login', function() {
             $state.go('account.login');
         });

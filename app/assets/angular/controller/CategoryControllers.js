@@ -1,15 +1,20 @@
 'use strict';
 angular.module('app')
-    .controller("CategoryShowCtrl", function ($scope, CategoryService, $stateParams, $rootScope) {
+    .controller("CategoryShowCtrl", function ($scope, CategoryService, $stateParams, ConfigANDRouts) {
         $scope.category = [];
         $scope.products = [];
         $scope.colors = {};
-        $scope.priceFilter = {min: 1, max: 1000000};
+        $scope.priceFilter = {min: 1, max: 900000000};
         CategoryService.showCategory($stateParams.categoryId)
             .then(function (data) {
                 $scope.category = data.category;
                 $scope.products = data.products;
                 $scope.maxprice = data.maxprice;
+
+                angular.forEach($scope.products, function(product){
+                    if(product.image_uid)
+                        product.image_uid = ConfigANDRouts.baseImage+product.image_uid;
+                });
 
                 $scope.priceFilter = {min: 1, max: $scope.maxprice};
 

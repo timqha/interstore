@@ -1,0 +1,8 @@
+<div class="row" ng-hide="product.image_uid">
+    <img src="//placehold.it/245x200/E7E7E7">
+</div>
+<div class="row" ng-show="product.image_uid">
+    <div class="image">
+        <img ng-src="{{product.image_uid}}" alt="{{product.name}}">
+    </div>
+</div>

@@ -8,7 +8,7 @@
     <div class="row col-md-offset-3 col-md-5 wall">
         <div class="wall">
             <div class="center-block ">
-                <form  ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}">
+                <form  ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {email: null, password:null }">
                     <br>
                     <div ng-show="login_error.message" class="error">
                         <p>{{login_error.message}}</p>

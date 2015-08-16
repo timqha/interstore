@@ -9,11 +9,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   # protect_from_forgery with: :exception
   skip_before_filter :verify_authenticity_token
+
   def home
     render 'layouts/application'
   end
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def authenticateadmin_current_user
+    puts cookies[:auth_headers]
+    auth_headers = JSON.parse cookies[:auth_headers]
+    current_user = User.find_by uid: auth_headers["uid"]
+    puts current_user.admin
+    unless current_user.admin?
+      render :layout => 'application', :nothing => true
+    end
+  end
 
   protected
 

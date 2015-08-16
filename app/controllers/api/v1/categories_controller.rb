@@ -1,5 +1,7 @@
 class API::V1::CategoriesController < ApplicationController
-  before_action :authenticate_user!, only: [:destroy, :update, :create ]
+  before_action :authenticate_user!, only: [:update, :destroy, :create]
+  #before_action :authenticate_current_user, only: [:destroy, :update, :create ]
+  #before_action :authenticateadmin_current_user, only: [:edit, :update, :destroy, :create]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   #skip_before_filter :verify_authenticity_token, :only => [:create, :new, :destroy, :update]
   respond_to :json, :html

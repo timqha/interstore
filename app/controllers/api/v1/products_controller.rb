@@ -1,9 +1,10 @@
 class API::V1::ProductsController < ApplicationController
 
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
-
+  before_action :authenticateadmin_current_user, only: [:edit, :update, :destroy, :create]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  #skip_before_filter :verify_authenticity_token, :only => [:edit,:create, :update, :destroy]
+
+  #
   respond_to :html, :json
   # GET /products.json
   def index
@@ -50,7 +51,7 @@ class API::V1::ProductsController < ApplicationController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save
-        format.json { render json: @product, status: :created, location: @product }
+        format.json { render json: @product, status: :created }
       else
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
