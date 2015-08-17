@@ -34,7 +34,6 @@ angular.module('app')
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
 
-
         function showOrder(id) {
             var request = $http.get(apiUrlorders + '/' + id);
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));

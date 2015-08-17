@@ -20,7 +20,6 @@ angular.module('app')
                     // handle error response
                 });
         };
-
         $scope.$on('auth:account-update-success', function(ev) {
                $state.go('home');
                var message = "Your account has been successfully updated!";
@@ -31,7 +30,6 @@ angular.module('app')
                 Flash.create('danger', message, 'custom-class');
         });
     })
-
     .controller('MyAuthRegCtrl', function($scope, $auth, Flash) {
         $scope.$on('auth:registration-email-error', function(ev, reason) {
             var message = "Registration failed: " + reason.errors.full_messages[0];
@@ -65,8 +63,6 @@ angular.module('app')
 
                 });
         };
-
-
             $scope.handleSignOutBtnClick = function() {
                 $auth.signOut()
                     .then(function(resp) {

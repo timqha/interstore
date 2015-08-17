@@ -120,7 +120,4 @@ class API::V1::OrdersController < ApplicationController
     params.require(:order).permit(:name, :city, :telephone, :email, :status)
   end
 
-  # product.list_orders.build(order_id: 1, product_id: 2, quantity: 4)
-  # product.list_orders.find_by(product_id: 2).update(quantity: 8)
-  # product.list_orders.find_by(product_id: 2).destroy
 end
