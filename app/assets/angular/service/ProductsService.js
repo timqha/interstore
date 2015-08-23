@@ -11,6 +11,7 @@ angular.module('app')
             updateProduct:              updateProduct,
             editProduct:                editProduct
         });
+
         function getProductsAll() {
             var request = $http({
                 method: 'GET',
@@ -54,7 +55,6 @@ angular.module('app')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
         }
-
 
         function showProduct(id) {
             var request = $http.get(apiUrl+ '/' + id);

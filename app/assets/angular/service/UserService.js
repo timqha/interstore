@@ -11,7 +11,6 @@ angular.module('app')
                 headers: $auth.retrieveData('auth_headers')
             });
             return (request.then(ConfigANDRouts.handleSuccess, ConfigANDRouts.handleError));
-
         }
 
     });

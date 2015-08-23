@@ -12,7 +12,6 @@ angular.module('app')
     .controller('ProfileOrdersCtrl', function ($q, $scope, OrdersService, $rootScope, ProductsService, UserService) {
         $scope.currentUser = null;
 
-
         $scope.orders = [];
         OrdersService.getOrdersAll()
             .then(function (data) {
@@ -73,5 +72,4 @@ angular.module('app')
                     $scope.error.message = "Сохранено";
                 });
         }
-
     });

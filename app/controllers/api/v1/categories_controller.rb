@@ -11,6 +11,7 @@ class API::V1::CategoriesController < ApplicationController
     @categories = Category.all.as_json
     @max = Product.maximum(:price)
 
+
     @categories.each do |category|
       category['max'] = @max.as_json
     end

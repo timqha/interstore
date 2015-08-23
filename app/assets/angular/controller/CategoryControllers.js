@@ -36,11 +36,9 @@ angular.module('app')
 
                 };
             });
-
     });
 angular.module("admin")
     .controller("Category", function ($scope, CategoryService) {
-
 
         // for category/index
         $scope.priceFilter = {min: 1, max: 1000000};
@@ -71,7 +69,6 @@ angular.module("admin")
                 .then(function () {
                     $scope.error.message = "Сохранено";
                 });
-
         }
     })
     .controller('NewCategoryController', function ($http, $scope, CategoryService) {
@@ -85,9 +82,7 @@ angular.module("admin")
                 })
                 .catch(function (data) {
                     console.log('errors', data);
-                })
-            ;
-
+                });
             return $scope.new_category = {
                 name: null
             };

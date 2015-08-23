@@ -17,7 +17,6 @@ angular.module('app', [
     'ngFileUpload',
     'myCart',
     'admin'
-
 ])
 
     .run(function($rootScope, $state, $timeout, Flash, UserService) {
@@ -72,7 +71,6 @@ angular.module('app', [
             Flash.create('danger', message, 'custom-class');
         });
 
-
         $rootScope.$on('auth:logout-error', function(ev, reason) {
             $state.go('home');
             var message = 'logout failed because ' + reason.errors[0];
@@ -84,8 +82,6 @@ angular.module('app', [
             var message = 'goodbye';
             Flash.create('success', message, 'custom-class');
         });
-
-
 
         $rootScope.$on('auth:login-error', function(ev, reason) {
             var message = 'auth failed because: '+reason.errors[0];
@@ -101,25 +97,4 @@ angular.module('app', [
         $rootScope.$on('auth:session-expired', function(ev) {
             alert('Session has expired');
         });
-
-
-
     });
-    /*
-.run(function ($rootScope, $location, $cookieStore, $http) {
-    // keep user logged in after page refresh
-    $rootScope.globals = $cookieStore.get('globals') || {};
-    if ($rootScope.globals.currentUser) {
-        $http.defaults.headers.common['app'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-    }
-
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        var nextRoute = $location.path();
-        if (nextRoute.secure && !$rootScope.globals.currentUser) {
-            $location.path('/login');
-        }
-    });
-
-
-});*/
-

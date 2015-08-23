@@ -17,10 +17,8 @@ angular.module('app')
          * */
         if (myCart.getTotalItems() === 0) {
             console.log('Cart empty');
-
         } else {
             $scope.Carts = myCart.getItems();
-
             $scope.removeItems = function (id) {
                 if (id) {
                     myCart.removeItemById(id);
@@ -60,6 +58,4 @@ angular.module('app')
                     }
                 });
         });
-
-
     }]);

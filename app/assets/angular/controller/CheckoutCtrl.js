@@ -14,7 +14,6 @@ angular.module('app')
         $scope.myCart = myCart;
         $scope.order.email = null;
 
-
         UserService.getUser()
             .then(function (data) {
                 console.log(data);
@@ -23,7 +22,6 @@ angular.module('app')
             .catch(function (data) {
                 console.log(data);
             });
-
 
         $scope.Checkout = function () {
 
@@ -34,12 +32,10 @@ angular.module('app')
             }
         };
 
-
         $scope.addOrder = function() {
             if ($scope.order.name == null || $scope.order.city == null || $scope.order.telephone == null || $scope.order.email == null || myCart.getTotalItems() === 0) {
                 if (myCart.getTotalItems() === 0) {
                     $scope.error.danger = "Корзина пуста, вы не можете заказать пустую корзину!";
-
                 } else {
                     $scope.error.danger = "Заполните все поля!";
                 }
@@ -58,7 +54,6 @@ angular.module('app')
                     console.log(temp);
                     products.push(temp);
                 });
-
 
                 OrdersService.addNewOrder($scope.order.name, $scope.order.city, $scope.order.telephone, $scope.order.email, 0, products)
                     .then(function () {

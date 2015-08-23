@@ -13,12 +13,9 @@ angular.module('myCart')
 
     .run(['$rootScope', 'localstorage', 'myCart', 'myCartItem', '$window', function ($rootScope, localstorage, myCart, myCartItem, $window) {
 
-
         $rootScope.$on('myCart:change', function () {
             myCart.$save();
         });
-
-
 
         // если что-то у нас есть мы перезаписываем это. в противном случае инициализируем.
         if (angular.isObject(localstorage.get('mcart'))) {
@@ -51,12 +48,14 @@ angular.module('myCart')
             }
             $rootScope.$broadcast('myCart:change', {});
         };
+
         this.removeCart = function () {
             localstorage.remove('mcart');
             this.init();
             //$rootScope.$broadcast('myCart:change', {});
 
         };
+
         this.removeItem = function (index) {
             this.$cart.items.splice(index, 1);
             $rootScope.$broadcast('myCart:itemRemoved', {});
@@ -74,13 +73,16 @@ angular.module('myCart')
             $rootScope.$broadcast('myCart:itemRemoved', {});
             $rootScope.$broadcast('myCart:change', {});
         };
+
         this.getCart = function () {
             return this.$cart;
         };
+
         this.setCart = function (cart) {
             this.$cart = cart;
             return this.getCart();
         };
+
         this.getItems = function () {
             return this.$cart.items;
         };
@@ -95,6 +97,7 @@ angular.module('myCart')
             });
             return temp;
         };
+
         this.getTotalSumm = function () {
             var totalPrice = 0;
             var items = this.getItems();
@@ -164,7 +167,6 @@ angular.module('myCart')
             this.setData(data);
         };
 
-
         item.prototype.setId = function (id) {
             if (id)  this._id = id;
             else {
@@ -175,7 +177,6 @@ angular.module('myCart')
         item.prototype.getId = function () {
             return this._id;
         };
-
 
         item.prototype.setPrice = function (price) {
             var priceFloat = parseFloat(price);
@@ -189,15 +190,14 @@ angular.module('myCart')
                 $log.error('A price must be provided');
             }
         };
+
         item.prototype.getPrice = function () {
             // console.log('getPrice',this._price);
 
             return this._price;
         };
 
-
         item.prototype.setQuantity = function (quantity, relative) {
-
 
             var quantityInt = parseInt(quantity);
             if (quantityInt % 1 === 0) {
@@ -240,7 +240,6 @@ angular.module('myCart')
 
     .controller('CartController', ['$scope', 'myCart', function ($scope, $myCart) {
         $scope.myCart = $myCart;
-
     }])
     .directive('mycartTotal', function () {
         return {
@@ -270,13 +269,11 @@ angular.module('myCart')
                 scope.carthav = function () {
                     return myCart.getItemById(attrs.id);
                 };
-
                 if (scope.carthav()) {
                     scope.q = myCart.getItemById(attrs.id).getQuantity();
                 } else {
                     scope.q = parseInt(scope.quantity);
                 }
-
                 scope.qtyOpt = [];
                 for (var i = 1; i <= scope.quantityMax; i++) {
                     scope.qtyOpt.push(i);

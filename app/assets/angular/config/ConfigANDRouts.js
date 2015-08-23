@@ -7,7 +7,6 @@ angular.module('app')
         RouteUrl.apiUrlorders =     'api/v1/orders';
         RouteUrl.apiUrlproducts =   'api/v1/products';
         RouteUrl.apiUrlusers =      'api/v1/profile';
-
         RouteUrl.baseImage =         'system/dragonfly/development/';
 
         //Headers

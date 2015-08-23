@@ -39,17 +39,13 @@ angular.module('app')
         });
 
         $scope.handleRegBtnClick = function () {
-
             //Перед регистрацией выходим из пользователя.
             $auth.signOut();
-
             //Регистрация пользователя
             $auth.submitRegistration($scope.registrationForm)
                 .then(function (resp) {
-
                 })
                 .catch(function (resp) {
-
                 });
         };
     })
@@ -72,8 +68,6 @@ angular.module('app')
                         // handle error response
                     });
             };
-
-
     })
     .controller('MyAuthResetCtrl', function($scope, $auth, Flash){
         $scope.$on('auth:password-reset-request-success', function(ev, data) {

@@ -17,7 +17,7 @@
                     <img src="//placehold.it/245x100/E7E7E7">
                 </div>
                 <div class="row" ng-show="product.image_uid">
-                    <img ng-src="{{product.image_uid}}" alt="{{product.name}}"  >
+                    <img class="product-images" ng-src="{{product.image_uid}}" alt="{{product.name}}"  >
                 </div>
                 <div class="row">
                     цена: {{product.price | currency: "$"}}

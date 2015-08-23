@@ -19,7 +19,6 @@ angular.module('app')
             } else {
                 filtered = input;
             }
-
             return filtered;
         };
 });

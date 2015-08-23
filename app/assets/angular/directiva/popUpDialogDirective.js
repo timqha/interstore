@@ -18,7 +18,6 @@ angular.module('app')
                 $scope.closePopUpDialog = function(){
                     $scope.showPopUpDialog = false;
                 }
-
             }
         };
 })
