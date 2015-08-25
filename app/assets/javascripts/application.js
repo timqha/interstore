@@ -28,9 +28,11 @@
 //= require angular-sanitize
 //= require angular-flash-alert/dist/angular-flash
 
-// = require angular-cookie
+//= require angular-cookie
 
-// = require ng-file-upload
+//= require ng-file-upload
+
+//= require angular-ui-bootstrap/src/pagination/pagination.js
 
 
 //= require mystyle.js

@@ -20,6 +20,7 @@
                         <div> Min:
                             <input type="text" id="minCost" ng-model="priceFilter.min" />
                         </div>
+                        <br>
                         <div>Max:
                             <input type="text" id="maxCost" ng-model="priceFilter.max" />
                         </div>
@@ -50,11 +51,8 @@
                     </div>
                     <hr/>
                     <!-- My Products	  -->
-                    <div ng-controller="Product">
-                        <div class="row">
+
                             <div ng-include src="'category/_product.html'"></div>
-                        </div>
-                    </div>
 
                     <!--/end My Products-->
                 </div>

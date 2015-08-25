@@ -15,6 +15,7 @@ angular.module('app', [
     'ngSanitize',
     'flash',
     'ngFileUpload',
+    'ui.bootstrap.pagination',
     'myCart',
     'admin'
 ])

@@ -1,32 +1,66 @@
-<div ng-repeat="product in products | filter:{visible:t} | filterPrice:priceFilter">
-<div class="col-md-4 maxheight">
-    <div class="panel panel-info" >
-        <div class="panel-heading">
-            <div class="longtext">
-                <div class="panel-title">
-                    <a ui-sref="goods.show({productId: product.id})">{{product.name}}</a>
+<div ng-controller="Product">
+    <div class="row">
+        <div ng-repeat="product in filtred = (products | filter:{visible:t} | filterPrice:priceFilter | StartPaginstion:(currentPage-1)*itemsPerPage | limitTo:viewby)">
+            <div class="col-md-4 maxheight">
+                <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="longtext">
+                            <div class="panel-title">
+                                <a ui-sref="goods.show({productId: product.id})">{{product.name}}</a>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-1">
+                        <br>
+                        <div class="row">
+                            цвет: {{product.params}}
+                        </div>
+
+                        <div ng-include src="'category/_images.html'"></div>
+
+                        <div class="row">
+                            цена: {{product.price | currency: "$"}}
+                        </div>
+
+                        <mycart-addtocart id="{{product.id}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
+                        </mycart-addtocart>
+                        <br>
+                    </div>
                 </div>
-                <div></div>
+                <br>
             </div>
-        </div>
-        <div class="col-md-offset-1">
-            <br>
-            <div class="row">
-               цвет: {{product.params}}
-            </div>
-
-            <div ng-include src="'category/_images.html'"></div>
-
-            <div class="row">
-                цена: {{product.price | currency: "$"}}
-            </div>
-
-            <mycart-addtocart id="{{product.id}}" price="{{product.price}}" quantity="1" quantity-max="5">Add to Cart
-            </mycart-addtocart>
-            <br>
         </div>
     </div>
-    <br>
-</div>
+    <div class="row">
+        <!--template-url="'../pagination/pagination.html'"-->
+        <div class="col-md-9">
+            <pagination
+                        total-items="totalItems"
+                        ng-model="currentPage"
+                        max-size="maxSize"
+                        class="pagination-sm"
+                        boundary-links="true"
+                        rotate="false"
+                        items-per-page="itemsPerPage"
 
+                    >
+                <!--num-pages="numPages"-->
+            </pagination>
+          <!--  <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>-->
+
+        </div>
+        <div class="col-md-2">
+            <select  class="selectpicker" ng-model="viewby" ng-change="setItemsPerPage(viewby)">
+                <option>3</option>
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+            </select>
+        </div>
+    </div>
+    <pre>The selected page no: {{currentPage}}</pre>
 </div>

@@ -1,9 +1,12 @@
 angular.module("app")
     .config(function (stateHelperProvider, $urlRouterProvider, $httpProvider, $authProvider) {
+
+
         $authProvider.configure({
             apiUrl: '/api/v1'
           // storage: 'localStorage'
         });
+
         $urlRouterProvider.otherwise("/home");
         stateHelperProvider
             .state({
@@ -125,12 +128,23 @@ angular.module("app")
             /*start Users rout*/
             .state({
                 name: 'home',
-                url: "/home",
+                url: "/home?page",
                 data: {
                     admin: false
                 },
                 templateUrl: "category/home.html",
-                controller: 'Category'
+                controller: 'Category',
+                params: {
+                    page: {
+                        value: '0',
+                        squash: true
+                    }
+                   /* sort: {
+                    &sort
+                        value: 'upvotes'
+                        //squash: true
+                    }*/
+                }
             })
             .state({
                 name: 'categories',
