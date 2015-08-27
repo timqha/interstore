@@ -165,6 +165,7 @@ angular.module("app")
                             squash: true
                         },
                         min: {
+                            value: '1',
                             squash: true
                         },
                         max: {
@@ -197,13 +198,13 @@ angular.module("app")
                                 squash: true
                             },
                             color: {
-                                value: '',
-                                squash: true
+                                array : true
                             },
                             pagesize: {
                                 squash: true
                             },
                             min: {
+                                value: '1',
                                 squash: true
                             },
                             max: {

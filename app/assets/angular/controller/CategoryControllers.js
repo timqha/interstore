@@ -52,29 +52,51 @@ angular.module('app')
                 });
 
                 /*pagination*/
-                if($stateParams.min || $stateParams.max){
-                    $scope.priceFilter = {min: $stateParams.min, max: $stateParams.max};
+                if($stateParams.min){
+                    $scope.priceFilter.min = parseInt($stateParams.min);
                 } else {
-                    $scope.priceFilter = {min: 1, max: $scope.maxprice};
+                    $scope.priceFilter.min = 1;
+                }
+                if($stateParams.max){
+                    $scope.priceFilter.max =  $stateParams.max;
+                } else {
+                    $scope.priceFilter.max =  $scope.maxprice;
                 }
                 /*end pagination*/
 
+                $scope.Filtr = [];
                 $scope.ncolors = data.colors;
+                /*Зачекаем всёв false*/
                 for (var i = 0; i < $scope.ncolors.length; i++) {
                     $scope.ncolors[i].check = false;
                 }
+                /* Зачекаем в true */
+                if($stateParams.color){
+                    $scope.filtrs = $stateParams.color;
+                    for(var item = 0 ; item < $scope.filtrs.length; item++){
+                        for (var i = 0; i < $scope.ncolors.length; i++) {
+                            if($scope.ncolors[i].params == $scope.filtrs[item])
+                                $scope.ncolors[i].check = true;
+                            $scope.Filtr.push($scope.ncolors[i]);
+                        }
+                    }
+                }   else {
+                    $scope.filtrs = [];
+                }
 
-                $scope.filtred = angular.copy($scope.ncolors);
-                $scope.Filtr = [];
                 $scope.checking = function (color) {
                     if (color.check == true) {
                         $scope.Filtr.push(color);
+                        $scope.filtrs.push(color.params);
                     }
                     else if (color.check == false) {
                         for (var i = 0; i < $scope.Filtr.length; i++)
                             if ($scope.Filtr[i].params == color.params) $scope.Filtr.splice(i, 1);
+                        for (var j = 0; j < $scope.filtrs.length; j++)
+                            if ($scope.filtrs[j] == color.params) $scope.filtrs.splice(j, 1);
                     }
-                    console.log( $scope.Filtr, color);
+                    $state.go('.', {color: $scope.filtrs}, { notify: false });
+                    console.log($scope.filtrs);
                 };
             });
     });
@@ -96,10 +118,15 @@ angular.module("admin")
             then(function (data, status) {
                 $scope.categories = data;
                 /*pagination*/
-                if($stateParams.min || $stateParams.max){
-                    $scope.priceFilter = {min: $stateParams.min, max: $stateParams.max};
+                if($stateParams.min){
+                    $scope.priceFilter.min = parseInt($stateParams.min);
                 } else {
-                    $scope.priceFilter = {min: 1, max: data[0].max};
+                    $scope.priceFilter.min = 1;
+                }
+                if($stateParams.max){
+                    $scope.priceFilter.max =  $stateParams.max;
+                } else {
+                    $scope.priceFilter.max =  data[0].max;
                 }
                 /*end pagination*/
             });
