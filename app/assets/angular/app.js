@@ -8,6 +8,7 @@ angular.module("admin", [
     'ui.router'
 ]);
 angular.module('app', [
+
     'ui.router',
     'ui.router.stateHelper',
     'templates',
@@ -16,6 +17,7 @@ angular.module('app', [
     'flash',
     'ngFileUpload',
     'ui.bootstrap.pagination',
+    'angularUtils.directives.dirPagination',
     'myCart',
     'admin'
 ])

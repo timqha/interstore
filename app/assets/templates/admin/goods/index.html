@@ -1,15 +1,19 @@
-<div class="col col-md-offset-1 col-md-6">
+<div class="col col-md-offset-1 col-md-8">
     <div ng-show="error.message" class="alert alert-success">
         <p>{{error.message}}</p>
     </div>
     <div class="row">
+        <div class="col-md-offset-9 col-md-3">
+           Page Size:  <input class="pagination"  type="number" min="1" max="100" ng-model="pageSize">
+        </div>
+    </div>
+    <div class="row">
         <table class="table table-condensed table-hover">
-            [ <a href="" ng-click="predicate=''">unsorted</a> ]
+            [ <a href="" ng-click="order('')">unsorted</a> ]
             <thead>
                 <tr>
                     <th>
                         <a href="" ng-click="order('name')">Заголовок</a>
-                        <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
                     </th>
                     <th>
                         Категория
@@ -19,7 +23,6 @@
                     </th>
                     <th>
                         <a href="" ng-click="order('price')">Цена</a>
-                        <span class="sortorder" ng-show="predicate === 'price'" ng-class="{reverse:reverse}"></span>
                     </th>
                     <th>Отображать</th>
                     <th>Править</th>
@@ -28,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="product in products | orderBy:predicate:reverse">
+            <tr dir-paginate="product in products | orderBy:predicate:reverse | itemsPerPage: pageSize" current-page="AcurrentPage" pagination-id="showPagination">
                 <td><a ui-sref="products.show({productId: product.id})">{{product.name}}</a></td>
                 <td>{{product.category_name}}</td>
                 <td>{{product.params}}</td>
@@ -37,13 +40,12 @@
                 <td><a ui-sref="products.edit({productId: product.id})" > edit</a></td>
                 <td><a ui-sref="products.delete({productId: product.id})" ng-click="deleteProduc(product.id)" class="glyphicon glyphicon-remove"></a></td>
             </tr>
-
             </tbody>
         </table>
-
-
-
-
-
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                <dir-pagination-controls boundary-links="true" pagination-id="showPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="pagination/dirPagination.html"></dir-pagination-controls>
+            </div>
+        </div>
     </div>
 </div>

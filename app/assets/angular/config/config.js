@@ -33,9 +33,27 @@ angular.module("app")
                     },
                     {
                         name: 'index',
-                        url: '/index',
+                        url: '/index?page&sort&reverse&pagesize',
                         templateUrl: 'admin/goods/index.html',
-                        controller: 'Product'
+                        controller: 'Product',
+                        params: {
+                            page: {
+                                value: '0',
+                                squash: true
+                            },
+                            sort: {
+                                value: '',
+                                squash: true
+                            },
+                            pagesize: {
+                                value: '3',
+                                squash: true
+                            },
+                            reverse: {
+
+                                squash: true
+                            }
+                        }
                     },
                     {
                         name: 'show',
@@ -128,17 +146,31 @@ angular.module("app")
             /*start Users rout*/
             .state({
                 name: 'home',
-                url: "/home?page",
+                url: "/home?page&sort&pagesize&min&max",
                 data: {
                     admin: false
                 },
                 templateUrl: "category/home.html",
                 controller: 'Category',
                 params: {
-                    page: {
-                        value: '0',
-                        squash: true
-                    }
+                        page: {
+                            value: '0',
+                            squash: true
+                        },
+                        sort: {
+                            value: '',
+                            squash: true
+                        },
+                        pagesize: {
+                            squash: true
+                        },
+                        min: {
+                            squash: true
+                        },
+                        max: {
+                            squash: true
+                        }
+
                    /* sort: {
                     &sort
                         value: 'upvotes'
@@ -156,9 +188,28 @@ angular.module("app")
                 children: [
                     {
                         name: 'show',
-                        url: "/:categoryId/show",
+                        url: "/:categoryId/show?page&color&min&max&pagesize",
                         templateUrl: 'category/show.html',
-                        controller: 'CategoryShowCtrl'
+                        controller: 'CategoryShowCtrl',
+                        params: {
+                            page: {
+                                value: '0',
+                                squash: true
+                            },
+                            color: {
+                                value: '',
+                                squash: true
+                            },
+                            pagesize: {
+                                squash: true
+                            },
+                            min: {
+                                squash: true
+                            },
+                            max: {
+                                squash: true
+                            }
+                        }
                     }]
             })
             .state({

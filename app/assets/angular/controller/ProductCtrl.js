@@ -10,40 +10,37 @@
 angular.module('admin')
     .controller('Product', function ($rootScope, $scope, ProductsService, ConfigANDRouts, $stateParams, $state) {
 
-        /* pagination template */
-        ConfigANDRouts.templateCache();
+        /*pagination*/
 
-        $scope.initpagination = function(){
-            /* текущая страница */
-            $scope.currentPage = 4;//parseInt($stateParams.page);
-            console.log("page in satat = "+$stateParams.page);
-            /* сколько показывать на страничке кнопок*/
-            $scope.maxSize = 9;
-            /* сколько продуктов отображать*/
-            $scope.viewby = 3;
-            $scope.itemsPerPage = $scope.viewby;
-        };
+        if($stateParams.page == 0){
+            $scope.AcurrentPage = 1;
+        } else {
+            $scope.AcurrentPage = $stateParams.page;
+        }
+        if($stateParams.pagesize){
+            console.log($stateParams.pagesize);
+            $scope.pageSize = parseInt($stateParams.pagesize);
+        } else {
+            $scope.pageSize = 3;
+        }
+        if($stateParams.sort){
+            console.log($stateParams.sort);
+            $scope.predicate = "'"+$stateParams.sort+"'";
+        } else {
+            $scope.predicate = 'color';
+        }
 
-        $scope.initpagination();
-        /* переход по страницам*/
-        $scope.setPage = function (pageNo) {
-            $scope.currentPage = pageNo;
-        };
-        $scope.changeInvalidProductPage = function(page) {
-            $scope.currentPage = page;
-            console.log('current invalid product page: ', $scope.currentPage);
-        };
-        $scope.setPage($stateParams.page);
-        /*Сбросить на страницу 1*/
-        $scope.setItemsPerPage = function(num){
-            $scope.itemsPerPage = num;
-            $scope.currentPage = 1; //reset to first page
-        };
-
-        $scope.$watch('currentPage', function () {
-            $state.go('.', {page: $scope.currentPage}, { notify: false });
-            //$state.transitionTo('home', {page: $scope.currentPage}, { notify: false });
+        $scope.$watch('AcurrentPage', function () {
+            $state.go('.', {page: $scope.AcurrentPage}, { notify: false });
         });
+        $scope.$watch('pageSize', function () {
+            console.log($scope.pageSize);
+            $state.go('.', {pagesize: $scope.pageSize}, { notify: false });
+        });
+
+        /*end pagination */
+
+
 
 
         // Goods index
@@ -76,11 +73,15 @@ angular.module('admin')
         };
 
         /* for admin sort*/
-        $scope.predicate = 'color';
-        $scope.reverse = true;
+        if($stateParams.reverse == "false"){
+            $scope.reverse = false;
+        } else {
+            $scope.reverse =$stateParams.reverse ? 1 : 0;
+        }
         $scope.order = function(predicate) {
             $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
             $scope.predicate = predicate;
+            $state.go('.', {sort: predicate, reverse: $scope.reverse}, { notify: false });
         };
         /*end admin sort*/
 

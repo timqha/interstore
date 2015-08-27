@@ -33,7 +33,7 @@
 //= require ng-file-upload
 
 //= require angular-ui-bootstrap/src/pagination/pagination.js
-
+//= require angular-utils-pagination
 
 //= require mystyle.js
 

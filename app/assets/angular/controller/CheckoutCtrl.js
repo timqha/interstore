@@ -16,22 +16,14 @@ angular.module('app')
 
         UserService.getUser()
             .then(function (data) {
-                console.log(data);
                 $scope.order = data.data.user;
-            })
-            .catch(function (data) {
-                console.log(data);
             });
 
         $scope.Checkout = function () {
-
-            if (whenCartUpdated()) {
-                $scope.ConfirmDialog();
-            } else {
-                $scope.addOrder();
-            }
+            whenCartUpdated();
         };
 
+        // Не забыть изменить название, в $scope.ConfirmDialog
         $scope.addOrder = function() {
             if ($scope.order.name == null || $scope.order.city == null || $scope.order.telephone == null || $scope.order.email == null || myCart.getTotalItems() === 0) {
                 if (myCart.getTotalItems() === 0) {
@@ -67,28 +59,19 @@ angular.module('app')
             }
         };
 
-        ////Наверное это нужно вынести в сервайс или что-то подобное.
-        // И убрать повторение с ProductCtrl
+        // Проверка изм в цене
         function whenCartUpdated() {
-            $scope.errors = {text: null, g: 0};
             angular.forEach(myCart.getCart().items, function (item) {
-                $scope.errors.g++;
                 ProductsService.showProduct(item.getId())
                     .then(function (data) {
                         if (data.product.price != item.getPrice()) {
-                            if ($scope.errors.g == 1) {
-                                if (item.getPrice() <= data.product.price) {
-                                    $scope.errors.text = "Цены на товар стали выше!";
-                                }
-                                else {
-                                    $scope.errors.text = "Вам повезло, цены стали меньше!";
-                                }
-                            }
-                            else {
-                                $scope.errors.text = "Внимание! Цены изменились.";
-                            }
                             item.setPrice(data.product.price);
                             $rootScope.$broadcast('myCart:change', {});
+                            // цены изменились
+                            $scope.ConfirmDialog();
+                        }
+                        else{
+                            $scope.addOrder();
                         }
                     });
             });

@@ -44,9 +44,10 @@
                         Products
                         <div class="alert alert-error" ng-show="errors.text">{{errors.text}}</div>
                         {{myCart.getTotalSumm(2) | currency: "$"}}
-                        <!--<ngcart-summary></ngcart-summary>-->
                     </div>
-                        <div ng-repeat="product in products | filterColor:Filtr | filter:{visible:t} | filterPrice:priceFilter">
+                    <div class="row">
+                        <!--<div ng-repeat="product in products | filterColor:Filtr | filter:{visible:t} | filterPrice:priceFilter">-->
+                        <div dir-paginate="product in products | filterColor:Filtr | filter:{visible:t} | filterPrice:priceFilter | itemsPerPage: pageSize" current-page="currentPage" pagination-id="showPagination">
                             <div class="col-md-4 maxheight">
                                 <div class="panel panel-info" >
                                     <div class="panel-heading">
@@ -76,6 +77,24 @@
                                 <br>
                             </div>
                         </div>
+                    </div><!--row-->
+                    <div class="row">
+                        <!--template-url="'../pagination/pagination.html'"-->
+                        <div class="col-md-9">
+                            <dir-pagination-controls boundary-links="true" pagination-id="showPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="pagination/dirPagination.html"></dir-pagination-controls>
+                        </div>
+                        <div class="col-md-2">
+                            <select  class="selectpicker" ng-model="pageSize" ng-change="setItemsPerPage(pageSize)">
+                                <option>3</option>
+                                <option>5</option>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                                <option>40</option>
+                                <option>50</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <!--/panel-body-->
             </div>
@@ -84,4 +103,3 @@
         </div>
     </div>
 </div>
-
