@@ -3,7 +3,7 @@
         <h1>Ваши заказы.</h1>
     </div><br>
 
-    <div ng-repeat="order in orders">
+    <div dir-paginate="order in orders | itemsPerPage: pageSize" current-page="AcurrentPage" pagination-id="showPagination">
         <div>
             <b>id:</b> {{order.id}}
             <b class="text-muted">Указаное имя:</b> {{order.name}}
@@ -36,5 +36,13 @@
         <div class="pull-right"> Всего: {{order.totals | currency}}</div>
         <br>
         <hr>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <dir-pagination-controls boundary-links="true" pagination-id="showPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="pagination/dirPagination.html"></dir-pagination-controls>
+        </div>
+        <div class="col-md-2">
+            Page Size:  <input class="pagination"  type="number" min="1" max="100" ng-model="pageSize">
+        </div>
     </div>
 </div>

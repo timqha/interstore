@@ -9,9 +9,25 @@
  * */
 angular.module('app')
 
-    .controller('ProfileOrdersCtrl', function ($q, $scope, OrdersService, $rootScope, ProductsService, UserService) {
-        $scope.currentUser = null;
+    .controller('ProfileOrdersCtrl', function ($q, $scope, OrdersService, $rootScope, ProductsService, UserService, $stateParams, $state) {
+        if($stateParams.page == 0){
+            $scope.AcurrentPage = 1;
+        } else {
+            $scope.AcurrentPage = $stateParams.page;
+        }
+        if($stateParams.pagesize){
+            $scope.pageSize = parseInt($stateParams.pagesize);
+        } else {
+            $scope.pageSize = 3;
+        }
+        $scope.$watch('AcurrentPage', function () {
+            $state.go('.', {page: $scope.AcurrentPage}, { notify: false });
+        });
+        $scope.$watch('pageSize', function () {
+            $state.go('.', {pagesize: $scope.pageSize}, { notify: false });
+        });
 
+        $scope.currentUser = null;
         $scope.orders = [];
         OrdersService.getOrdersAll()
             .then(function (data) {
@@ -35,7 +51,24 @@ angular.module('app')
                 console.log($scope.orders);
             });
     })
-    .controller('AdminProfileIndexContr', function ($scope, OrdersService, ProductsService) {
+    .controller('AdminProfileIndexContr', function ($scope, OrdersService, ProductsService, $stateParams, $state) {
+        if($stateParams.page == 0){
+            $scope.AcurrentPage = 1;
+        } else {
+            $scope.AcurrentPage = $stateParams.page;
+        }
+        if($stateParams.pagesize){
+            $scope.pageSize = parseInt($stateParams.pagesize);
+        } else {
+            $scope.pageSize = 3;
+        }
+        $scope.$watch('AcurrentPage', function () {
+            $state.go('.', {page: $scope.AcurrentPage}, { notify: false });
+        });
+        $scope.$watch('pageSize', function () {
+            $state.go('.', {pagesize: $scope.pageSize}, { notify: false });
+        });
+
         $scope.orders = [];
         OrdersService.getOrdersAll()
             .then(function (data) {

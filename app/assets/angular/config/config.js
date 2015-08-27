@@ -125,9 +125,19 @@ angular.module("app")
                 children: [
                     {
                         name: 'index',
-                        url: '/index',
+                        url: '/index?page&pagesize',
                         templateUrl: 'admin/orders/index.html',
-                        controller: 'AdminProfileIndexContr'
+                        controller: 'AdminProfileIndexContr',
+                        params: {
+                            page: {
+                                value: '0',
+                                squash: true
+                            },
+                            pagesize: {
+                                value: '3',
+                                squash: true
+                            }
+                        }
                     },
                     {
                         name: 'delete',
@@ -314,9 +324,19 @@ angular.module("app")
                 children: [
                     {
                         name: 'orders',
-                        url: '/orders',
+                        url: '/orders?page&pagesize',
                         templateUrl: 'users/orders.html',
-                        controller: 'ProfileOrdersCtrl'
+                        controller: 'ProfileOrdersCtrl',
+                        params: {
+                            page: {
+                                value: '0',
+                                squash: true
+                            },
+                            pagesize: {
+                                value: '3',
+                                squash: true
+                            }
+                        }
                     },
                     {
                         name: 'index',
